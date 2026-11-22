@@ -26,7 +26,7 @@ export function AdminHeader({
 }
 
 export function AdminCard({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn('rounded-2xl border border-line bg-paper', className)}>{children}</div>;
+  return <div className={cn('border border-line bg-paper', className)}>{children}</div>;
 }
 
 export function StatCard({
@@ -50,18 +50,18 @@ export function StatCard({
 
   if (href) {
     return (
-      <Link href={href} className="rounded-2xl block border border-line bg-paper p-5 transition-colors hover:border-wine/40">
+      <Link href={href} className="block border border-line bg-paper p-5 transition-colors hover:border-wine/40">
         {content}
       </Link>
     );
   }
 
-  return <div className="rounded-2xl border border-line bg-paper p-5">{content}</div>;
+  return <div className="border border-line bg-paper p-5">{content}</div>;
 }
 
 export function AdminTable({ head, children }: { head: string[]; children: ReactNode }) {
   return (
-    <div className="rounded-2xl overflow-x-auto border border-line bg-paper">
+    <div className="overflow-x-auto border border-line bg-paper">
       <table className="w-full min-w-[640px] border-collapse text-left text-[12.5px]">
         <thead>
           <tr className="border-b border-line bg-[#FAF9F6]">
@@ -92,7 +92,7 @@ export function StatusPill({ tone, children }: { tone: 'green' | 'amber' | 'gray
 
 export function AdminEmpty({ title, description, action }: { title: string; description?: string; action?: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-line bg-paper px-6 py-12 text-center">
+    <div className="border border-line bg-paper px-6 py-12 text-center">
       <p className="font-serif text-[19px] text-wine">{title}</p>
       {description ? <p className="mx-auto mt-2 max-w-md text-[12.5px] leading-relaxed text-muted">{description}</p> : null}
       {action ? <div className="mt-4 flex justify-center gap-2">{action}</div> : null}

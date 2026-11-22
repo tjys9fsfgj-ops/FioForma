@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { PatternPlaceholder } from '@/components/product/pattern-placeholder';
 import { createDownloadToken } from '@/lib/downloads';
 import { getLibrary } from '@/lib/entitlements';
 import { formatDate, formatLabels } from '@/lib/format';
@@ -51,7 +50,7 @@ export default async function LibraryPage() {
               <div className="flex gap-4 p-4 sm:gap-6 sm:p-5">
                 <Link
                   href={`/produto/${item.product.slug}`}
-                  className="rounded-2xl relative aspect-[4/5] w-20 shrink-0 overflow-hidden border border-line bg-[#EFEDE6] sm:w-24"
+                  className="rounded-2xl relative aspect-[3/4] w-20 shrink-0 overflow-hidden border border-line bg-paper p-1 sm:w-24"
                 >
                   {item.product.images[0] ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -61,7 +60,7 @@ export default async function LibraryPage() {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <PatternPlaceholder label="Molde" seed={0} />
+                    <span className="block h-full w-full bg-sand" aria-hidden="true" />
                   )}
                 </Link>
 

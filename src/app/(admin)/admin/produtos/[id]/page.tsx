@@ -81,7 +81,7 @@ export default async function EditProductPage({ params, searchParams }: Props) {
           <section className="rounded-2xl border border-line bg-paper">
             <div className="border-b border-line px-5 py-3">
               <h2 className="font-serif text-[17px] text-wine">Fotos</h2>
-              <p className="mt-1 text-[11px] text-muted">A primeira foto é a capa. Use 4:5 (vertical), até 8 MB.</p>
+              <p className="mt-1 text-[11px] text-muted">A primeira foto é a capa. Use 3:4 (vertical, como na loja), até 8 MB.</p>
             </div>
 
             <div className="space-y-3 p-4">
@@ -211,7 +211,7 @@ export default async function EditProductPage({ params, searchParams }: Props) {
           <div className="rounded-2xl border border-line bg-[#F7F6F2] p-4 text-[11.5px] leading-relaxed text-muted">
             <p className="font-medium text-ink">Antes de publicar</p>
             <ul className="mt-2 list-disc space-y-1 pl-4">
-              <li>Fotos 4:5 com boa luz, sem texto por cima.</li>
+              <li>Fotos 3:4 com boa luz, sem texto por cima.</li>
               <li>Tabela de medidas preenchida e revisada.</li>
               <li>PDF conferido na escala 100%, com gabarito de teste.</li>
               <li>Preço entre R$ 10 e R$ 20 e descrição sem promessas que você não cumpre.</li>

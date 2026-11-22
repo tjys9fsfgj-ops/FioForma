@@ -179,7 +179,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
                           </span>
                           <a
                             href={`/api/download/${file.id}?t=${file.token}`}
-                            className="rounded-full border border-wine px-3 py-1.5 text-[11.5px] font-medium text-wine hover:bg-wine hover:text-paper"
+                            className="border border-wine px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-wine hover:bg-wine hover:text-paper"
                           >
                             Baixar PDF
                           </a>

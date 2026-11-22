@@ -325,20 +325,18 @@ const pages = [
     excerpt: 'Moldes digitais feitos com cuidado de ateliê, para costurar em casa.',
     contentMd: `## Costurar começa no molde
 
-O FioForma nasceu de uma ideia simples: um molde bem desenhado economiza tecido, tempo e frustração. Cada peça é modelada, testada e revisada antes de virar PDF.
+A FioForma nasceu de uma ideia simples: um molde bem desenhado economiza tecido, tempo e frustração. Cada arquivo traz o que você precisa saber antes de cortar, escrito com clareza e em português.
 
 ## Como trabalhamos
 
-Cada molde é desenhado em software de modelagem, provado em tecido real e ajustado até o caimento ficar previsível. Depois, o arquivo é preparado em camadas por tamanho, com teste de impressão e instruções em português.
+Os primeiros moldes da loja são de modelagem geométrica — saias de círculo e de retângulo, avental, bolsa e nécessaire — calculados com precisão a partir de uma tabela de medidas única, do PP ao GG. Cada PDF tem teste de escala, folhas numeradas com mapa de montagem, plano de corte e passo a passo.
 
 ## O que você leva
 
-- Arquivos em A4, A0 e projetor
-- Ficha técnica com tecido, metragem e aviamentos
+- PDF A4 para imprimir em casa e, nos moldes com peças grandes, PDF A0 para gráfica
+- Ficha técnica com tecido, metragem por tamanho e aviamentos
 - Tabela de medidas em centímetros
-- Re-download ilimitado na sua biblioteca
-
-> Este texto é um exemplo. Substitua pela história real do ateliê no painel: Páginas e blog > Sobre.`,
+- Re-download ilimitado na sua biblioteca`,
     status: 'PUBLISHED' as const,
     kind: 'PAGE' as const,
   },
@@ -352,26 +350,26 @@ Imprima sempre em **escala 100%** (ou "tamanho real"). Nunca use "ajustar à pá
 
 ## O teste de impressão
 
-Toda primeira página traz um quadrado de 5 × 5 cm. Meça com régua: se estiver menor ou maior, ajuste a escala do seu leitor de PDF e imprima de novo.
+Antes das folhas do molde, o PDF traz uma página de teste com um quadrado de 5 × 5 cm e uma régua de 10 cm. Imprima só essa página e meça: se estiver menor ou maior, ajuste a escala do seu leitor de PDF antes de imprimir o resto.
 
 ## Unindo as folhas
 
-1. Corte a margem direita e a inferior de cada folha.
-2. Alinhe pelas letras e números de referência (A1, A2, B1…).
-3. Cole com fita adesiva fina, conferindo o encaixe das linhas.
-4. Recorte o contorno do tamanho escolhido.
+1. Cada folha tem um nome: a letra é a coluna e o número é a linha (A1, A2, B1…). A página de teste mostra o mapa.
+2. Corte a margem branca da esquerda e de cima de cada folha.
+3. Apoie a folha sobre a vizinha, encostando a borda na linha tracejada a 1 cm da beirada, e confira se os traços continuam.
+4. Cole com fita adesiva fina e recorte o contorno do seu tamanho — cada tamanho tem um tipo de traço, explicado na legenda.
 
 ## Escolhendo o tamanho
 
 Meça o corpo sem roupa por cima e compare com a tabela do molde. Entre dois tamanhos, escolha o maior: é mais fácil ajustar para dentro do que para fora.
 
-## Projetor
+## Peças retangulares
 
-O arquivo de projetor tem camadas separadas por tamanho e linhas em contraste. Projete na parede ou no tecido, ajuste a escala pela linha de referência e desenhe com giz ou caneta própria.
+Quando a peça é um retângulo (cós, alças, painéis de saia franzida), o molde não manda folhas: a ficha e o plano de corte trazem as medidas exatas, já com margem. Marque direto no avesso do tecido com régua e giz.
 
 ## Impressão em gráfica
 
-O arquivo A0 é o mais indicado: uma folha só, sem emendas. Peça papel de 80 g e confira a escala antes de cortar.`,
+Nos moldes com peças grandes há um PDF A0: uma folha só, sem emendas. Peça impressão em tamanho real e confira o quadrado de 5 cm antes de cortar.`,
     status: 'PUBLISHED' as const,
     kind: 'PAGE' as const,
   },

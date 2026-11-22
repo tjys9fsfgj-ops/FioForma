@@ -53,7 +53,9 @@ export default async function ContentPage({ params }: Props) {
           <p className="eyebrow">Ateliê</p>
           <h1 className="mt-3 text-[clamp(2rem,4.4vw,3.1rem)] leading-[1.05]">{page.title}</h1>
           {page.excerpt ? <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">{page.excerpt}</p> : null}
-          <p className="mt-4 text-[11px] text-muted">Atualizado em {formatDate(page.updatedAt)}</p>
+          {page.publishedAt && page.updatedAt.getTime() - page.publishedAt.getTime() > 24 * 60 * 60 * 1000 ? (
+            <p className="mt-4 text-[11px] text-muted">Atualizado em {formatDate(page.updatedAt)}</p>
+          ) : null}
         </header>
 
         {LEGAL_SLUGS.has(page.slug) ? (

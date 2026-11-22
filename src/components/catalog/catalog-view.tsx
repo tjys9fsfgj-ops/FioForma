@@ -34,7 +34,7 @@ function Pagination({
       {page > 1 ? (
         <Link
           href={`${basePath}?${new URLSearchParams({ ...params, page: String(page - 1) } as Record<string, string>).toString()}`}
-          className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium hover:border-wine hover:text-wine"
+          className="border border-rule bg-paper px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-ink hover:border-ink"
           rel="prev"
         >
           ← Anterior
@@ -65,7 +65,7 @@ function Pagination({
       {page < pages ? (
         <Link
           href={`${basePath}?${new URLSearchParams({ ...params, page: String(page + 1) } as Record<string, string>).toString()}`}
-          className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium hover:border-wine hover:text-wine"
+          className="border border-rule bg-paper px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-ink hover:border-ink"
           rel="next"
         >
           Próxima →
@@ -226,10 +226,10 @@ export async function CatalogView({
                 com o ateliê.
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-3">
-                <Link href={basePath} className="rounded-full border border-wine bg-wine px-6 py-3 text-[13px] font-semibold text-paper">
+                <Link href={basePath} className="border border-wine bg-wine px-6 py-3 text-[12px] font-medium uppercase tracking-[0.18em] text-paper hover:bg-wine-800">
                   Ver todos os moldes
                 </Link>
-                <Link href="/contato" className="rounded-full border border-line bg-paper px-6 py-3 text-[13px] font-semibold hover:border-wine">
+                <Link href="/contato" className="border border-ink px-6 py-3 text-[12px] font-medium uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-paper">
                   Falar com o ateliê
                 </Link>
               </div>

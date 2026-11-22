@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { removeCartItemAction } from '@/app/actions/cart';
 import { ButtonLink } from '@/components/ui/button';
-import { PatternPlaceholder } from '@/components/product/pattern-placeholder';
 import { getCart } from '@/lib/cart';
 import { brl, priceLabel } from '@/lib/format';
 
@@ -42,7 +41,7 @@ export default async function CartPage() {
           <p className="eyebrow">Carrinho</p>
           <h1 className="mt-2 text-[clamp(1.8rem,3.6vw,2.6rem)] leading-tight">Seus moldes</h1>
         </div>
-        <Link href="/catalogo" className="rounded-full border border-wine/25 px-5 py-2.5 text-[13px] font-semibold text-wine hover:border-wine hover:bg-paper">
+        <Link href="/catalogo" className="border border-ink px-6 py-3 text-[12px] font-medium uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-paper">
           Continuar comprando
         </Link>
       </header>
@@ -53,13 +52,13 @@ export default async function CartPage() {
             <li key={line.itemId} className="flex gap-4 border border-line bg-paper p-4 shadow-paper sm:gap-6 sm:p-5">
               <Link
                 href={`/produto/${line.slug}`}
-                className="rounded-2xl relative aspect-[4/5] w-24 shrink-0 overflow-hidden border border-line bg-[#EFEDE6] sm:w-28"
+                className="rounded-2xl relative aspect-[3/4] w-24 shrink-0 overflow-hidden border border-line bg-paper p-1 sm:w-28"
               >
                 {line.imageId ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={`/api/media/${line.imageId}`} alt={line.name} className="h-full w-full object-cover" />
                 ) : (
-                  <PatternPlaceholder label="Molde" seed={0} />
+                  <span className="block h-full w-full bg-sand" aria-hidden="true" />
                 )}
               </Link>
 

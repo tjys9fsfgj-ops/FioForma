@@ -53,7 +53,7 @@ export function CatalogFiltersBar({
         id="sort"
         value={currentSort}
         onChange={(event) => changeSort(event.target.value)}
-        className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium text-ink focus:border-wine focus:outline-none"
+        className="border border-rule bg-paper px-3 py-2 text-[12px] text-ink focus:border-wine focus:outline-none"
       >
         {sortOptions.map((option) => (
           <option key={option.value} value={option.value}>

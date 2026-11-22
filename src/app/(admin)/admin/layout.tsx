@@ -26,11 +26,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const user = await requireAdmin();
 
   return (
-    <div className="min-h-screen bg-[#F3F1EC]">
+    <div className="min-h-screen bg-linen">
       <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row">
-        <aside className="bg-wine text-paper lg:min-h-screen lg:w-[256px] lg:shrink-0 lg:rounded-r-[2rem]">
+        <aside className="bg-ink text-linen lg:min-h-screen lg:w-[240px] lg:shrink-0">
           <div className="px-5 py-5 lg:py-7">
-            <div className="[&_span]:text-paper [&_svg_path:first-of-type]:stroke-sand/70 [&_svg_path:last-of-type]:fill-paper">
+            <div className="[&_a]:text-[22px] [&_a]:text-linen">
               <Logo />
             </div>
             <p className="mt-3 text-[10px] uppercase tracking-[0.16em] text-paper/60">Painel da loja</p>
@@ -42,7 +42,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block rounded-xl px-3 py-2.5 text-[13px] font-medium text-paper/80 transition-colors hover:bg-paper/10 hover:text-paper"
+                    className="block border-l-2 border-transparent px-3 py-2.5 text-[13px] text-linen/80 transition-colors hover:border-linen/60 hover:text-paper"
                   >
                     {item.label}
                   </Link>
