@@ -39,11 +39,13 @@ export async function generateMetadata(): Promise<Metadata> {
       title: `${brand.name} — ${brand.tagline}`,
       description: brand.shortDescription,
       url: siteUrl,
+      images: [{ url: '/og.png', width: 1200, height: 630, alt: `${brand.name} — moldes de costura em PDF` }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${brand.name} — ${brand.tagline}`,
       description: brand.shortDescription,
+      images: ['/og.png'],
     },
     robots: { index: true, follow: true },
     icons: {

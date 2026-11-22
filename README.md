@@ -380,3 +380,23 @@ plan.md                  plano e decisões
 ---
 
 Dúvidas de operação do dia a dia estão em [`docs/OPERACAO.md`](./docs/OPERACAO.md).
+
+---
+
+## Moldes gerados por código
+
+Os primeiros moldes da loja (nº 001 a 005) são gerados em `scripts/moldes/`:
+
+- `medidas.ts` — tabela de medidas única (PP a GG) e margem de costura.
+- `moldes/*.ts` — cada molde: peças, medidas de corte, ficha, passo a passo e FAQ.
+- `pdf.ts` — PDF A4 em mosaico (capa, ficha, medidas, plano de corte, passo a passo, teste de escala e folhas A1, A2…) e A0.
+- `svg.ts` — imagens da loja (envelope, desenho técnico, plano de corte) e `public/og.png`.
+
+```bash
+pnpm moldes:build   # regera prisma/moldes/<slug>/ (PDFs, PNGs, manifest.json)
+pnpm db:seed        # carrega no banco; rodar de novo não duplica
+pnpm test           # inclui os testes de geometria, PDF (escala de 5 cm) e build
+```
+
+Banco local para desenvolvimento: `./scripts/dev-db.sh` (TiDB via tiup, porta 4000).
+Fluxo de publicação: `docs/MANUS.md`. Pagamento real: `docs/MERCADOPAGO.md`.
