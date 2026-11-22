@@ -30,7 +30,7 @@ export default async function RegisterPage() {
         <RegisterForm />
         <p className="text-center text-[12px] text-muted">
           Já tem conta?{' '}
-          <Link href="/entrar" className="text-forest underline underline-offset-4">
+          <Link href="/entrar" className="text-wine underline underline-offset-4">
             Entrar
           </Link>
         </p>

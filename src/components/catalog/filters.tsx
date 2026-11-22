@@ -58,7 +58,7 @@ function FilterGroup({
 
   return (
     <details open className="group border-b border-line py-4">
-      <summary className="flex cursor-pointer list-none items-center justify-between text-[11.5px] font-semibold uppercase tracking-[0.14em] text-forest marker:content-none [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between text-[11.5px] font-semibold uppercase tracking-[0.14em] text-wine marker:content-none [&::-webkit-details-marker]:hidden">
         {title}
         <span aria-hidden="true" className="text-muted transition-transform group-open:rotate-45">
           +
@@ -75,7 +75,7 @@ function FilterGroup({
                 })}
                 className={cn(
                   'flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-[13.5px] leading-snug transition-colors',
-                  isActive ? 'bg-sage-100 font-semibold text-forest' : 'text-ink/75 hover:bg-forest/[0.05] hover:text-forest',
+                  isActive ? 'bg-sand font-semibold text-wine' : 'text-ink/75 hover:bg-wine/[0.05] hover:text-wine',
                 )}
                 aria-current={isActive ? 'true' : undefined}
               >
@@ -84,7 +84,7 @@ function FilterGroup({
                     aria-hidden="true"
                     className={cn(
                       'inline-block h-2.5 w-2.5 rounded-full border',
-                      isActive ? 'border-forest bg-forest' : 'border-line bg-transparent',
+                      isActive ? 'border-wine bg-wine' : 'border-line bg-transparent',
                     )}
                   />
                   {option.label}
@@ -121,7 +121,7 @@ export function FilterPanel({
       <div className="flex items-center justify-between pb-2">
         <p className="eyebrow">Filtrar</p>
         {hasFilters ? (
-          <Link href={basePath} className="text-[11.5px] text-forest underline underline-offset-4">
+          <Link href={basePath} className="text-[11.5px] text-wine underline underline-offset-4">
             Limpar
           </Link>
         ) : null}

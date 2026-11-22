@@ -28,7 +28,7 @@ export function CheckoutForm({
       {state.status === 'error' && state.message ? <FormMessage>{state.message}</FormMessage> : null}
 
       <section>
-        <h2 className="font-serif text-[22px] text-forest">Seus dados</h2>
+        <h2 className="font-serif text-[22px] text-wine">Seus dados</h2>
         <p className="mt-1 text-[12.5px] text-muted">
           {isLoggedIn
             ? 'Você está comprando com sua conta. Os moldes entram direto na sua biblioteca.'
@@ -79,14 +79,14 @@ export function CheckoutForm({
       </section>
 
       <section className="border-t border-line pt-8">
-        <h2 className="font-serif text-[22px] text-forest">Pagamento</h2>
+        <h2 className="font-serif text-[22px] text-wine">Pagamento</h2>
         <p className="mt-1 text-[12.5px] text-muted">
           Pix ou cartão de crédito, processados pelo Mercado Pago. Sem boleto.
         </p>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-white p-4 transition-colors has-[:checked]:border-forest has-[:checked]:bg-sage-100">
-            <input type="radio" name="method" value="PIX" defaultChecked className="mt-1 accent-[#24483D]" />
+          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-paper p-4 transition-colors has-[:checked]:border-wine has-[:checked]:bg-sand">
+            <input type="radio" name="method" value="PIX" defaultChecked className="mt-1 accent-[#7A3B3B]" />
             <span>
               <span className="block text-[14px] font-medium text-ink">Pix</span>
               <span className="mt-0.5 block text-[12px] leading-relaxed text-muted">
@@ -94,8 +94,8 @@ export function CheckoutForm({
               </span>
             </span>
           </label>
-          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-white p-4 transition-colors has-[:checked]:border-forest has-[:checked]:bg-sage-100">
-            <input type="radio" name="method" value="CARD" className="mt-1 accent-[#24483D]" />
+          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-paper p-4 transition-colors has-[:checked]:border-wine has-[:checked]:bg-sand">
+            <input type="radio" name="method" value="CARD" className="mt-1 accent-[#7A3B3B]" />
             <span>
               <span className="block text-[14px] font-medium text-ink">Cartão de crédito</span>
               <span className="mt-0.5 block text-[12px] leading-relaxed text-muted">
@@ -120,19 +120,19 @@ export function CheckoutForm({
             type="checkbox"
             name="terms"
             required
-            className="mt-0.5 h-4 w-4 shrink-0 accent-[#24483D]"
+            className="mt-0.5 h-4 w-4 shrink-0 accent-[#7A3B3B]"
           />
           <span>
             Li e aceito os{' '}
-            <Link href="/termos" target="_blank" className="text-forest underline underline-offset-4">
+            <Link href="/termos" target="_blank" className="text-wine underline underline-offset-4">
               termos de uso
             </Link>
             , a{' '}
-            <Link href="/licenca" target="_blank" className="text-forest underline underline-offset-4">
+            <Link href="/licenca" target="_blank" className="text-wine underline underline-offset-4">
               licença do molde
             </Link>{' '}
             e a{' '}
-            <Link href="/privacidade" target="_blank" className="text-forest underline underline-offset-4">
+            <Link href="/privacidade" target="_blank" className="text-wine underline underline-offset-4">
               política de privacidade
             </Link>
             .

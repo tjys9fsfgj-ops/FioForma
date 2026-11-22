@@ -42,7 +42,7 @@ export default async function CartPage() {
           <p className="eyebrow">Carrinho</p>
           <h1 className="mt-2 text-[clamp(1.8rem,3.6vw,2.6rem)] leading-tight">Seus moldes</h1>
         </div>
-        <Link href="/catalogo" className="rounded-full border border-forest/25 px-5 py-2.5 text-[13px] font-semibold text-forest hover:border-forest hover:bg-white">
+        <Link href="/catalogo" className="rounded-full border border-wine/25 px-5 py-2.5 text-[13px] font-semibold text-wine hover:border-wine hover:bg-paper">
           Continuar comprando
         </Link>
       </header>
@@ -50,7 +50,7 @@ export default async function CartPage() {
       <div className="mt-8 grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
         <ul className="space-y-4">
           {cart.lines.map((line) => (
-            <li key={line.itemId} className="flex gap-4 rounded-[1.75rem] border border-line bg-white p-4 shadow-soft sm:gap-6 sm:p-5">
+            <li key={line.itemId} className="flex gap-4 rounded-[1.75rem] border border-line bg-paper p-4 shadow-paper sm:gap-6 sm:p-5">
               <Link
                 href={`/produto/${line.slug}`}
                 className="rounded-2xl relative aspect-[4/5] w-24 shrink-0 overflow-hidden border border-line bg-[#EFEDE6] sm:w-28"
@@ -65,7 +65,7 @@ export default async function CartPage() {
 
               <div className="flex min-w-0 flex-1 flex-col justify-between gap-3">
                 <div>
-                  <Link href={`/produto/${line.slug}`} className="font-serif text-[19px] leading-snug text-ink hover:text-forest">
+                  <Link href={`/produto/${line.slug}`} className="font-serif text-[19px] leading-snug text-ink hover:text-wine">
                     {line.name}
                   </Link>
                   {line.tagline ? (
@@ -78,12 +78,12 @@ export default async function CartPage() {
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <p className="font-serif text-[17px] text-forest">{brl(line.priceCents)}</p>
+                  <p className="font-serif text-[17px] text-wine">{brl(line.priceCents)}</p>
                   <form action={removeCartItemAction}>
                     <input type="hidden" name="itemId" value={line.itemId} />
                     <button
                       type="submit"
-                      className="text-[11.5px] text-muted underline decoration-line underline-offset-4 hover:text-forest"
+                      className="text-[11.5px] text-muted underline decoration-line underline-offset-4 hover:text-wine"
                     >
                       Remover
                     </button>
@@ -95,8 +95,8 @@ export default async function CartPage() {
         </ul>
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
-          <div className="rounded-[2rem] border border-line bg-white p-6 shadow-soft sm:p-7">
-            <h2 className="font-serif text-[22px] text-forest">Resumo</h2>
+          <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-7">
+            <h2 className="font-serif text-[22px] text-wine">Resumo</h2>
             <dl className="mt-5 space-y-3 text-[13.5px]">
               <div className="flex justify-between">
                 <dt className="text-muted">Subtotal</dt>
@@ -104,11 +104,11 @@ export default async function CartPage() {
               </div>
               <div className="flex justify-between">
                 <dt className="text-muted">Entrega</dt>
-                <dd className="text-forest">Digital, imediata</dd>
+                <dd className="text-wine">Digital, imediata</dd>
               </div>
               <div className="flex items-center justify-between border-t border-line pt-4 text-[15px]">
                 <dt className="font-medium">Total</dt>
-                <dd className="font-serif text-[19px] text-forest">{brl(cart.subtotalCents)}</dd>
+                <dd className="font-serif text-[19px] text-wine">{brl(cart.subtotalCents)}</dd>
               </div>
             </dl>
             <ButtonLink href="/checkout" size="lg" className="mt-6 w-full">
@@ -121,7 +121,7 @@ export default async function CartPage() {
             <p>Os arquivos ficam disponíveis para download imediato após a confirmação do pagamento.</p>
             <p>
               Precisa de ajuda?{' '}
-              <Link href="/contato" className="text-forest underline underline-offset-4">
+              <Link href="/contato" className="text-wine underline underline-offset-4">
                 Fale com o ateliê
               </Link>
               .

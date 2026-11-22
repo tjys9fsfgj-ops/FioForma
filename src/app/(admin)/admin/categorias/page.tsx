@@ -26,9 +26,9 @@ export default async function AdminCategoriesPage({
       {salvo ? <div className="mb-4"><FormMessage tone="success">Categorias atualizadas.</FormMessage></div> : null}
       {erro ? <div className="mb-4"><FormMessage>Informe o nome da categoria.</FormMessage></div> : null}
 
-      <section className="rounded-2xl mb-8 border border-line bg-white">
+      <section className="rounded-2xl mb-8 border border-line bg-paper">
         <div className="border-b border-line px-5 py-3">
-          <h2 className="font-serif text-[17px] text-forest">Nova categoria</h2>
+          <h2 className="font-serif text-[17px] text-wine">Nova categoria</h2>
         </div>
         <form action={saveCategoryAction} className="grid gap-3 p-5 sm:grid-cols-[1.2fr_1.6fr_0.5fr_auto] sm:items-end">
           <div>
@@ -49,7 +49,7 @@ export default async function AdminCategoriesPage({
 
       <div className="space-y-3">
         {categories.map((category) => (
-          <details key={category.id} className="rounded-2xl border border-line bg-white">
+          <details key={category.id} className="rounded-2xl border border-line bg-paper">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 marker:content-none [&::-webkit-details-marker]:hidden">
               <div>
                 <p className="font-serif text-[16px] text-ink">{category.name}</p>

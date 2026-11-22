@@ -8,7 +8,7 @@ export function PageForm({ page }: { page?: Page }) {
     <form action={savePageAction} className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
       {page ? <input type="hidden" name="id" value={page.id} /> : null}
 
-      <div className="rounded-2xl space-y-4 border border-line bg-white p-5">
+      <div className="rounded-2xl space-y-4 border border-line bg-paper p-5">
         <div>
           <label htmlFor="title" className="field-label">Título *</label>
           <input id="title" name="title" required defaultValue={page?.title ?? ''} className="field-input" />
@@ -43,7 +43,7 @@ export function PageForm({ page }: { page?: Page }) {
       </div>
 
       <div className="space-y-4">
-        <div className="rounded-2xl space-y-4 border border-line bg-white p-5">
+        <div className="rounded-2xl space-y-4 border border-line bg-paper p-5">
           <div>
             <label htmlFor="kind" className="field-label">Tipo</label>
             <select id="kind" name="kind" defaultValue={page?.kind ?? 'PAGE'} className="field-input">
@@ -70,8 +70,8 @@ export function PageForm({ page }: { page?: Page }) {
           </div>
         </div>
 
-        <div className="rounded-2xl space-y-4 border border-line bg-white p-5">
-          <p className="font-serif text-[16px] text-forest">SEO</p>
+        <div className="rounded-2xl space-y-4 border border-line bg-paper p-5">
+          <p className="font-serif text-[16px] text-wine">SEO</p>
           <div>
             <label htmlFor="seoTitle" className="field-label">Título para busca</label>
             <input id="seoTitle" name="seoTitle" defaultValue={page?.seoTitle ?? ''} className="field-input" />
@@ -95,12 +95,12 @@ export function PageForm({ page }: { page?: Page }) {
             <Link
               href={page.kind === 'POST' ? `/blog/${page.slug}` : `/${page.slug}`}
               target="_blank"
-              className="text-[11.5px] text-muted underline underline-offset-4 hover:text-forest"
+              className="text-[11.5px] text-muted underline underline-offset-4 hover:text-wine"
             >
               Ver no site
             </Link>
           ) : null}
-          <Link href="/admin/paginas" className="text-[11.5px] text-muted underline underline-offset-4 hover:text-forest">
+          <Link href="/admin/paginas" className="text-[11.5px] text-muted underline underline-offset-4 hover:text-wine">
             Voltar
           </Link>
         </div>

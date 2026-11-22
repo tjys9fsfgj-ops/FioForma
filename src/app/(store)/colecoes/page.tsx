@@ -25,9 +25,9 @@ export default async function CollectionsPage() {
       </header>
 
       {collections.length === 0 ? (
-        <p className="rounded-2xl mt-12 border border-line bg-white px-6 py-12 text-center text-[14px] text-muted">
+        <p className="rounded-2xl mt-12 border border-line bg-paper px-6 py-12 text-center text-[14px] text-muted">
           As coleções estão sendo cadastradas. Enquanto isso, veja todos os{' '}
-          <Link href="/catalogo" className="text-forest underline underline-offset-4">
+          <Link href="/catalogo" className="text-wine underline underline-offset-4">
             moldes disponíveis
           </Link>
           .
@@ -38,13 +38,13 @@ export default async function CollectionsPage() {
             <Link
               key={collection.id}
               href={`/colecoes/${collection.slug}`}
-              className="rounded-2xl group border border-line bg-white transition-colors hover:border-forest/40"
+              className="rounded-2xl group border border-line bg-paper transition-colors hover:border-wine/40"
             >
               <div className="relative aspect-[4/5] overflow-hidden border-b border-line">
                 <PatternPlaceholder label={collection.name} seed={index + 4} />
               </div>
               <div className="p-6">
-                <h2 className="font-serif text-[24px] text-ink group-hover:text-forest">{collection.name}</h2>
+                <h2 className="font-serif text-[24px] text-ink group-hover:text-wine">{collection.name}</h2>
                 {collection.description ? (
                   <p className="mt-2 line-clamp-3 text-[13.5px] leading-relaxed text-muted">
                     {collection.description}

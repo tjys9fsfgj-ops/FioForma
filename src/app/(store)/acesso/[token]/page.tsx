@@ -33,10 +33,10 @@ export default async function AccessTokenPage({ params }: { params: Promise<{ to
             Se você já definiu uma senha, entre normalmente com e-mail e senha.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/acesso" className="rounded-full border border-forest bg-forest px-5 py-3 text-[13px] text-paper">
+            <Link href="/acesso" className="rounded-full border border-wine bg-wine px-5 py-3 text-[13px] text-paper">
               Pedir novo link
             </Link>
-            <Link href="/entrar" className="rounded-full border border-line px-5 py-3 text-[13px] hover:border-forest">
+            <Link href="/entrar" className="rounded-full border border-line px-5 py-3 text-[13px] hover:border-wine">
               Entrar com senha
             </Link>
           </div>

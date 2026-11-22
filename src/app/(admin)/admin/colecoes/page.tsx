@@ -26,9 +26,9 @@ export default async function AdminCollectionsPage({
       {salvo ? <div className="mb-4"><FormMessage tone="success">Coleções atualizadas.</FormMessage></div> : null}
       {erro ? <div className="mb-4"><FormMessage>Informe o nome da coleção.</FormMessage></div> : null}
 
-      <section className="rounded-2xl mb-8 border border-line bg-white">
+      <section className="rounded-2xl mb-8 border border-line bg-paper">
         <div className="border-b border-line px-5 py-3">
-          <h2 className="font-serif text-[17px] text-forest">Nova coleção</h2>
+          <h2 className="font-serif text-[17px] text-wine">Nova coleção</h2>
         </div>
         <form action={saveCollectionAction} className="grid gap-3 p-5 sm:grid-cols-[1.2fr_1.6fr_0.5fr_auto] sm:items-end">
           <div>
@@ -45,7 +45,7 @@ export default async function AdminCollectionsPage({
           </div>
           <div className="flex items-center gap-3 pb-1">
             <label className="flex items-center gap-2 text-[12px]">
-              <input type="checkbox" name="published" defaultChecked className="h-4 w-4 accent-[#24483D]" />
+              <input type="checkbox" name="published" defaultChecked className="h-4 w-4 accent-[#7A3B3B]" />
               Publicada
             </label>
             <Button type="submit" size="sm">Criar</Button>
@@ -55,12 +55,12 @@ export default async function AdminCollectionsPage({
 
       <div className="space-y-3">
         {collections.length === 0 ? (
-          <p className="rounded-2xl border border-line bg-white px-5 py-8 text-[12.5px] text-muted">
+          <p className="rounded-2xl border border-line bg-paper px-5 py-8 text-[12.5px] text-muted">
             Nenhuma coleção cadastrada. Crie a primeira acima.
           </p>
         ) : (
           collections.map((collection) => (
-            <details key={collection.id} className="rounded-2xl border border-line bg-white">
+            <details key={collection.id} className="rounded-2xl border border-line bg-paper">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 marker:content-none [&::-webkit-details-marker]:hidden">
                 <div>
                   <p className="font-serif text-[16px] text-ink">{collection.name}</p>
@@ -90,7 +90,7 @@ export default async function AdminCollectionsPage({
                     <input id={`order-${collection.id}`} name="sortOrder" type="number" defaultValue={collection.sortOrder} className="field-input" />
                   </div>
                   <label className="flex items-center gap-2 pt-5 text-[12px]">
-                    <input type="checkbox" name="published" defaultChecked={collection.published} className="h-4 w-4 accent-[#24483D]" />
+                    <input type="checkbox" name="published" defaultChecked={collection.published} className="h-4 w-4 accent-[#7A3B3B]" />
                     Publicada no site
                   </label>
                   <div className="flex items-center gap-3 sm:col-span-2">

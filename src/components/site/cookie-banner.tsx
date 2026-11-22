@@ -32,13 +32,13 @@ export function CookieBanner() {
     <div
       role="dialog"
       aria-label="Preferências de cookies"
-      className="fixed inset-x-3 bottom-24 z-50 mx-auto max-w-3xl rounded-3xl border border-line bg-white/95 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-float backdrop-blur sm:bottom-5"
+      className="fixed inset-x-3 bottom-24 z-50 mx-auto max-w-3xl rounded-3xl border border-line bg-paper/95 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-paper backdrop-blur sm:bottom-5"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
         <p className="max-w-2xl text-[11.5px] leading-snug text-ink/80 sm:text-[12.5px] sm:leading-relaxed">
           Usamos apenas cookies essenciais para carrinho, sessão e segurança. Métricas anônimas só entram
           com o seu consentimento.{' '}
-          <Link href="/privacidade" className="underline decoration-line underline-offset-4 hover:text-forest">
+          <Link href="/privacidade" className="underline decoration-line underline-offset-4 hover:text-wine">
             Política de privacidade
           </Link>
           .
@@ -47,14 +47,14 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => decide('essential')}
-            className="rounded-full border border-ink/20 px-4 py-2.5 text-[12px] font-semibold text-ink transition-colors hover:border-forest hover:text-forest"
+            className="rounded-full border border-ink/20 px-4 py-2.5 text-[12px] font-semibold text-ink transition-colors hover:border-wine hover:text-wine"
           >
             Só essenciais
           </button>
           <button
             type="button"
             onClick={() => decide('all')}
-            className="rounded-full border border-forest bg-forest px-5 py-2.5 text-[12px] font-semibold text-paper transition-colors hover:bg-forest-800"
+            className="rounded-full border border-wine bg-wine px-5 py-2.5 text-[12px] font-semibold text-paper transition-colors hover:bg-wine-800"
           >
             Aceitar
           </button>

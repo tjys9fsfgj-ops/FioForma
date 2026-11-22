@@ -32,9 +32,9 @@ export function ProductForm({
     <form action={action} className="space-y-6">
       {product ? <input type="hidden" name="id" value={product.id} /> : null}
 
-      <section className="rounded-2xl border border-line bg-white">
+      <section className="rounded-2xl border border-line bg-paper">
         <div className="border-b border-line px-5 py-3">
-          <h2 className="font-serif text-[17px] text-forest">Dados do molde</h2>
+          <h2 className="font-serif text-[17px] text-wine">Dados do molde</h2>
         </div>
         <div className="grid gap-4 p-5 sm:grid-cols-2">
           <div className="sm:col-span-2">
@@ -125,7 +125,7 @@ export function ProductForm({
                     name="sizes"
                     value={size}
                     defaultChecked={sizes.includes(size)}
-                    className="h-4 w-4 accent-[#24483D]"
+                    className="h-4 w-4 accent-[#7A3B3B]"
                   />
                   {size}
                 </label>
@@ -143,9 +143,9 @@ export function ProductForm({
         </div>
       </section>
 
-      <section className="rounded-2xl border border-line bg-white">
+      <section className="rounded-2xl border border-line bg-paper">
         <div className="border-b border-line px-5 py-3">
-          <h2 className="font-serif text-[17px] text-forest">Ficha técnica</h2>
+          <h2 className="font-serif text-[17px] text-wine">Ficha técnica</h2>
           <p className="mt-1 text-[11px] text-muted">Deixe em branco o que não se aplica: o campo não aparece no site.</p>
         </div>
         <div className="grid gap-4 p-5 sm:grid-cols-2">
@@ -178,7 +178,7 @@ export function ProductForm({
             <div className="flex flex-wrap gap-3 pt-1">
               {formatOptions.map((format) => (
                 <label key={format} className="flex items-center gap-1.5 text-[12.5px]">
-                  <input type="checkbox" name="includedFormats" value={format} defaultChecked={formats.includes(format)} className="h-4 w-4 accent-[#24483D]" />
+                  <input type="checkbox" name="includedFormats" value={format} defaultChecked={formats.includes(format)} className="h-4 w-4 accent-[#7A3B3B]" />
                   {format}
                 </label>
               ))}
@@ -186,11 +186,11 @@ export function ProductForm({
           </div>
           <div className="space-y-2 pt-1">
             <label className="flex items-center gap-2 text-[12.5px]">
-              <input type="checkbox" name="layersAvailable" defaultChecked={product?.spec?.layersAvailable} className="h-4 w-4 accent-[#24483D]" />
+              <input type="checkbox" name="layersAvailable" defaultChecked={product?.spec?.layersAvailable} className="h-4 w-4 accent-[#7A3B3B]" />
               PDF com camadas por tamanho
             </label>
             <label className="flex items-center gap-2 text-[12.5px]">
-              <input type="checkbox" name="projectorAvailable" defaultChecked={product?.spec?.projectorAvailable} className="h-4 w-4 accent-[#24483D]" />
+              <input type="checkbox" name="projectorAvailable" defaultChecked={product?.spec?.projectorAvailable} className="h-4 w-4 accent-[#7A3B3B]" />
               Arquivo para projetor
             </label>
           </div>
@@ -208,9 +208,9 @@ export function ProductForm({
         </div>
       </section>
 
-      <section className="rounded-2xl border border-line bg-white">
+      <section className="rounded-2xl border border-line bg-paper">
         <div className="border-b border-line px-5 py-3">
-          <h2 className="font-serif text-[17px] text-forest">Tabela de medidas do corpo (cm)</h2>
+          <h2 className="font-serif text-[17px] text-wine">Tabela de medidas do corpo (cm)</h2>
         </div>
         <div className="p-5">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -239,7 +239,7 @@ export function ProductForm({
                   const row = rowFor(size);
                   return (
                     <tr key={size} className="border-b border-line/60">
-                      <td className="px-2 py-2 font-serif text-[14px] text-forest">{size}</td>
+                      <td className="px-2 py-2 font-serif text-[14px] text-wine">{size}</td>
                       {(['bust', 'waist', 'hip'] as const).map((field) => (
                         <td key={field} className="px-2 py-2">
                           <input
@@ -248,7 +248,7 @@ export function ProductForm({
                             defaultValue={
                               field === 'bust' ? row?.bustCm ?? '' : field === 'waist' ? row?.waistCm ?? '' : row?.hipCm ?? ''
                             }
-                            className="rounded-2xl w-full border border-line px-2 py-1.5 text-[12px] focus:border-forest focus:outline-none"
+                            className="rounded-2xl w-full border border-line px-2 py-1.5 text-[12px] focus:border-wine focus:outline-none"
                           />
                         </td>
                       ))}
@@ -263,7 +263,7 @@ export function ProductForm({
 
       <div className="flex flex-wrap items-center gap-3">
         <Button type="submit">{product ? 'Salvar alterações' : 'Criar molde'}</Button>
-        <a href="/admin/produtos" className="text-[12px] text-muted underline underline-offset-4 hover:text-forest">
+        <a href="/admin/produtos" className="text-[12px] text-muted underline underline-offset-4 hover:text-wine">
           Voltar sem salvar
         </a>
       </div>

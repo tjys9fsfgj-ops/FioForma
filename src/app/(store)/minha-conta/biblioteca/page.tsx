@@ -34,20 +34,20 @@ export default async function LibraryPage() {
       </p>
 
       {items.length === 0 ? (
-        <div className="rounded-2xl mt-8 border border-line bg-white px-6 py-12 text-center">
-          <p className="font-serif text-[22px] text-forest">Nada por aqui ainda.</p>
+        <div className="rounded-2xl mt-8 border border-line bg-paper px-6 py-12 text-center">
+          <p className="font-serif text-[22px] text-wine">Nada por aqui ainda.</p>
           <p className="mx-auto mt-2 max-w-md text-[13.5px] leading-relaxed text-muted">
             Seus moldes aparecem nesta página depois da confirmação do pagamento. Se você acabou de pagar,
             aguarde alguns instantes e atualize.
           </p>
-          <Link href="/catalogo" className="rounded-full mt-5 inline-block border border-forest bg-forest px-5 py-2.5 text-[13px] text-paper">
+          <Link href="/catalogo" className="rounded-full mt-5 inline-block border border-wine bg-wine px-5 py-2.5 text-[13px] text-paper">
             Ver catálogo
           </Link>
         </div>
       ) : (
         <ul className="mt-8 space-y-5">
           {items.map((item) => (
-            <li key={item.id} className="rounded-2xl border border-line bg-white">
+            <li key={item.id} className="rounded-2xl border border-line bg-paper">
               <div className="flex gap-4 p-4 sm:gap-6 sm:p-5">
                 <Link
                   href={`/produto/${item.product.slug}`}
@@ -66,7 +66,7 @@ export default async function LibraryPage() {
                 </Link>
 
                 <div className="min-w-0 flex-1">
-                  <Link href={`/produto/${item.product.slug}`} className="font-serif text-[19px] leading-snug text-ink hover:text-forest">
+                  <Link href={`/produto/${item.product.slug}`} className="font-serif text-[19px] leading-snug text-ink hover:text-wine">
                     {item.product.name}
                   </Link>
                   <p className="mt-1 text-[11.5px] text-muted">
@@ -84,7 +84,7 @@ export default async function LibraryPage() {
                         <li key={file.id}>
                           <a
                             href={`/api/download/${file.id}?t=${file.token}`}
-                            className="rounded-full inline-flex items-center gap-2 border border-line px-3 py-2 text-[11.5px] text-ink transition-colors hover:border-forest hover:bg-forest hover:text-paper"
+                            className="rounded-full inline-flex items-center gap-2 border border-line px-3 py-2 text-[11.5px] text-ink transition-colors hover:border-wine hover:bg-wine hover:text-paper"
                           >
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                               <path d="M12 4v10m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" strokeWidth="1.6" />
@@ -108,7 +108,7 @@ export default async function LibraryPage() {
         <p className="mt-1">
           Você pode vender as peças que costurar com estes moldes, sem limite. Não é permitido compartilhar,
           revender ou redistribuir os arquivos em PDF.{' '}
-          <Link href="/licenca" className="text-forest underline underline-offset-4">
+          <Link href="/licenca" className="text-wine underline underline-offset-4">
             Ler a licença completa
           </Link>
           .

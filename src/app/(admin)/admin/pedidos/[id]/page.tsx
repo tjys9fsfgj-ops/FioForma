@@ -51,7 +51,7 @@ export default async function AdminOrderDetailPage({
       <AdminHeader
         eyebrow={
           <>
-            <Link href="/admin/pedidos" className="hover:text-forest">Pedidos</Link>
+            <Link href="/admin/pedidos" className="hover:text-wine">Pedidos</Link>
             <span className="mx-1">/</span>
             <span>#{order.number}</span>
           </>
@@ -86,7 +86,7 @@ export default async function AdminOrderDetailPage({
         <div className="space-y-5">
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Itens</h2>
+              <h2 className="font-serif text-[17px] text-wine">Itens</h2>
             </div>
             <ul className="divide-y divide-line">
               {order.items.map((item) => (
@@ -121,7 +121,7 @@ export default async function AdminOrderDetailPage({
 
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Arquivos liberados</h2>
+              <h2 className="font-serif text-[17px] text-wine">Arquivos liberados</h2>
             </div>
             {order.entitlements.length === 0 ? (
               <p className="px-5 py-6 text-[12px] text-muted">
@@ -157,7 +157,7 @@ export default async function AdminOrderDetailPage({
 
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Pagamentos e eventos</h2>
+              <h2 className="font-serif text-[17px] text-wine">Pagamentos e eventos</h2>
             </div>
             <ul className="divide-y divide-line">
               {order.payments.length === 0 ? (
@@ -197,7 +197,7 @@ export default async function AdminOrderDetailPage({
         <div className="space-y-5">
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Cliente</h2>
+              <h2 className="font-serif text-[17px] text-wine">Cliente</h2>
             </div>
             <div className="space-y-2 px-5 py-4 text-[12px]">
               <p className="text-ink">{order.customerName}</p>
@@ -218,7 +218,7 @@ export default async function AdminOrderDetailPage({
 
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Ações</h2>
+              <h2 className="font-serif text-[17px] text-wine">Ações</h2>
             </div>
             <div className="space-y-4 px-5 py-4">
               {!paid ? (
@@ -226,7 +226,7 @@ export default async function AdminOrderDetailPage({
                   <input type="hidden" name="orderId" value={order.id} />
                   <label htmlFor="note" className="field-label">Confirmar pagamento manualmente</label>
                   <input id="note" name="note" placeholder="Ex.: Pix recebido em 12/03" className="field-input" />
-                  <button type="submit" className="rounded-full w-full border border-forest bg-forest px-4 py-2.5 text-[12px] text-white hover:bg-forest-800">
+                  <button type="submit" className="rounded-full w-full border border-wine bg-wine px-4 py-2.5 text-[12px] text-white hover:bg-wine-800">
                     Marcar como pago e liberar arquivos
                   </button>
                   <p className="text-[10.5px] leading-relaxed text-muted">
@@ -237,7 +237,7 @@ export default async function AdminOrderDetailPage({
 
               <form action={resendOrderEmailAction}>
                 <input type="hidden" name="orderId" value={order.id} />
-                <button type="submit" className="rounded-full w-full border border-line bg-white px-4 py-2.5 text-[12px] hover:border-forest">
+                <button type="submit" className="rounded-full w-full border border-line bg-paper px-4 py-2.5 text-[12px] hover:border-wine">
                   Reenviar e-mail do pedido
                 </button>
               </form>
@@ -245,7 +245,7 @@ export default async function AdminOrderDetailPage({
               {order.status !== 'CANCELED' && !paid ? (
                 <form action={cancelOrderAction}>
                   <input type="hidden" name="orderId" value={order.id} />
-                  <button type="submit" className="rounded-full w-full border border-line bg-white px-4 py-2.5 text-[12px] text-[#8A342A] hover:border-[#8A342A]">
+                  <button type="submit" className="rounded-full w-full border border-line bg-paper px-4 py-2.5 text-[12px] text-[#8A342A] hover:border-[#8A342A]">
                     Cancelar pedido
                   </button>
                 </form>
@@ -256,7 +256,7 @@ export default async function AdminOrderDetailPage({
                   <input type="hidden" name="orderId" value={order.id} />
                   <label htmlFor="refund-note" className="field-label">Registrar reembolso</label>
                   <input id="refund-note" name="note" placeholder="Motivo / ID do estorno no Mercado Pago" className="field-input" />
-                  <button type="submit" className="w-full rounded-full border border-[#8A342A] bg-white px-4 py-2.5 text-[12px] text-[#8A342A]">
+                  <button type="submit" className="w-full rounded-full border border-[#8A342A] bg-paper px-4 py-2.5 text-[12px] text-[#8A342A]">
                     Registrar reembolso e revogar acessos
                   </button>
                   <p className="text-[10.5px] leading-relaxed text-muted">
@@ -269,7 +269,7 @@ export default async function AdminOrderDetailPage({
 
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Nota interna</h2>
+              <h2 className="font-serif text-[17px] text-wine">Nota interna</h2>
             </div>
             <form action={addOrderNoteAction} className="space-y-2 px-5 py-4">
               <input type="hidden" name="orderId" value={order.id} />
@@ -280,7 +280,7 @@ export default async function AdminOrderDetailPage({
                 placeholder="Visível apenas para a equipe"
                 className="field-input"
               />
-              <button type="submit" className="rounded-full border border-line bg-white px-4 py-2 text-[12px] hover:border-forest">
+              <button type="submit" className="rounded-full border border-line bg-paper px-4 py-2 text-[12px] hover:border-wine">
                 Salvar nota
               </button>
             </form>
@@ -289,7 +289,7 @@ export default async function AdminOrderDetailPage({
           {order.redemptions.length > 0 ? (
             <AdminCard>
               <div className="border-b border-line px-5 py-3">
-                <h2 className="font-serif text-[17px] text-forest">Cupom</h2>
+                <h2 className="font-serif text-[17px] text-wine">Cupom</h2>
               </div>
               <p className="px-5 py-4 text-[12px] text-muted">
                 {order.redemptions.map((redemption) => redemption.coupon.code).join(', ')} · aplicado em{' '}

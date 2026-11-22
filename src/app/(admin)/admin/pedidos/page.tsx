@@ -62,17 +62,17 @@ export default async function AdminOrdersPage({
       />
 
       <div className="mb-5 grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-paper p-4">
           <p className="text-[10px] uppercase tracking-[0.14em] text-muted">Pedidos pagos</p>
-          <p className="mt-1 font-serif text-[24px] text-forest">{paidCount}</p>
+          <p className="mt-1 font-serif text-[24px] text-wine">{paidCount}</p>
         </div>
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-paper p-4">
           <p className="text-[10px] uppercase tracking-[0.14em] text-muted">Aguardando pagamento</p>
-          <p className="mt-1 font-serif text-[24px] text-forest">{pendingCount}</p>
+          <p className="mt-1 font-serif text-[24px] text-wine">{pendingCount}</p>
         </div>
-        <div className="rounded-2xl border border-line bg-white p-4">
+        <div className="rounded-2xl border border-line bg-paper p-4">
           <p className="text-[10px] uppercase tracking-[0.14em] text-muted">Receita no filtro atual</p>
-          <p className="mt-1 font-serif text-[24px] text-forest">{brl(totals._sum.totalCents ?? 0)}</p>
+          <p className="mt-1 font-serif text-[24px] text-wine">{brl(totals._sum.totalCents ?? 0)}</p>
           <p className="text-[10.5px] text-muted">{totals._count._all} {totals._count._all === 1 ? 'pedido pago' : 'pedidos pagos'}</p>
         </div>
       </div>
@@ -93,7 +93,7 @@ export default async function AdminOrdersPage({
             ))}
           </select>
         </div>
-        <button type="submit" className="rounded-full border border-line bg-white px-4 py-3 text-[12px] hover:border-forest">
+        <button type="submit" className="rounded-full border border-line bg-paper px-4 py-3 text-[12px] hover:border-wine">
           Filtrar
         </button>
       </form>
@@ -108,7 +108,7 @@ export default async function AdminOrdersPage({
           {orders.map((order) => (
             <tr key={order.id} className="hover:bg-[#FAF9F6]">
               <td className="px-4 py-3">
-                <Link href={`/admin/pedidos/${order.id}`} className="font-medium text-forest hover:underline">
+                <Link href={`/admin/pedidos/${order.id}`} className="font-medium text-wine hover:underline">
                   #{order.number}
                 </Link>
               </td>
@@ -126,7 +126,7 @@ export default async function AdminOrdersPage({
               </td>
               <td className="px-4 py-3 text-muted">{formatDateTime(order.createdAt)}</td>
               <td className="px-4 py-3">
-                <Link href={`/admin/pedidos/${order.id}`} className="text-[11px] text-forest underline underline-offset-4">
+                <Link href={`/admin/pedidos/${order.id}`} className="text-[11px] text-wine underline underline-offset-4">
                   Abrir
                 </Link>
               </td>

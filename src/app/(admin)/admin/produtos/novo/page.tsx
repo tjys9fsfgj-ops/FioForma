@@ -17,7 +17,7 @@ export default async function NewProductPage() {
         title="Novo molde"
         description="Depois de criar, você poderá enviar fotos e PDFs nesta mesma página. O molde fica em rascunho até você publicar."
         action={
-          <Link href="/admin/produtos" className="rounded-full border border-line bg-white px-3 py-2 text-[12px] hover:border-forest">
+          <Link href="/admin/produtos" className="rounded-full border border-line bg-paper px-3 py-2 text-[12px] hover:border-wine">
             Voltar
           </Link>
         }

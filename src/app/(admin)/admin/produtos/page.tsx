@@ -52,7 +52,7 @@ export default async function AdminProductsPage({
             <option value="ARCHIVED">Arquivados</option>
           </select>
         </div>
-        <button type="submit" className="rounded-full border border-line bg-white px-4 py-3 text-[12px] hover:border-forest">
+        <button type="submit" className="rounded-full border border-line bg-paper px-4 py-3 text-[12px] hover:border-wine">
           Filtrar
         </button>
       </form>
@@ -76,7 +76,7 @@ export default async function AdminProductsPage({
                     ) : null}
                   </div>
                   <div className="min-w-0">
-                    <Link href={`/admin/produtos/${product.id}`} className="block truncate font-medium text-ink hover:text-forest">
+                    <Link href={`/admin/produtos/${product.id}`} className="block truncate font-medium text-ink hover:text-wine">
                       {product.name}
                     </Link>
                     <p className="truncate text-[10.5px] text-muted">/{product.slug}</p>
@@ -94,12 +94,12 @@ export default async function AdminProductsPage({
               <td className="px-4 py-3 text-muted">{formatDate(product.updatedAt)}</td>
               <td className="px-4 py-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Link href={`/admin/produtos/${product.id}`} className="text-[11px] text-forest underline underline-offset-4">
+                  <Link href={`/admin/produtos/${product.id}`} className="text-[11px] text-wine underline underline-offset-4">
                     Editar
                   </Link>
                   <form action={toggleProductStatusAction}>
                     <input type="hidden" name="id" value={product.id} />
-                    <button type="submit" className="text-[11px] text-muted underline underline-offset-4 hover:text-forest">
+                    <button type="submit" className="text-[11px] text-muted underline underline-offset-4 hover:text-wine">
                       {product.status === 'PUBLISHED' ? 'Despublicar' : 'Publicar'}
                     </button>
                   </form>

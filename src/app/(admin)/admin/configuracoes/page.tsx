@@ -8,7 +8,7 @@ function Status({ ok, label }: { ok: boolean; label: string }) {
   return (
     <li className="flex items-center justify-between gap-3 border-b border-line py-2 last:border-0">
       <span className="text-[12px] text-muted">{label}</span>
-      <span className={ok ? 'text-[11px] font-medium text-forest' : 'text-[11px] font-medium text-[#8A342A]'}>
+      <span className={ok ? 'text-[11px] font-medium text-wine' : 'text-[11px] font-medium text-[#8A342A]'}>
         {ok ? 'Configurado' : 'Pendente'}
       </span>
     </li>
@@ -42,8 +42,8 @@ export default async function AdminSettingsPage({
       {ok ? <div className="mb-4"><FormMessage tone="success">Configurações salvas.</FormMessage></div> : null}
 
       <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
-        <form action={saveSettingsAction} className="rounded-2xl space-y-4 border border-line bg-white p-5">
-          <h2 className="font-serif text-[17px] text-forest">Identidade e atendimento</h2>
+        <form action={saveSettingsAction} className="rounded-2xl space-y-4 border border-line bg-paper p-5">
+          <h2 className="font-serif text-[17px] text-wine">Identidade e atendimento</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
               <label htmlFor="storeName" className="field-label">Nome da loja</label>
@@ -90,7 +90,7 @@ export default async function AdminSettingsPage({
         <div className="space-y-5">
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Integrações</h2>
+              <h2 className="font-serif text-[17px] text-wine">Integrações</h2>
             </div>
             <ul className="px-5 py-2">
               <Status ok={gateway === 'mercadopago' && mpConfigured} label={`Pagamentos (${gateway})`} />
@@ -106,7 +106,7 @@ export default async function AdminSettingsPage({
 
           <AdminCard>
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Dados legais</h2>
+              <h2 className="font-serif text-[17px] text-wine">Dados legais</h2>
             </div>
             <div className="space-y-2 px-5 py-4 text-[12px] leading-relaxed text-muted">
               <p>Razão social, CNPJ e endereço vêm de `src/config/brand.ts`.</p>

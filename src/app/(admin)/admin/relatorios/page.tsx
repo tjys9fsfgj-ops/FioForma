@@ -60,7 +60,7 @@ export default async function AdminReportsPage() {
         title="Relatórios"
         description="Leitura rápida dos últimos 30 dias e do acumulado. Dados calculados direto dos pedidos confirmados, sem métricas infladas."
         action={
-          <a href="/api/admin/export/orders" className="rounded-full border border-line bg-white px-4 py-2 text-[12px] hover:border-forest">
+          <a href="/api/admin/export/orders" className="rounded-full border border-line bg-paper px-4 py-2 text-[12px] hover:border-wine">
             Exportar pedidos (CSV)
           </a>
         }
@@ -76,14 +76,14 @@ export default async function AdminReportsPage() {
       <div className="grid gap-5 lg:grid-cols-[1.3fr_1fr]">
         <AdminCard>
           <div className="border-b border-line px-5 py-3">
-            <h2 className="font-serif text-[17px] text-forest">Receita por mês</h2>
+            <h2 className="font-serif text-[17px] text-wine">Receita por mês</h2>
           </div>
           <div className="px-5 py-5">
             <div className="flex items-end gap-3" style={{ height: 168 }}>
               {buckets.map((bucket) => (
                 <div key={bucket.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
                   <div
-                    className="w-full bg-forest/85"
+                    className="w-full bg-wine/85"
                     style={{ height: Math.max(Math.round((bucket.total / maxBucket) * 136), bucket.total > 0 ? 6 : 2) }}
                     title={`${bucket.label}: ${brl(bucket.total)}`}
                   />
@@ -99,7 +99,7 @@ export default async function AdminReportsPage() {
 
         <AdminCard>
           <div className="border-b border-line px-5 py-3">
-            <h2 className="font-serif text-[17px] text-forest">Moldes que mais vendem</h2>
+            <h2 className="font-serif text-[17px] text-wine">Moldes que mais vendem</h2>
           </div>
           {topItems.length === 0 ? (
             <p className="px-5 py-6 text-[12px] text-muted">Sem vendas confirmadas ainda.</p>
@@ -110,7 +110,7 @@ export default async function AdminReportsPage() {
                   <span className="flex items-center gap-3 text-[12px]">
                     <span className="font-serif text-[15px] text-muted">{index + 1}</span>
                     {item.productId ? (
-                      <Link href={`/admin/produtos/${item.productId}`} className="hover:text-forest">
+                      <Link href={`/admin/produtos/${item.productId}`} className="hover:text-wine">
                         {item.productName}
                       </Link>
                     ) : (
@@ -135,19 +135,19 @@ export default async function AdminReportsPage() {
 
       <div className="mt-6">
         <div className="mb-3 flex items-end justify-between">
-          <h2 className="font-serif text-[19px] text-forest">Últimos pedidos pagos</h2>
-          <Link href="/admin/pedidos?status=PAID" className="text-[11.5px] text-muted underline underline-offset-4 hover:text-forest">
+          <h2 className="font-serif text-[19px] text-wine">Últimos pedidos pagos</h2>
+          <Link href="/admin/pedidos?status=PAID" className="text-[11.5px] text-muted underline underline-offset-4 hover:text-wine">
             Ver todos
           </Link>
         </div>
         {recent.length === 0 ? (
-          <p className="rounded-2xl border border-line bg-white px-5 py-8 text-[12.5px] text-muted">Nenhum pedido pago ainda.</p>
+          <p className="rounded-2xl border border-line bg-paper px-5 py-8 text-[12.5px] text-muted">Nenhum pedido pago ainda.</p>
         ) : (
           <AdminTable head={['Pedido', 'Cliente', 'Itens', 'Total', 'Pago em']}>
             {recent.map((order) => (
               <tr key={order.id} className="hover:bg-[#FAF9F6]">
                 <td className="px-4 py-3">
-                  <Link href={`/admin/pedidos/${order.id}`} className="text-forest hover:underline">
+                  <Link href={`/admin/pedidos/${order.id}`} className="text-wine hover:underline">
                     #{order.number}
                   </Link>
                 </td>

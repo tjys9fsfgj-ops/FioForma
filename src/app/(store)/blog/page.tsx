@@ -27,9 +27,9 @@ export default async function BlogPage() {
       </header>
 
       {posts.length === 0 ? (
-        <p className="rounded-2xl mt-12 border border-line bg-white px-6 py-12 text-center text-[14px] text-muted">
+        <p className="rounded-2xl mt-12 border border-line bg-paper px-6 py-12 text-center text-[14px] text-muted">
           O blog está sendo preparado. Enquanto isso, veja os{' '}
-          <Link href="/guias" className="text-forest underline underline-offset-4">
+          <Link href="/guias" className="text-wine underline underline-offset-4">
             guias de impressão
           </Link>
           .
@@ -41,13 +41,13 @@ export default async function BlogPage() {
               <p className="eyebrow text-[10px]">
                 {post.publishedAt ? formatDate(post.publishedAt) : formatDate(post.createdAt)}
               </p>
-              <h2 className="mt-2 font-serif text-[22px] leading-snug text-ink group-hover:text-forest">
+              <h2 className="mt-2 font-serif text-[22px] leading-snug text-ink group-hover:text-wine">
                 <Link href={`/blog/${post.slug}`}>{post.title}</Link>
               </h2>
               {post.excerpt ? (
                 <p className="mt-2 line-clamp-3 text-[13.5px] leading-relaxed text-muted">{post.excerpt}</p>
               ) : null}
-              <Link href={`/blog/${post.slug}`} className="mt-3 inline-block text-[12px] text-forest underline underline-offset-4">
+              <Link href={`/blog/${post.slug}`} className="mt-3 inline-block text-[12px] text-wine underline underline-offset-4">
                 Ler
               </Link>
             </article>

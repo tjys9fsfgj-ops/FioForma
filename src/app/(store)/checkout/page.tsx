@@ -49,8 +49,8 @@ export default async function CheckoutPage() {
         </div>
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
-          <div className="rounded-[2rem] border border-line bg-white p-6 shadow-soft sm:p-7">
-            <h2 className="font-serif text-[22px] text-forest">Seu pedido</h2>
+          <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-7">
+            <h2 className="font-serif text-[22px] text-wine">Seu pedido</h2>
             <ul className="mt-4 divide-y divide-line/70">
               {cart.lines.map((line) => (
                 <li key={line.itemId} className="flex items-start justify-between gap-4 py-3">
@@ -73,14 +73,14 @@ export default async function CheckoutPage() {
                 <dd>{brl(cart.subtotalCents)}</dd>
               </div>
               {discountCents > 0 ? (
-                <div className="flex justify-between text-forest">
+                <div className="flex justify-between text-wine">
                   <dt>Desconto</dt>
                   <dd>− {brl(discountCents)}</dd>
                 </div>
               ) : null}
               <div className="flex justify-between border-t border-line pt-2 text-[15px]">
                 <dt className="font-medium">Total</dt>
-                <dd className="font-serif text-[20px] text-forest">{brl(totalCents)}</dd>
+                <dd className="font-serif text-[20px] text-wine">{brl(totalCents)}</dd>
               </div>
             </dl>
 
@@ -97,7 +97,7 @@ export default async function CheckoutPage() {
             </p>
           </div>
 
-          <div className="mt-5 rounded-2xl bg-sage-100 p-5 text-[12px] leading-relaxed text-forest/80">
+          <div className="mt-5 rounded-2xl bg-sand p-5 text-[12px] leading-relaxed text-wine/80">
             <p className="font-medium text-ink">Depois do pagamento</p>
             <p className="mt-1">
               Você é levado a uma página de confirmação e recebe um e-mail com o link da sua biblioteca. O

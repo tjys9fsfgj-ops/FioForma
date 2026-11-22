@@ -14,16 +14,16 @@ export default async function OrdersPage() {
       <p className="mt-2 text-[14px] text-muted">Histórico de compras e situação de cada pagamento.</p>
 
       {orders.length === 0 ? (
-        <div className="rounded-2xl mt-8 border border-line bg-white px-6 py-12 text-center">
-          <p className="font-serif text-[22px] text-forest">Nenhum pedido ainda.</p>
-          <Link href="/catalogo" className="rounded-full mt-4 inline-block border border-forest bg-forest px-5 py-2.5 text-[13px] text-paper">
+        <div className="rounded-2xl mt-8 border border-line bg-paper px-6 py-12 text-center">
+          <p className="font-serif text-[22px] text-wine">Nenhum pedido ainda.</p>
+          <Link href="/catalogo" className="rounded-full mt-4 inline-block border border-wine bg-wine px-5 py-2.5 text-[13px] text-paper">
             Explorar moldes
           </Link>
         </div>
       ) : (
         <ul className="mt-8 space-y-4">
           {orders.map((order) => (
-            <li key={order.id} className="rounded-2xl border border-line bg-white p-5">
+            <li key={order.id} className="rounded-2xl border border-line bg-paper p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <p className="font-serif text-[18px] text-ink">{order.number}</p>
@@ -40,15 +40,15 @@ export default async function OrdersPage() {
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3">
                 <p className="text-[13.5px]">
-                  Total <span className="font-serif text-[16px] text-forest">{brl(order.totalCents)}</span>
+                  Total <span className="font-serif text-[16px] text-wine">{brl(order.totalCents)}</span>
                 </p>
                 <div className="flex gap-3">
                   {order.status === 'PAID' ? (
-                    <Link href="/minha-conta/biblioteca" className="text-[12px] text-forest underline underline-offset-4">
+                    <Link href="/minha-conta/biblioteca" className="text-[12px] text-wine underline underline-offset-4">
                       Baixar arquivos
                     </Link>
                   ) : null}
-                  <Link href={`/pedido/${order.number}`} className="text-[12px] text-forest underline underline-offset-4">
+                  <Link href={`/pedido/${order.number}`} className="text-[12px] text-wine underline underline-offset-4">
                     Ver pedido
                   </Link>
                 </div>

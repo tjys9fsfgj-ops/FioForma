@@ -29,7 +29,7 @@ export default async function AccessPage({ searchParams }: { searchParams: Promi
         <AccessLinkForm />
         <p className="text-center text-[12px] text-muted">
           Já tem senha?{' '}
-          <Link href="/entrar" className="text-forest underline underline-offset-4">
+          <Link href="/entrar" className="text-wine underline underline-offset-4">
             Entrar
           </Link>
         </p>

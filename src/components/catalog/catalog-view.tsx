@@ -34,7 +34,7 @@ function Pagination({
       {page > 1 ? (
         <Link
           href={`${basePath}?${new URLSearchParams({ ...params, page: String(page - 1) } as Record<string, string>).toString()}`}
-          className="rounded-full border border-line bg-white px-4 py-2 text-[12.5px] font-medium hover:border-forest hover:text-forest"
+          className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium hover:border-wine hover:text-wine"
           rel="prev"
         >
           ← Anterior
@@ -52,8 +52,8 @@ function Pagination({
               aria-current={value === page ? 'page' : undefined}
               className={
                 value === page
-                  ? 'flex h-10 min-w-10 items-center justify-center rounded-full border border-forest bg-forest px-3 text-[12.5px] font-semibold text-paper'
-                  : 'flex h-10 min-w-10 items-center justify-center rounded-full border border-line bg-white px-3 text-[12.5px] font-medium hover:border-forest hover:text-forest'
+                  ? 'flex h-10 min-w-10 items-center justify-center rounded-full border border-wine bg-wine px-3 text-[12.5px] font-semibold text-paper'
+                  : 'flex h-10 min-w-10 items-center justify-center rounded-full border border-line bg-paper px-3 text-[12.5px] font-medium hover:border-wine hover:text-wine'
               }
             >
               {value}
@@ -65,7 +65,7 @@ function Pagination({
       {page < pages ? (
         <Link
           href={`${basePath}?${new URLSearchParams({ ...params, page: String(page + 1) } as Record<string, string>).toString()}`}
-          className="rounded-full border border-line bg-white px-4 py-2 text-[12.5px] font-medium hover:border-forest hover:text-forest"
+          className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium hover:border-wine hover:text-wine"
           rel="next"
         >
           Próxima →
@@ -162,10 +162,10 @@ export async function CatalogView({
 
   return (
     <div className="container-page py-10 sm:py-14">
-      <header className="rounded-[2rem] bg-sage-100 px-6 py-10 sm:rounded-[2.5rem] sm:px-12 sm:py-14">
+      <header className="rounded-[2rem] bg-sand px-6 py-10 sm:rounded-[2.5rem] sm:px-12 sm:py-14">
         <p className="pill">Catálogo</p>
         <h1 className="mt-5 max-w-3xl text-[clamp(2.1rem,4.6vw,3.4rem)] leading-[1.04]">{title}</h1>
-        {description ? <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-forest/75">{description}</p> : null}
+        {description ? <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-wine/75">{description}</p> : null}
       </header>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[240px_1fr]">
@@ -181,7 +181,7 @@ export async function CatalogView({
         </aside>
 
         <div>
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-full bg-white px-5 py-2.5 ring-1 ring-line">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-full bg-paper px-5 py-2.5 ring-1 ring-line">
             <p className="text-[12.5px] text-muted">
               {total} {total === 1 ? 'molde' : 'moldes'}
               {params.q ? ` para “${params.q}”` : ''}
@@ -209,7 +209,7 @@ export async function CatalogView({
                 <Link
                   key={chip.label}
                   href={chip.href}
-                  className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-sage-100 px-3.5 py-1.5 text-[12px] font-medium text-forest hover:border-forest/50"
+                  className="inline-flex items-center gap-2 rounded-full border border-wine/20 bg-sand px-3.5 py-1.5 text-[12px] font-medium text-wine hover:border-wine/50"
                 >
                   {chip.label}
                   <span aria-hidden="true">×</span>
@@ -219,17 +219,17 @@ export async function CatalogView({
           ) : null}
 
           {items.length === 0 ? (
-            <div className="rounded-2xl mt-12 border border-line bg-white px-6 py-14 text-center">
-              <p className="font-serif text-[24px] text-forest">Nenhum molde com esses filtros.</p>
+            <div className="rounded-2xl mt-12 border border-line bg-paper px-6 py-14 text-center">
+              <p className="font-serif text-[24px] text-wine">Nenhum molde com esses filtros.</p>
               <p className="mx-auto mt-3 max-w-md text-[14px] leading-relaxed text-muted">
                 Tente remover um filtro ou buscar por outro termo. Se você procura uma peça específica, fale
                 com o ateliê.
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-3">
-                <Link href={basePath} className="rounded-full border border-forest bg-forest px-6 py-3 text-[13px] font-semibold text-paper">
+                <Link href={basePath} className="rounded-full border border-wine bg-wine px-6 py-3 text-[13px] font-semibold text-paper">
                   Ver todos os moldes
                 </Link>
-                <Link href="/contato" className="rounded-full border border-line bg-white px-6 py-3 text-[13px] font-semibold hover:border-forest">
+                <Link href="/contato" className="rounded-full border border-line bg-paper px-6 py-3 text-[13px] font-semibold hover:border-wine">
                   Falar com o ateliê
                 </Link>
               </div>

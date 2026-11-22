@@ -55,7 +55,7 @@ function layout(title: string, body: string): string {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F7F6F2;padding:32px 16px;">
       <tr><td align="center">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border:1px solid #DEDAD1;border-radius:4px;">
-          <tr><td style="padding:28px 32px 8px;font-family:Georgia,serif;font-size:22px;letter-spacing:-0.02em;color:#24483D;">${brand.wordmark}</td></tr>
+          <tr><td style="padding:28px 32px 8px;font-family:Georgia,serif;font-size:22px;letter-spacing:-0.02em;color:#7A3B3B;">${brand.wordmark}</td></tr>
           <tr><td style="padding:8px 32px 0;font-family:Georgia,serif;font-size:24px;line-height:1.25;">${title}</td></tr>
           <tr><td style="padding:16px 32px 32px;font-size:15px;line-height:1.65;color:#222725;">${body}</td></tr>
           <tr><td style="padding:16px 32px;border-top:1px solid #DEDAD1;font-size:12px;color:#6B716D;line-height:1.6;">
@@ -70,7 +70,7 @@ function layout(title: string, body: string): string {
 }
 
 function button(href: string, label: string): string {
-  return `<p style="margin:24px 0;"><a href="${href}" style="display:inline-block;background:#24483D;color:#FFFFFF;text-decoration:none;padding:14px 22px;border-radius:2px;font-weight:600;">${label}</a></p>`;
+  return `<p style="margin:24px 0;"><a href="${href}" style="display:inline-block;background:#7A3B3B;color:#FFFFFF;text-decoration:none;padding:14px 22px;border-radius:2px;font-weight:600;">${label}</a></p>`;
 }
 
 export type OrderEmailItem = { name: string; priceCents: number };

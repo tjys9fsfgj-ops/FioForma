@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: Props) {
     <article className="container-page py-12 sm:py-16">
       <div className="mx-auto max-w-2xl">
         <nav aria-label="Trilha" className="text-[11.5px] text-muted">
-          <Link href="/blog" className="hover:text-forest">
+          <Link href="/blog" className="hover:text-wine">
             Blog
           </Link>
           <span aria-hidden="true"> / </span>
@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="prose-atelier mt-8" dangerouslySetInnerHTML={{ __html: renderMarkdown(post.contentMd) }} />
 
         <footer className="mt-12 border-t border-line pt-6">
-          <Link href="/blog" className="text-[12.5px] text-forest underline underline-offset-4">
+          <Link href="/blog" className="text-[12.5px] text-wine underline underline-offset-4">
             ← Voltar para o blog
           </Link>
         </footer>

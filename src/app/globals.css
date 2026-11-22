@@ -4,14 +4,16 @@
 
 @layer base {
   :root {
-    --paper: #f7f6f2;
-    --ink: #222725;
-    --forest: #24483d;
-    --line: #dedad1;
+    --linen: #f3eee6;
+    --paper: #fbf8f3;
+    --ink: #3a2e2a;
+    --wine: #7a3b3b;
+    --line: #cdbfaf;
+    --buybar-h: 0px;
   }
 
   * {
-    @apply border-line;
+    @apply border-rule;
   }
 
   html {
@@ -20,7 +22,7 @@
   }
 
   body {
-    @apply bg-paper text-ink antialiased;
+    @apply bg-linen text-ink antialiased;
     font-feature-settings: 'kern' 1, 'liga' 1;
   }
 
@@ -28,8 +30,7 @@
   h2,
   h3,
   h4 {
-    @apply font-serif font-normal tracking-[-0.025em] text-forest;
-    font-variation-settings: 'SOFT' 100, 'WONK' 0;
+    @apply font-serif font-medium tracking-[-0.005em] text-ink;
     text-wrap: balance;
   }
 
@@ -38,14 +39,13 @@
   }
 
   ::selection {
-    background: #24483d;
-    color: #f7f6f2;
+    background: #7a3b3b;
+    color: #fbf8f3;
   }
 
   :focus-visible {
-    outline: 2px solid #24483d;
+    outline: 2px solid #7a3b3b;
     outline-offset: 3px;
-    border-radius: 8px;
   }
 
   input,
@@ -68,19 +68,27 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-page px-5 sm:px-8 lg:px-10;
+    @apply mx-auto w-full max-w-page px-4 sm:px-8 lg:px-12;
   }
 
   .eyebrow {
-    @apply text-[11px] font-semibold uppercase tracking-eyebrow text-muted;
+    @apply text-[11px] font-medium uppercase tracking-eyebrow text-wine;
   }
 
   .pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white/70 px-3.5 py-1.5 text-[11.5px] font-medium text-forest;
+    @apply inline-flex items-center gap-2 border border-rule px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-ink;
   }
 
   .surface {
-    @apply rounded-3xl border border-line bg-white shadow-soft;
+    @apply border border-rule bg-paper;
+  }
+
+  .card-frame {
+    @apply border border-rule bg-paper;
+  }
+
+  .rule-y {
+    @apply border-y border-rule;
   }
 
   .stitch {
@@ -119,20 +127,16 @@
     transform: scaleX(1);
   }
 
-  .card-frame {
-    @apply rounded-2xl border border-line bg-white;
-  }
-
   .prose-atelier {
-    @apply prose prose-neutral max-w-none text-[16.5px] leading-[1.7];
+    @apply prose prose-neutral max-w-none text-[16.5px] leading-[1.75];
   }
 
   .prose-atelier h2 {
-    @apply mt-10 mb-3 font-serif text-2xl text-forest;
+    @apply mt-10 mb-3 font-serif text-[28px] text-ink;
   }
 
   .prose-atelier h3 {
-    @apply mt-8 mb-2 font-serif text-xl text-forest;
+    @apply mt-8 mb-2 font-serif text-[22px] text-ink;
   }
 
   .prose-atelier p {
@@ -148,11 +152,11 @@
   }
 
   .prose-atelier a {
-    @apply text-forest underline decoration-line underline-offset-4 hover:decoration-forest;
+    @apply text-wine underline decoration-rule underline-offset-4 hover:decoration-wine;
   }
 
   .prose-atelier blockquote {
-    @apply rounded-2xl border-0 bg-sage-100 px-5 py-4 font-serif text-lg italic text-forest;
+    @apply border-0 border-l-2 border-wine bg-paper px-5 py-4 font-serif text-xl italic text-ink;
   }
 
   .prose-atelier table {
@@ -160,11 +164,11 @@
   }
 
   .prose-atelier th {
-    @apply border-b border-ink/20 pb-2 text-left text-[11px] font-semibold uppercase tracking-eyebrow text-muted;
+    @apply border-b border-ink/20 pb-2 text-left text-[11px] font-medium uppercase tracking-eyebrow text-muted;
   }
 
   .prose-atelier td {
-    @apply border-b border-line py-2;
+    @apply border-b border-rule py-2;
   }
 
   .prose-atelier strong {
@@ -181,17 +185,18 @@
   }
 
   .field-input {
-    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-ink shadow-[inset_0_1px_0_rgba(34,39,37,0.03)] transition-colors placeholder:text-muted/60 hover:border-forest/30 focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/15;
+    @apply w-full border border-rule bg-paper px-4 py-3 text-[15px] text-ink transition-colors placeholder:text-muted-2 hover:border-ink/40 focus:border-wine focus:outline-none focus:ring-2 focus:ring-wine/15;
   }
 
   select.field-input {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2324483D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237A3B3B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
   }
 
   .field-label {
-    @apply mb-1.5 block text-[12.5px] font-semibold text-ink/80;
+    @apply mb-1.5 block text-[11px] font-medium uppercase tracking-[0.14em] text-ink/80;
   }
 }
 

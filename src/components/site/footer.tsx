@@ -40,11 +40,11 @@ export async function Footer() {
   const email = mailtoLink('Ajuda com molde — FioForma');
 
   return (
-    <footer className="mt-24 bg-forest text-paper">
+    <footer className="mt-24 bg-wine text-paper">
       <div className="container-page py-16">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr_1.2fr]">
           <div>
-            <div className="[&_span]:text-paper [&_svg_path:first-of-type]:stroke-sage [&_svg_path:last-of-type]:fill-paper [&_svg_circle]:stroke-paper">
+            <div className="[&_span]:text-paper [&_svg_path:first-of-type]:stroke-sand [&_svg_path:last-of-type]:fill-paper [&_svg_circle]:stroke-paper">
               <Logo />
             </div>
             <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-paper/75">{settings.tagline}</p>
@@ -79,7 +79,7 @@ export async function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             {columns.map((column) => (
               <div key={column.title}>
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-eyebrow text-sage">{column.title}</p>
+                <p className="mb-4 text-[11px] font-semibold uppercase tracking-eyebrow text-sand">{column.title}</p>
                 <ul className="space-y-2.5">
                   {column.links.map((link) => (
                     <li key={link.href}>
@@ -93,7 +93,7 @@ export async function Footer() {
             ))}
           </div>
 
-          <div className="rounded-3xl bg-white/[0.07] p-6">
+          <div className="rounded-3xl bg-paper/[0.07] p-6">
             <p className="font-serif text-[22px] leading-snug text-paper">Cartas do ateliê</p>
             <p className="mt-2 text-[13.5px] leading-relaxed text-paper/75">
               Lançamentos, notas de modelagem e um aviso quando entra molde novo.

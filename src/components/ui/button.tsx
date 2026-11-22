@@ -10,11 +10,11 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    'border-forest bg-forest text-paper shadow-[0_8px_20px_-12px_rgba(36,72,61,0.9)] hover:-translate-y-px hover:bg-forest-800 hover:border-forest-800',
-  outline: 'border-forest/30 bg-white/60 text-forest hover:border-forest hover:bg-white',
-  ghost: 'border-transparent bg-transparent text-forest hover:bg-forest/5',
-  quiet: 'border-line bg-white text-ink hover:border-forest/40',
-  paper: 'border-paper bg-paper text-forest hover:border-white hover:bg-white',
+    'border-wine bg-wine text-paper shadow-[0_8px_20px_-12px_rgba(36,72,61,0.9)] hover:-translate-y-px hover:bg-wine-800 hover:border-wine-800',
+  outline: 'border-wine/30 bg-paper/60 text-wine hover:border-wine hover:bg-paper',
+  ghost: 'border-transparent bg-transparent text-wine hover:bg-wine/5',
+  quiet: 'border-line bg-paper text-ink hover:border-wine/40',
+  paper: 'border-paper bg-paper text-wine hover:border-white hover:bg-paper',
   'outline-light': 'border-paper/40 bg-transparent text-paper hover:border-paper hover:bg-paper/10',
 };
 

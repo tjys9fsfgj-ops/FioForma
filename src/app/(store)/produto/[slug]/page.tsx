@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function SpecRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="grid gap-1 border-b border-line py-4 last:border-b-0 sm:grid-cols-[190px_1fr] sm:gap-6">
-      <dt className="text-[11.5px] font-semibold uppercase tracking-[0.1em] text-clay">{label}</dt>
+      <dt className="text-[11.5px] font-semibold uppercase tracking-[0.1em] text-wine">{label}</dt>
       <dd className="text-[14px] leading-relaxed text-ink/90">{children}</dd>
     </div>
   );
@@ -129,13 +129,13 @@ export default async function ProductPage({ params }: Props) {
         <nav aria-label="Trilha de navegação" className="text-[11.5px] text-muted">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <Link href="/" className="hover:text-forest">
+              <Link href="/" className="hover:text-wine">
                 Início
               </Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link href="/catalogo" className="hover:text-forest">
+              <Link href="/catalogo" className="hover:text-wine">
                 Moldes
               </Link>
             </li>
@@ -143,7 +143,7 @@ export default async function ProductPage({ params }: Props) {
               <>
                 <li aria-hidden="true">/</li>
                 <li>
-                  <Link href={`/categoria/${product.category.slug}`} className="hover:text-forest">
+                  <Link href={`/categoria/${product.category.slug}`} className="hover:text-wine">
                     {product.category.name}
                   </Link>
                 </li>
@@ -170,7 +170,7 @@ export default async function ProductPage({ params }: Props) {
           />
         </div>
 
-        <div className="rounded-[2rem] border border-line bg-white p-6 shadow-soft sm:p-8 lg:sticky lg:top-28 lg:self-start">
+        <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-8 lg:sticky lg:top-28 lg:self-start">
           <div className="flex flex-wrap items-center gap-2">
             {product.collection ? (
               <Link href={`/colecoes/${product.collection.slug}`}>
@@ -185,7 +185,7 @@ export default async function ProductPage({ params }: Props) {
           {product.tagline ? <p className="mt-3 text-[15.5px] leading-relaxed text-muted">{product.tagline}</p> : null}
 
           <div className="mt-6 flex items-baseline gap-3">
-            <p className="font-serif text-[34px] leading-none text-forest">{brl(product.priceCents)}</p>
+            <p className="font-serif text-[34px] leading-none text-wine">{brl(product.priceCents)}</p>
             {product.compareAtCents && product.compareAtCents > product.priceCents ? (
               <p className="text-[14px] text-muted line-through">{brl(product.compareAtCents)}</p>
             ) : null}
@@ -202,23 +202,23 @@ export default async function ProductPage({ params }: Props) {
 
           <ul className="mt-6 space-y-2.5 text-[13px] text-muted">
             <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sage-200 text-[9px] font-bold text-forest">✓</span>
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sand text-[9px] font-bold text-wine">✓</span>
               Download imediato depois da confirmação do pagamento.
             </li>
             <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sage-200 text-[9px] font-bold text-forest">✓</span>
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sand text-[9px] font-bold text-wine">✓</span>
               Re-download ilimitado na sua biblioteca.
             </li>
             <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sage-200 text-[9px] font-bold text-forest">✓</span>
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sand text-[9px] font-bold text-wine">✓</span>
               Pix ou cartão de crédito. Sem boleto.
             </li>
           </ul>
 
-          <div className="mt-6 rounded-2xl bg-sage-100 p-4 text-[12.5px] leading-relaxed text-forest/80">
+          <div className="mt-6 rounded-2xl bg-sand p-4 text-[12.5px] leading-relaxed text-wine/80">
             <p>
               <strong className="font-medium text-ink">Licença:</strong> {brand.licenseSummary}{' '}
-              <Link href="/licenca" className="underline decoration-line underline-offset-4 hover:text-forest">
+              <Link href="/licenca" className="underline decoration-line underline-offset-4 hover:text-wine">
                 Ler a licença completa
               </Link>
               .
@@ -240,7 +240,7 @@ export default async function ProductPage({ params }: Props) {
 
       <section className="container-page py-10">
         <SectionHeading index="01" eyebrow="Ficha técnica" title="Tudo o que vem com este molde." />
-        <dl className="mt-8 rounded-[2rem] border border-line bg-white px-6 shadow-soft sm:px-10">
+        <dl className="mt-8 rounded-[2rem] border border-line bg-paper px-6 shadow-paper sm:px-10">
           {sizes.length ? <SpecRow label="Tamanhos incluídos">{sizes.join(' · ')}</SpecRow> : null}
           {spec?.fabricRecommendation ? (
             <SpecRow label="Tecido recomendado">
@@ -296,11 +296,11 @@ export default async function ProductPage({ params }: Props) {
             {product.sizeCharts.map((chart) => (
               <div key={chart.id}>
                 <h3 className="font-serif text-[19px] text-ink">{chart.title}</h3>
-                <div className="rounded-2xl mt-3 overflow-x-auto border border-line bg-white">
+                <div className="rounded-2xl mt-3 overflow-x-auto border border-line bg-paper">
                   <table className="w-full min-w-[520px] border-collapse text-left">
                     <thead>
                       <tr className="border-b border-ink/15">
-                        <th scope="col" className="sticky left-0 bg-white px-4 py-3 text-[10.5px] uppercase tracking-[0.12em] text-muted">
+                        <th scope="col" className="sticky left-0 bg-paper px-4 py-3 text-[10.5px] uppercase tracking-[0.12em] text-muted">
                           Tamanho
                         </th>
                         {hasBust ? <th scope="col" className="px-4 py-3 text-[10.5px] uppercase tracking-[0.12em] text-muted">Busto</th> : null}
@@ -318,7 +318,7 @@ export default async function ProductPage({ params }: Props) {
                         const extras = parseJson<{ label: string; value: string }[]>(row.extra, []);
                         return (
                           <tr key={row.id} className="border-b border-line last:border-0">
-                            <th scope="row" className="sticky left-0 bg-white px-4 py-3 font-serif text-[15px] font-normal text-forest">
+                            <th scope="row" className="sticky left-0 bg-paper px-4 py-3 font-serif text-[15px] font-normal text-wine">
                               {row.size}
                             </th>
                             {hasBust ? <td className="px-4 py-3 text-[14px]">{row.bustCm ?? '—'}</td> : null}
@@ -362,13 +362,13 @@ export default async function ProductPage({ params }: Props) {
               text: 'Cada página tem marcações de canto e numeração. Una pelas setas antes de cortar o papel.',
             },
           ].map((item) => (
-            <div key={item.title} className="rounded-2xl border border-line bg-white p-5">
+            <div key={item.title} className="rounded-2xl border border-line bg-paper p-5">
               <h3 className="font-serif text-[18px] text-ink">{item.title}</h3>
               <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{item.text}</p>
             </div>
           ))}
         </div>
-        <Link href="/guias" className="link-underline mt-6 inline-block text-[13px] text-forest">
+        <Link href="/guias" className="link-underline mt-6 inline-block text-[13px] text-wine">
           Ver o guia completo de impressão e montagem
         </Link>
       </section>
@@ -378,10 +378,10 @@ export default async function ProductPage({ params }: Props) {
           <SectionHeading index="04" eyebrow="Dúvidas" title="Perguntas sobre este molde." />
           <div className="mt-8 space-y-3">
             {faq.map((item, index) => (
-              <details key={`${item.question}-${index}`} className="rounded-2xl border border-line bg-white px-5 py-4">
+              <details key={`${item.question}-${index}`} className="rounded-2xl border border-line bg-paper px-5 py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[14.5px] text-ink marker:content-none [&::-webkit-details-marker]:hidden">
                   {item.question}
-                  <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-100 text-forest">+</span>
+                  <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sand text-wine">+</span>
                 </summary>
                 <p className="mt-3 max-w-2xl whitespace-pre-line text-[13.5px] leading-relaxed text-muted">
                   {item.answer}
@@ -405,10 +405,10 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="h-24 lg:hidden" aria-hidden="true" />
 
-      <div className="fixed inset-x-3 bottom-3 z-40 rounded-full border border-line bg-white/95 py-2 pl-6 pr-2 shadow-float backdrop-blur lg:hidden">
+      <div className="fixed inset-x-3 bottom-3 z-40 rounded-full border border-line bg-paper/95 py-2 pl-6 pr-2 shadow-paper backdrop-blur lg:hidden">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="font-serif text-[19px] leading-tight text-forest">{brl(product.priceCents)}</p>
+            <p className="font-serif text-[19px] leading-tight text-wine">{brl(product.priceCents)}</p>
             <p className="text-[11px] text-muted">Download imediato</p>
           </div>
           <form action={addToCartAction}>

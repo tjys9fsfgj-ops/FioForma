@@ -27,7 +27,7 @@ export default async function LoginPage({ searchParams }: Props) {
       aside={
         <p className="text-[12.5px] leading-relaxed text-muted">
           Comprou como visitante? Use o link que enviamos por e-mail ou{' '}
-          <Link href="/acesso" className="text-forest underline underline-offset-4">
+          <Link href="/acesso" className="text-wine underline underline-offset-4">
             peça um novo link de acesso
           </Link>
           .
@@ -40,7 +40,7 @@ export default async function LoginPage({ searchParams }: Props) {
         <LoginForm next={destination} />
         <p className="text-center text-[12px] text-muted">
           Ainda não tem conta?{' '}
-          <Link href="/criar-conta" className="text-forest underline underline-offset-4">
+          <Link href="/criar-conta" className="text-wine underline underline-offset-4">
             Criar conta
           </Link>
         </p>

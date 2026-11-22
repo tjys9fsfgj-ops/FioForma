@@ -49,13 +49,13 @@ export default async function EditProductPage({ params, searchParams }: Props) {
         description={
           <>
             <span className="block">/{product.slug} · {product.images.length} fotos · {product.files.length} arquivos</span>
-            <Link href={`/produto/${product.slug}`} target="_blank" className="mt-1 inline-block text-forest underline underline-offset-4">
+            <Link href={`/produto/${product.slug}`} target="_blank" className="mt-1 inline-block text-wine underline underline-offset-4">
               Ver no site
             </Link>
           </>
         }
         action={
-          <Link href="/admin/produtos" className="rounded-full border border-line bg-white px-3 py-2 text-[12px] hover:border-forest">
+          <Link href="/admin/produtos" className="rounded-full border border-line bg-paper px-3 py-2 text-[12px] hover:border-wine">
             Voltar
           </Link>
         }
@@ -78,9 +78,9 @@ export default async function EditProductPage({ params, searchParams }: Props) {
         </div>
 
         <div className="space-y-6">
-          <section className="rounded-2xl border border-line bg-white">
+          <section className="rounded-2xl border border-line bg-paper">
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Fotos</h2>
+              <h2 className="font-serif text-[17px] text-wine">Fotos</h2>
               <p className="mt-1 text-[11px] text-muted">A primeira foto é a capa. Use 4:5 (vertical), até 8 MB.</p>
             </div>
 
@@ -102,7 +102,7 @@ export default async function EditProductPage({ params, searchParams }: Props) {
                           <input type="hidden" name="id" value={image.id} />
                           <input type="hidden" name="productId" value={product.id} />
                           <input type="hidden" name="direction" value="up" />
-                          <button type="submit" className="text-[10.5px] text-muted underline underline-offset-2 hover:text-forest" disabled={index === 0}>
+                          <button type="submit" className="text-[10.5px] text-muted underline underline-offset-2 hover:text-wine" disabled={index === 0}>
                             ↑
                           </button>
                         </form>
@@ -110,7 +110,7 @@ export default async function EditProductPage({ params, searchParams }: Props) {
                           <input type="hidden" name="id" value={image.id} />
                           <input type="hidden" name="productId" value={product.id} />
                           <input type="hidden" name="direction" value="down" />
-                          <button type="submit" className="text-[10.5px] text-muted underline underline-offset-2 hover:text-forest" disabled={index === product.images.length - 1}>
+                          <button type="submit" className="text-[10.5px] text-muted underline underline-offset-2 hover:text-wine" disabled={index === product.images.length - 1}>
                             ↓
                           </button>
                         </form>
@@ -150,9 +150,9 @@ export default async function EditProductPage({ params, searchParams }: Props) {
             </form>
           </section>
 
-          <section className="rounded-2xl border border-line bg-white">
+          <section className="rounded-2xl border border-line bg-paper">
             <div className="border-b border-line px-5 py-3">
-              <h2 className="font-serif text-[17px] text-forest">Arquivos PDF</h2>
+              <h2 className="font-serif text-[17px] text-wine">Arquivos PDF</h2>
               <p className="mt-1 text-[11px] text-muted">Privados: só quem comprou baixa. Até 30 MB por arquivo.</p>
             </div>
 

@@ -28,7 +28,7 @@ export function Field({ label, name, hint, error, required, children, className 
           required={required}
           aria-describedby={[hintId, errorId].filter(Boolean).join(' ') || undefined}
           aria-invalid={error ? true : undefined}
-          className={cn('field-input', error && 'border-rose')}
+          className={cn('field-input', error && 'border-rosewood')}
         />
       )}
       {hint ? (
@@ -48,13 +48,13 @@ export function Field({ label, name, hint, error, required, children, className 
 type InputProps = ComponentProps<'input'> & { invalid?: boolean };
 
 export function Input({ className, invalid, ...props }: InputProps) {
-  return <input className={cn('field-input', invalid && 'border-rose', className)} {...props} />;
+  return <input className={cn('field-input', invalid && 'border-rosewood', className)} {...props} />;
 }
 
 type TextareaProps = ComponentProps<'textarea'> & { invalid?: boolean };
 
 export function Textarea({ className, invalid, ...props }: TextareaProps) {
-  return <textarea className={cn('field-input min-h-28', invalid && 'border-rose', className)} {...props} />;
+  return <textarea className={cn('field-input min-h-28', invalid && 'border-rosewood', className)} {...props} />;
 }
 
 type SelectProps = ComponentProps<'select'>;
@@ -70,8 +70,8 @@ export function Select({ className, children, ...props }: SelectProps) {
 export function FormMessage({ tone = 'error', children }: { tone?: 'error' | 'success' | 'info'; children: ReactNode }) {
   const tones = {
     error: 'border-[#E4C4BE] bg-[#FBF1EF] text-[#8A342A]',
-    success: 'border-forest-200 bg-forest-50 text-forest-800',
-    info: 'border-line bg-white text-muted',
+    success: 'border-wine-200 bg-wine-50 text-wine-800',
+    info: 'border-line bg-paper text-muted',
   } as const;
   return <div className={cn('rounded-2xl border px-4 py-3 text-[13.5px] leading-relaxed', tones[tone])}>{children}</div>;
 }

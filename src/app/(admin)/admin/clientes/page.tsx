@@ -36,7 +36,7 @@ export default async function AdminCustomersPage({
           <label htmlFor="q" className="field-label">Buscar</label>
           <input id="q" name="q" defaultValue={q ?? ''} placeholder="Nome ou e-mail" className="field-input" />
         </div>
-        <button type="submit" className="rounded-full border border-line bg-white px-4 py-3 text-[12px] hover:border-forest">
+        <button type="submit" className="rounded-full border border-line bg-paper px-4 py-3 text-[12px] hover:border-wine">
           Buscar
         </button>
       </form>
@@ -64,7 +64,7 @@ export default async function AdminCustomersPage({
                 </td>
                 <td className="px-4 py-3 text-muted">{formatDate(user.createdAt)}</td>
                 <td className="px-4 py-3">
-                  <Link href={`/admin/pedidos?q=${encodeURIComponent(user.email)}`} className="text-[11px] text-forest underline underline-offset-4">
+                  <Link href={`/admin/pedidos?q=${encodeURIComponent(user.email)}`} className="text-[11px] text-wine underline underline-offset-4">
                     Pedidos
                   </Link>
                 </td>

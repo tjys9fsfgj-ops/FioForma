@@ -10,7 +10,7 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
       aria-label={`${brand.name} — página inicial`}
       className={cn('group inline-flex flex-col items-start leading-none', className)}
     >
-      <span className="font-serif text-[27px] font-normal leading-none tracking-[-0.035em] text-forest transition-colors group-hover:text-forest-700">
+      <span className="font-serif text-[27px] font-normal leading-none tracking-[-0.035em] text-wine transition-colors group-hover:text-wine-700">
         {brand.wordmark}
       </span>
       <svg
@@ -27,10 +27,10 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
           strokeWidth="1"
           strokeDasharray="3.2 3.2"
           strokeLinecap="round"
-          className="transition-[stroke] group-hover:stroke-forest-400"
+          className="transition-[stroke] group-hover:stroke-wine-400"
         />
-        <circle cx="101" cy="3.5" r="2.1" stroke="#24483D" strokeWidth="0.9" fill="none" />
-        <path d="M105 3.5L117 2.2V4.8L105 3.5Z" fill="#24483D" />
+        <circle cx="101" cy="3.5" r="2.1" stroke="#7A3B3B" strokeWidth="0.9" fill="none" />
+        <path d="M105 3.5L117 2.2V4.8L105 3.5Z" fill="#7A3B3B" />
       </svg>
     </Link>
   );

@@ -31,7 +31,7 @@ export default async function ContactPage() {
               <dt className="eyebrow text-[10px]">E-mail</dt>
               <dd className="mt-1">
                 {email ? (
-                  <a href={email} className="link-underline text-forest">
+                  <a href={email} className="link-underline text-wine">
                     {settings.email}
                   </a>
                 ) : (
@@ -43,7 +43,7 @@ export default async function ContactPage() {
               <dt className="eyebrow text-[10px]">WhatsApp</dt>
               <dd className="mt-1">
                 {whatsapp ? (
-                  <a href={whatsapp} target="_blank" rel="noreferrer" className="link-underline text-forest">
+                  <a href={whatsapp} target="_blank" rel="noreferrer" className="link-underline text-wine">
                     Abrir conversa
                   </a>
                 ) : (
@@ -61,11 +61,11 @@ export default async function ContactPage() {
             <p className="font-medium text-ink">Antes de escrever</p>
             <p className="mt-1">
               Boa parte das dúvidas de impressão e acesso está no{' '}
-              <Link href="/faq" className="text-forest underline underline-offset-4">
+              <Link href="/faq" className="text-wine underline underline-offset-4">
                 FAQ
               </Link>{' '}
               e no{' '}
-              <Link href="/guias" className="text-forest underline underline-offset-4">
+              <Link href="/guias" className="text-wine underline underline-offset-4">
                 guia de impressão
               </Link>
               .
@@ -77,8 +77,8 @@ export default async function ContactPage() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
-          <h2 className="font-serif text-[22px] text-forest">Escreva para nós</h2>
+        <div className="rounded-2xl border border-line bg-paper p-6 sm:p-8">
+          <h2 className="font-serif text-[22px] text-wine">Escreva para nós</h2>
           <p className="mt-1 text-[12.5px] text-muted">
             Se for sobre um pedido, informe o número (FF-…) para agilizar.
           </p>

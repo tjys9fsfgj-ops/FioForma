@@ -40,7 +40,7 @@ export function LoginForm({ next }: { next: string }) {
           <label htmlFor="password" className="text-[12px] font-medium uppercase tracking-[0.12em] text-muted">
             Senha
           </label>
-          <Link href="/recuperar-senha" className="text-[11.5px] text-forest underline underline-offset-4">
+          <Link href="/recuperar-senha" className="text-[11.5px] text-wine underline underline-offset-4">
             Esqueci
           </Link>
         </div>
@@ -117,14 +117,14 @@ export function RegisterForm() {
         </div>
       </div>
       <label className="flex items-start gap-2 text-[11.5px] leading-relaxed text-muted">
-        <input type="checkbox" name="terms" required className="mt-0.5 h-4 w-4 accent-[#24483D]" />
+        <input type="checkbox" name="terms" required className="mt-0.5 h-4 w-4 accent-[#7A3B3B]" />
         <span>
           Aceito os{' '}
-          <Link href="/termos" className="text-forest underline underline-offset-4">
+          <Link href="/termos" className="text-wine underline underline-offset-4">
             termos
           </Link>{' '}
           e a{' '}
-          <Link href="/privacidade" className="text-forest underline underline-offset-4">
+          <Link href="/privacidade" className="text-wine underline underline-offset-4">
             política de privacidade
           </Link>
           .
@@ -132,7 +132,7 @@ export function RegisterForm() {
       </label>
       {state.fieldErrors?.terms ? <p className="text-[12px] text-[#9B3A2E]">{state.fieldErrors.terms}</p> : null}
       <label className="flex items-start gap-2 text-[11.5px] leading-relaxed text-muted">
-        <input type="checkbox" name="newsletter" className="mt-0.5 h-4 w-4 accent-[#24483D]" />
+        <input type="checkbox" name="newsletter" className="mt-0.5 h-4 w-4 accent-[#7A3B3B]" />
         <span>Quero receber lançamentos e notas de ateliê (opcional).</span>
       </label>
       <Button type="submit" size="lg" className="w-full" disabled={pending}>
@@ -316,7 +316,7 @@ export function ProfileForm({
           type="checkbox"
           name="newsletter"
           defaultChecked={marketingOptIn}
-          className="mt-0.5 h-4 w-4 accent-[#24483D]"
+          className="mt-0.5 h-4 w-4 accent-[#7A3B3B]"
         />
         Quero receber lançamentos e notas de ateliê.
       </label>

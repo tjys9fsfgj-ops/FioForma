@@ -27,13 +27,13 @@ export default async function DemoPaymentPage({ params, searchParams }: Props) {
 
   return (
     <div className="container-page py-12 sm:py-20">
-      <div className="rounded-2xl mx-auto max-w-lg border border-line bg-white p-6 sm:p-8">
+      <div className="rounded-2xl mx-auto max-w-lg border border-line bg-paper p-6 sm:p-8">
         <div className="flex items-center justify-between gap-4">
           <p className="eyebrow">Ambiente de demonstração</p>
           <Badge tone="sage">Sem cobrança</Badge>
         </div>
 
-        <h1 className="mt-4 font-serif text-[28px] leading-tight text-forest">Simular pagamento</h1>
+        <h1 className="mt-4 font-serif text-[28px] leading-tight text-wine">Simular pagamento</h1>
         <p className="mt-2 text-[13px] leading-relaxed text-muted">
           Esta tela substitui o checkout do Mercado Pago enquanto a loja não tem credenciais configuradas.
           Nenhum valor é cobrado e nenhum dado de cartão é solicitado.
@@ -54,7 +54,7 @@ export default async function DemoPaymentPage({ params, searchParams }: Props) {
           </div>
           <div className="flex justify-between gap-4 border-t border-line pt-2 text-[15px]">
             <dt className="font-medium">Total</dt>
-            <dd className="font-serif text-[19px] text-forest">{brl(order.totalCents)}</dd>
+            <dd className="font-serif text-[19px] text-wine">{brl(order.totalCents)}</dd>
           </div>
         </dl>
 
@@ -69,7 +69,7 @@ export default async function DemoPaymentPage({ params, searchParams }: Props) {
         <form action={rejectDemoPayment} className="mt-3">
           <input type="hidden" name="number" value={order.number} />
           <input type="hidden" name="token" value={t} />
-          <button type="submit" className="w-full py-2 text-[12px] text-muted underline decoration-line underline-offset-4 hover:text-forest">
+          <button type="submit" className="w-full py-2 text-[12px] text-muted underline decoration-line underline-offset-4 hover:text-wine">
             Simular pagamento recusado
           </button>
         </form>

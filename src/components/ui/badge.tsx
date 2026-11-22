@@ -11,10 +11,10 @@ export function Badge({
   className?: string;
 }) {
   const tones = {
-    neutral: 'border-line bg-white text-ink/70',
-    forest: 'border-forest bg-forest text-paper',
-    sage: 'border-sage-200 bg-sage-100 text-forest',
-    rose: 'border-blush-300 bg-blush-200 text-[#7A3F2E]',
+    neutral: 'border-line bg-paper text-ink/70',
+    forest: 'border-wine bg-wine text-paper',
+    sage: 'border-sand bg-sand text-wine',
+    rose: 'border-rosewood bg-rosewood text-[#7A3F2E]',
   } as const;
 
   return (

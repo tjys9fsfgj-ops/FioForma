@@ -27,14 +27,14 @@ export function Gallery({ images, productName }: { images: GalleryImage[]; produ
 
   return (
     <div>
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-cream ring-1 ring-line">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-sand ring-1 ring-line">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/api/media/${current.mediaId}`}
           alt={current.alt || productName}
           className="h-full w-full object-cover"
         />
-        <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-ink/70 backdrop-blur">
+        <span className="absolute bottom-4 left-4 rounded-full bg-paper/90 px-3 py-1 text-[11px] font-semibold text-ink/70 backdrop-blur">
           {kindLabels[current.kind] ?? 'Foto'}
         </span>
       </div>
@@ -50,8 +50,8 @@ export function Gallery({ images, productName }: { images: GalleryImage[]; produ
               aria-label={`Ver ${kindLabels[image.kind] ?? 'foto'} ${index + 1}`}
               onClick={() => setActive(index)}
               className={cn(
-                'relative aspect-square overflow-hidden rounded-2xl border-2 bg-cream transition-colors',
-                index === active ? 'border-forest' : 'border-transparent hover:border-forest/40',
+                'relative aspect-square overflow-hidden rounded-2xl border-2 bg-sand transition-colors',
+                index === active ? 'border-wine' : 'border-transparent hover:border-wine/40',
               )}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

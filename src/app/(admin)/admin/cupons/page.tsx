@@ -39,9 +39,9 @@ export default async function AdminCouponsPage({
       {salvo ? <div className="mb-4"><FormMessage tone="success">Cupons atualizados.</FormMessage></div> : null}
       {erro && errors[erro] ? <div className="mb-4"><FormMessage>{errors[erro]}</FormMessage></div> : null}
 
-      <section className="rounded-2xl mb-8 border border-line bg-white">
+      <section className="rounded-2xl mb-8 border border-line bg-paper">
         <div className="border-b border-line px-5 py-3">
-          <h2 className="font-serif text-[17px] text-forest">Novo cupom</h2>
+          <h2 className="font-serif text-[17px] text-wine">Novo cupom</h2>
         </div>
         <form action={saveCouponAction} className="grid gap-3 p-5 sm:grid-cols-4">
           <div>
@@ -77,7 +77,7 @@ export default async function AdminCouponsPage({
           </div>
           <div className="flex items-end gap-3">
             <label className="flex items-center gap-2 text-[12px]">
-              <input type="checkbox" name="active" defaultChecked className="h-4 w-4 accent-[#24483D]" />
+              <input type="checkbox" name="active" defaultChecked className="h-4 w-4 accent-[#7A3B3B]" />
               Ativo
             </label>
             <Button type="submit" size="sm">Criar cupom</Button>
@@ -87,13 +87,13 @@ export default async function AdminCouponsPage({
 
       <div className="space-y-3">
         {coupons.length === 0 ? (
-          <p className="rounded-2xl border border-line bg-white px-5 py-8 text-[12.5px] text-muted">Nenhum cupom cadastrado.</p>
+          <p className="rounded-2xl border border-line bg-paper px-5 py-8 text-[12.5px] text-muted">Nenhum cupom cadastrado.</p>
         ) : (
           coupons.map((coupon) => (
-            <details key={coupon.id} className="rounded-2xl border border-line bg-white">
+            <details key={coupon.id} className="rounded-2xl border border-line bg-paper">
               <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 px-5 py-3 marker:content-none [&::-webkit-details-marker]:hidden">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[13px] tracking-wide text-forest">{coupon.code}</span>
+                  <span className="font-mono text-[13px] tracking-wide text-wine">{coupon.code}</span>
                   <StatusPill tone={coupon.active ? 'green' : 'gray'}>{coupon.active ? 'Ativo' : 'Inativo'}</StatusPill>
                 </div>
                 <p className="text-[11px] text-muted">
@@ -149,7 +149,7 @@ export default async function AdminCouponsPage({
                   </div>
                   <div className="flex items-end gap-3">
                     <label className="flex items-center gap-2 text-[12px]">
-                      <input type="checkbox" name="active" defaultChecked={coupon.active} className="h-4 w-4 accent-[#24483D]" />
+                      <input type="checkbox" name="active" defaultChecked={coupon.active} className="h-4 w-4 accent-[#7A3B3B]" />
                       Ativo
                     </label>
                     <Button type="submit" size="sm">Salvar</Button>
@@ -158,7 +158,7 @@ export default async function AdminCouponsPage({
                 <div className="mt-3 flex flex-wrap items-center gap-4 border-t border-line pt-3">
                   <form action={toggleCouponAction}>
                     <input type="hidden" name="id" value={coupon.id} />
-                    <button type="submit" className="text-[11px] text-muted underline underline-offset-4 hover:text-forest">
+                    <button type="submit" className="text-[11px] text-muted underline underline-offset-4 hover:text-wine">
                       {coupon.active ? 'Desativar' : 'Ativar'}
                     </button>
                   </form>

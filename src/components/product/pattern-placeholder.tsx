@@ -6,9 +6,9 @@ import { cn } from '@/lib/utils';
  * sobre um fundo colorido, sem simular foto de produto.
  */
 const tints = [
-  { bg: '#D9E2D5', ink: '#24483D', soft: '#B9C7B4' },
+  { bg: '#D9E2D5', ink: '#7A3B3B', soft: '#B9C7B4' },
   { bg: '#F0DED5', ink: '#7A3F2E', soft: '#E3C3B3' },
-  { bg: '#E9E4D6', ink: '#24483D', soft: '#D4CCB6' },
+  { bg: '#E9E4D6', ink: '#7A3B3B', soft: '#D4CCB6' },
   { bg: '#CBD9D0', ink: '#1B382F', soft: '#A9BFB1' },
 ];
 
@@ -56,7 +56,7 @@ export function PatternPlaceholder({
           <path d="M72 66v-5M128 66v-5M48 140h-5M152 140h5" stroke={tint.ink} strokeWidth="1.1" />
         </g>
       </svg>
-      <span className="relative mb-4 rounded-full bg-white/85 px-3 py-1 text-[10.5px] font-semibold tracking-[0.04em] text-ink/70 backdrop-blur">
+      <span className="relative mb-4 rounded-full bg-paper/85 px-3 py-1 text-[10.5px] font-semibold tracking-[0.04em] text-ink/70 backdrop-blur">
         {label}
       </span>
     </div>

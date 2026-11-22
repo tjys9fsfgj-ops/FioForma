@@ -14,7 +14,7 @@ const navigation = [
 
 function CartIcon({ count }: { count: number }) {
   return (
-    <span className="relative inline-flex items-center gap-2 rounded-full bg-forest px-4 py-2.5 text-paper transition-colors hover:bg-forest-800">
+    <span className="relative inline-flex items-center gap-2 rounded-full bg-wine px-4 py-2.5 text-paper transition-colors hover:bg-wine-800">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path
           d="M5.5 8.5h13l-1.1 11a1.5 1.5 0 0 1-1.5 1.35H8.1a1.5 1.5 0 0 1-1.5-1.35l-1.1-11Z"
@@ -25,7 +25,7 @@ function CartIcon({ count }: { count: number }) {
       </svg>
       <span className="hidden text-[13px] font-semibold sm:inline">Carrinho</span>
       {count > 0 ? (
-        <span className="inline-flex h-[20px] min-w-[20px] items-center justify-center rounded-full bg-blush px-1 text-[11px] font-bold text-forest">
+        <span className="inline-flex h-[20px] min-w-[20px] items-center justify-center rounded-full bg-rosewood px-1 text-[11px] font-bold text-wine">
           {count}
         </span>
       ) : null}
@@ -39,7 +39,7 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 bg-paper/90 backdrop-blur-md">
       {settings.announcement ? (
-        <div className="bg-forest px-5 py-2.5 text-center text-[12px] font-medium tracking-[0.02em] text-paper">
+        <div className="bg-wine px-5 py-2.5 text-center text-[12px] font-medium tracking-[0.02em] text-paper">
           {settings.announcement}
         </div>
       ) : null}
@@ -52,7 +52,7 @@ export async function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-4 py-2 text-[14px] font-medium text-ink/80 transition-colors hover:bg-forest/[0.07] hover:text-forest"
+                className="rounded-full px-4 py-2 text-[14px] font-medium text-ink/80 transition-colors hover:bg-wine/[0.07] hover:text-wine"
               >
                 {item.label}
               </Link>
@@ -65,7 +65,7 @@ export async function Header() {
             <label htmlFor="header-search" className="sr-only">
               Buscar moldes
             </label>
-            <div className="flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 transition-colors focus-within:border-forest focus-within:ring-2 focus-within:ring-forest/15">
+            <div className="flex items-center gap-2 rounded-full border border-line bg-paper px-4 py-2.5 transition-colors focus-within:border-wine focus-within:ring-2 focus-within:ring-wine/15">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" strokeWidth="1.4" />
                 <path d="m15.5 15.5 5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -82,7 +82,7 @@ export async function Header() {
 
           <Link
             href={user ? '/minha-conta' : '/entrar'}
-            className="hidden rounded-full border border-forest/25 px-4 py-2.5 text-[13px] font-semibold text-forest transition-colors hover:border-forest hover:bg-white sm:inline"
+            className="hidden rounded-full border border-wine/25 px-4 py-2.5 text-[13px] font-semibold text-wine transition-colors hover:border-wine hover:bg-paper sm:inline"
           >
             {user ? (user.name?.split(' ')[0] ?? 'Minha conta') : 'Entrar'}
           </Link>
@@ -93,14 +93,14 @@ export async function Header() {
 
           <details className="group relative lg:hidden">
             <summary
-              className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-white text-ink marker:content-none [&::-webkit-details-marker]:hidden"
+              className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-paper text-ink marker:content-none [&::-webkit-details-marker]:hidden"
               aria-label="Abrir menu"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" strokeWidth="1.4" />
               </svg>
             </summary>
-            <div className="absolute right-0 top-14 z-50 w-[min(86vw,340px)] rounded-3xl border border-line bg-paper p-5 shadow-float">
+            <div className="absolute right-0 top-14 z-50 w-[min(86vw,340px)] rounded-3xl border border-line bg-paper p-5 shadow-paper">
               <form action="/catalogo" method="get" role="search" className="mb-4">
                 <label htmlFor="mobile-search" className="field-label">
                   Buscar
@@ -115,14 +115,14 @@ export async function Header() {
               </form>
               <nav aria-label="Menu" className="flex flex-col divide-y divide-line/70 [&_a]:px-1">
                 {navigation.map((item) => (
-                  <Link key={item.href} href={item.href} className="py-3.5 text-[15px] font-medium hover:text-forest">
+                  <Link key={item.href} href={item.href} className="py-3.5 text-[15px] font-medium hover:text-wine">
                     {item.label}
                   </Link>
                 ))}
-                <Link href={user ? '/minha-conta' : '/entrar'} className="py-3.5 text-[15px] font-medium hover:text-forest">
+                <Link href={user ? '/minha-conta' : '/entrar'} className="py-3.5 text-[15px] font-medium hover:text-wine">
                   {user ? 'Minha conta' : 'Entrar ou criar conta'}
                 </Link>
-                <Link href="/faq" className="py-3.5 text-[15px] font-medium hover:text-forest">
+                <Link href="/faq" className="py-3.5 text-[15px] font-medium hover:text-wine">
                   Ajuda e FAQ
                 </Link>
               </nav>

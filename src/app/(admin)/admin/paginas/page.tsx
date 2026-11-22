@@ -31,13 +31,13 @@ export default async function AdminPagesPage({
       {ok ? <div className="mb-4"><FormMessage tone="success">Conteúdo atualizado.</FormMessage></div> : null}
 
       <div className="mb-4 flex flex-wrap gap-2 text-[11.5px]">
-        <Link href="/admin/paginas" className={!tipo ? 'rounded-full border border-forest bg-forest px-4 py-1.5 text-white' : 'rounded-full border border-line bg-white px-4 py-1.5 text-muted hover:border-forest'}>
+        <Link href="/admin/paginas" className={!tipo ? 'rounded-full border border-wine bg-wine px-4 py-1.5 text-white' : 'rounded-full border border-line bg-paper px-4 py-1.5 text-muted hover:border-wine'}>
           Tudo
         </Link>
-        <Link href="/admin/paginas?tipo=PAGE" className={tipo === 'PAGE' ? 'rounded-full border border-forest bg-forest px-4 py-1.5 text-white' : 'rounded-full border border-line bg-white px-4 py-1.5 text-muted hover:border-forest'}>
+        <Link href="/admin/paginas?tipo=PAGE" className={tipo === 'PAGE' ? 'rounded-full border border-wine bg-wine px-4 py-1.5 text-white' : 'rounded-full border border-line bg-paper px-4 py-1.5 text-muted hover:border-wine'}>
           Páginas
         </Link>
-        <Link href="/admin/paginas?tipo=POST" className={tipo === 'POST' ? 'rounded-full border border-forest bg-forest px-4 py-1.5 text-white' : 'rounded-full border border-line bg-white px-4 py-1.5 text-muted hover:border-forest'}>
+        <Link href="/admin/paginas?tipo=POST" className={tipo === 'POST' ? 'rounded-full border border-wine bg-wine px-4 py-1.5 text-white' : 'rounded-full border border-line bg-paper px-4 py-1.5 text-muted hover:border-wine'}>
           Blog
         </Link>
       </div>
@@ -53,7 +53,7 @@ export default async function AdminPagesPage({
           {pages.map((page) => (
             <tr key={page.id} className="hover:bg-[#FAF9F6]">
               <td className="px-4 py-3">
-                <Link href={`/admin/paginas/${page.id}`} className="font-medium text-ink hover:text-forest">
+                <Link href={`/admin/paginas/${page.id}`} className="font-medium text-ink hover:text-wine">
                   {page.title}
                 </Link>
               </td>
@@ -69,19 +69,19 @@ export default async function AdminPagesPage({
               <td className="px-4 py-3 text-muted">{formatDate(page.updatedAt)}</td>
               <td className="px-4 py-3">
                 <div className="flex flex-wrap items-center gap-3">
-                  <Link href={`/admin/paginas/${page.id}`} className="text-[11px] text-forest underline underline-offset-4">
+                  <Link href={`/admin/paginas/${page.id}`} className="text-[11px] text-wine underline underline-offset-4">
                     Editar
                   </Link>
                   <Link
                     href={page.kind === 'POST' ? `/blog/${page.slug}` : `/${page.slug}`}
                     target="_blank"
-                    className="text-[11px] text-muted underline underline-offset-4 hover:text-forest"
+                    className="text-[11px] text-muted underline underline-offset-4 hover:text-wine"
                   >
                     Ver
                   </Link>
                   <form action={togglePageStatusAction}>
                     <input type="hidden" name="id" value={page.id} />
-                    <button type="submit" className="text-[11px] text-muted underline underline-offset-4 hover:text-forest">
+                    <button type="submit" className="text-[11px] text-muted underline underline-offset-4 hover:text-wine">
                       {page.status === 'PUBLISHED' ? 'Despublicar' : 'Publicar'}
                     </button>
                   </form>

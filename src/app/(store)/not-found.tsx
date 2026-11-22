@@ -11,10 +11,10 @@ export default function NotFound() {
         O endereço pode ter mudado ou o molde saiu do catálogo. Tente pelo catálogo ou volte ao início.
       </p>
       <div className="mt-7 flex flex-wrap justify-center gap-3">
-        <Link href="/catalogo" className="rounded-full border border-forest bg-forest px-5 py-3 text-[13px] text-paper">
+        <Link href="/catalogo" className="rounded-full border border-wine bg-wine px-5 py-3 text-[13px] text-paper">
           Ver moldes
         </Link>
-        <Link href="/" className="rounded-full border border-line px-5 py-3 text-[13px] hover:border-forest">
+        <Link href="/" className="rounded-full border border-line px-5 py-3 text-[13px] hover:border-wine">
           Página inicial
         </Link>
       </div>

@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Inter } from 'next/font/google';
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
 import { brand } from '@/config/brand';
 import { getSiteUrl } from '@/lib/site';
 import './globals.css';
 
-const inter = Inter({
+const sans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-sans',
   display: 'swap',
 });
 
-const fraunces = Fraunces({
+const serif = Cormorant_Garamond({
   subsets: ['latin'],
-  variable: '--font-fraunces',
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
   display: 'swap',
-  axes: ['SOFT', 'WONK', 'opsz'],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -53,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#F7F6F2',
+  themeColor: '#F3EEE6',
   colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
@@ -61,11 +62,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen bg-paper font-sans text-ink">
+    <html lang="pt-BR" className={`${sans.variable} ${serif.variable}`}>
+      <body className="min-h-screen bg-linen font-sans text-ink">
         <a
           href="#conteudo"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-forest focus:px-4 focus:py-2 focus:text-paper"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-wine focus:px-4 focus:py-2 focus:text-paper"
         >
           Pular para o conteúdo
         </a>

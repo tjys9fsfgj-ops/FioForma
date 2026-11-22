@@ -22,7 +22,7 @@ export default async function EditPagePage({
       <AdminHeader
         eyebrow={
           <>
-            <Link href="/admin/paginas" className="hover:text-forest">Conteúdo</Link>
+            <Link href="/admin/paginas" className="hover:text-wine">Conteúdo</Link>
             <span className="mx-1">/</span>
             <span>{page.kind === 'POST' ? 'Blog' : 'Página'}</span>
           </>

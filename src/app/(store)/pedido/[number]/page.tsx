@@ -76,7 +76,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
         </div>
 
         {pending ? (
-          <div className="rounded-2xl mt-6 border border-line bg-white p-6">
+          <div className="rounded-2xl mt-6 border border-line bg-paper p-6">
             <p className="text-[14px] leading-relaxed text-ink/85">
               Assim que o pagamento for confirmado, os arquivos aparecem aqui e na sua biblioteca. Se você
               pagou por Pix, a confirmação costuma levar poucos segundos. Você também recebe um e-mail com o
@@ -101,8 +101,8 @@ export default async function OrderPage({ params, searchParams }: Props) {
         ) : null}
 
         {paid ? (
-          <div className="rounded-2xl mt-6 border border-forest-200 bg-forest-50 p-6">
-            <p className="text-[14px] leading-relaxed text-forest-900">
+          <div className="rounded-2xl mt-6 border border-wine-200 bg-wine-50 p-6">
+            <p className="text-[14px] leading-relaxed text-wine-900">
               Enviamos a confirmação para <strong className="font-semibold">{order.email}</strong>.
               {user ? (
                 <>
@@ -121,12 +121,12 @@ export default async function OrderPage({ params, searchParams }: Props) {
         ) : null}
 
         <section className="mt-8">
-          <h2 className="font-serif text-[22px] text-forest">Itens do pedido</h2>
+          <h2 className="font-serif text-[22px] text-wine">Itens do pedido</h2>
           <ul className="mt-3 divide-y divide-line border-y border-line">
             {order.items.map((item) => (
               <li key={item.id} className="flex items-start justify-between gap-4 py-4">
                 <div>
-                  <Link href={`/produto/${item.productSlug}`} className="text-[14px] font-medium text-ink hover:text-forest">
+                  <Link href={`/produto/${item.productSlug}`} className="text-[14px] font-medium text-ink hover:text-wine">
                     {item.productName}
                   </Link>
                   <p className="mt-0.5 text-[11.5px] text-muted">Molde digital em PDF · licença de uso pessoal e venda das peças</p>
@@ -142,28 +142,28 @@ export default async function OrderPage({ params, searchParams }: Props) {
               <dd>{brl(order.subtotalCents)}</dd>
             </div>
             {order.discountCents > 0 ? (
-              <div className="flex justify-between text-forest">
+              <div className="flex justify-between text-wine">
                 <dt>Desconto {order.couponCode ? `(${order.couponCode})` : ''}</dt>
                 <dd>− {brl(order.discountCents)}</dd>
               </div>
             ) : null}
             <div className="flex justify-between border-t border-line pt-2 text-[15px]">
               <dt className="font-medium">Total</dt>
-              <dd className="font-serif text-[19px] text-forest">{brl(order.totalCents)}</dd>
+              <dd className="font-serif text-[19px] text-wine">{brl(order.totalCents)}</dd>
             </div>
           </dl>
         </section>
 
         {paid && downloadGroups.length > 0 ? (
           <section className="mt-10">
-            <h2 className="font-serif text-[22px] text-forest">Baixar agora</h2>
+            <h2 className="font-serif text-[22px] text-wine">Baixar agora</h2>
             <p className="mt-1 text-[12.5px] text-muted">
               Os links abaixo são pessoais e expiram em 10 minutos. Você pode gerar novos na sua biblioteca,
               quantas vezes quiser.
             </p>
             <div className="mt-4 space-y-4">
               {downloadGroups.map((group) => (
-                <div key={group.id} className="rounded-2xl border border-line bg-white p-5">
+                <div key={group.id} className="rounded-2xl border border-line bg-paper p-5">
                   <h3 className="font-serif text-[18px] text-ink">{group.productName}</h3>
                   {group.files.length === 0 ? (
                     <p className="mt-2 text-[12.5px] text-muted">
@@ -179,7 +179,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
                           </span>
                           <a
                             href={`/api/download/${file.id}?t=${file.token}`}
-                            className="rounded-full border border-forest px-3 py-1.5 text-[11.5px] font-medium text-forest hover:bg-forest hover:text-paper"
+                            className="rounded-full border border-wine px-3 py-1.5 text-[11.5px] font-medium text-wine hover:bg-wine hover:text-paper"
                           >
                             Baixar PDF
                           </a>

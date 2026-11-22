@@ -62,7 +62,7 @@ export default async function AdminDashboardPage() {
       {demo ? (
         <div className="mb-6 border border-[#D9C9A3] bg-[#FBF6E8] px-4 py-3 text-[12px] leading-relaxed text-[#6B5320]">
           <strong className="font-medium">Pagamentos em modo demonstração.</strong> Nenhuma cobrança real está
-          ativa. Configure <code className="bg-white/60 px-1">PAYMENT_GATEWAY=mercadopago</code> e as chaves do
+          ativa. Configure <code className="bg-paper/60 px-1">PAYMENT_GATEWAY=mercadopago</code> e as chaves do
           Mercado Pago para vender de verdade.
         </div>
       ) : null}
@@ -82,8 +82,8 @@ export default async function AdminDashboardPage() {
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.4fr_1fr]">
         <AdminCard>
           <div className="flex items-center justify-between border-b border-line px-5 py-4">
-            <h2 className="font-serif text-[18px] text-forest">Pedidos recentes</h2>
-            <Link href="/admin/pedidos" className="text-[11.5px] text-forest underline underline-offset-4">
+            <h2 className="font-serif text-[18px] text-wine">Pedidos recentes</h2>
+            <Link href="/admin/pedidos" className="text-[11.5px] text-wine underline underline-offset-4">
               Ver todos
             </Link>
           </div>
@@ -96,7 +96,7 @@ export default async function AdminDashboardPage() {
               {recentOrders.map((order) => (
                 <tr key={order.id} className="hover:bg-[#FAF9F6]">
                   <td className="px-4 py-3">
-                    <Link href={`/admin/pedidos/${order.id}`} className="font-medium text-forest hover:underline">
+                    <Link href={`/admin/pedidos/${order.id}`} className="font-medium text-wine hover:underline">
                       {order.number}
                     </Link>
                   </td>
@@ -120,7 +120,7 @@ export default async function AdminDashboardPage() {
         <div className="space-y-6">
           <AdminCard>
             <div className="border-b border-line px-5 py-4">
-              <h2 className="font-serif text-[18px] text-forest">Mais vendidos</h2>
+              <h2 className="font-serif text-[18px] text-wine">Mais vendidos</h2>
             </div>
             {topItems.length === 0 ? (
               <p className="px-5 py-6 text-[12.5px] text-muted">Sem vendas registradas.</p>
@@ -132,7 +132,7 @@ export default async function AdminDashboardPage() {
                       <p className="text-[12.5px] text-ink">{item.productName}</p>
                       <p className="text-[10.5px] text-muted">{item._count} {item._count === 1 ? 'venda' : 'vendas'}</p>
                     </div>
-                    <p className="text-[12px] text-forest">{brl(item._sum.totalCents ?? 0)}</p>
+                    <p className="text-[12px] text-wine">{brl(item._sum.totalCents ?? 0)}</p>
                   </li>
                 ))}
               </ul>
@@ -141,14 +141,14 @@ export default async function AdminDashboardPage() {
 
           <AdminCard>
             <div className="border-b border-line px-5 py-4">
-              <h2 className="font-serif text-[18px] text-forest">Catálogo</h2>
+              <h2 className="font-serif text-[18px] text-wine">Catálogo</h2>
             </div>
             {products.length === 0 ? (
               <div className="p-5">
                 <p className="text-[12.5px] text-muted">
                   Nenhum molde cadastrado. Comece criando o primeiro produto.
                 </p>
-                <Link href="/admin/produtos/novo" className="mt-3 inline-block text-[12px] text-forest underline underline-offset-4">
+                <Link href="/admin/produtos/novo" className="mt-3 inline-block text-[12px] text-wine underline underline-offset-4">
                   Criar molde
                 </Link>
               </div>
@@ -157,7 +157,7 @@ export default async function AdminDashboardPage() {
                 {products.map((product) => (
                   <li key={product.id} className="flex items-center justify-between gap-3 px-5 py-3">
                     <div className="min-w-0">
-                      <Link href={`/admin/produtos/${product.id}`} className="block truncate text-[12.5px] text-ink hover:text-forest">
+                      <Link href={`/admin/produtos/${product.id}`} className="block truncate text-[12.5px] text-ink hover:text-wine">
                         {product.name}
                       </Link>
                       <p className="text-[10.5px] text-muted">
@@ -178,7 +178,7 @@ export default async function AdminDashboardPage() {
       <div className="mt-6 grid gap-6 xl:grid-cols-3">
         <AdminCard className="xl:col-span-2">
           <div className="border-b border-line px-5 py-4">
-            <h2 className="font-serif text-[18px] text-forest">Últimas ações</h2>
+            <h2 className="font-serif text-[18px] text-wine">Últimas ações</h2>
           </div>
           {audit.length === 0 ? (
             <p className="px-5 py-6 text-[12.5px] text-muted">Nenhuma ação registrada.</p>
@@ -201,7 +201,7 @@ export default async function AdminDashboardPage() {
 
         <AdminCard>
           <div className="border-b border-line px-5 py-4">
-            <h2 className="font-serif text-[18px] text-forest">Atalhos</h2>
+            <h2 className="font-serif text-[18px] text-wine">Atalhos</h2>
           </div>
           <ul className="divide-y divide-line text-[12.5px]">
             {[
@@ -213,7 +213,7 @@ export default async function AdminDashboardPage() {
               { href: '/admin/clientes', label: `Clientes (${customersCount})` },
             ].map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="block px-5 py-2.5 text-ink/80 hover:text-forest">
+                <Link href={item.href} className="block px-5 py-2.5 text-ink/80 hover:text-wine">
                   {item.label} →
                 </Link>
               </li>

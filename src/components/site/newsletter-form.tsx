@@ -10,7 +10,7 @@ export function NewsletterForm() {
 
   if (state.status === 'success') {
     return (
-      <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-[13px] text-forest-800">
+      <p className="mt-4 rounded-2xl bg-paper px-4 py-3 text-[13px] text-wine-800">
         {state.message}
       </p>
     );
@@ -21,7 +21,7 @@ export function NewsletterForm() {
       <label htmlFor="newsletter-email" className="sr-only">
         Seu e-mail
       </label>
-      <div className="flex rounded-full bg-white p-1 ring-1 ring-line focus-within:ring-2 focus-within:ring-sage">
+      <div className="flex rounded-full bg-paper p-1 ring-1 ring-line focus-within:ring-2 focus-within:ring-sand">
         <input
           id="newsletter-email"
           type="email"
@@ -34,13 +34,13 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={pending}
-          className="rounded-full bg-forest px-5 text-[12.5px] font-semibold text-paper transition-colors hover:bg-forest-800 disabled:opacity-60"
+          className="rounded-full bg-wine px-5 text-[12.5px] font-semibold text-paper transition-colors hover:bg-wine-800 disabled:opacity-60"
         >
           {pending ? 'Enviando' : 'Assinar'}
         </button>
       </div>
       {state.status === 'error' ? (
-        <p className="mt-2 text-[12px] font-medium text-blush-300" role="alert">
+        <p className="mt-2 text-[12px] font-medium text-rosewood" role="alert">
           {state.message}
         </p>
       ) : null}

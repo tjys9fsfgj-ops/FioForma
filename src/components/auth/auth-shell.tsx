@@ -22,7 +22,7 @@ export function AuthShell({
           {description ? <div className="mt-4 max-w-sm text-[14px] leading-relaxed text-muted">{description}</div> : null}
           {aside ? <div className="mt-8">{aside}</div> : null}
         </div>
-        <div className="rounded-[2rem] border border-line bg-white p-6 shadow-soft sm:p-9">{children}</div>
+        <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-9">{children}</div>
       </div>
     </div>
   );

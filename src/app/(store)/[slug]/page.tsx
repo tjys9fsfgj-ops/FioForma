@@ -42,7 +42,7 @@ export default async function ContentPage({ params }: Props) {
     <article className="container-page py-12 sm:py-16">
       <div className="mx-auto max-w-3xl">
         <nav aria-label="Trilha" className="text-[11.5px] text-muted">
-          <Link href="/" className="hover:text-forest">
+          <Link href="/" className="hover:text-wine">
             Início
           </Link>
           <span aria-hidden="true"> / </span>
@@ -71,7 +71,7 @@ export default async function ContentPage({ params }: Props) {
         <div className="mt-12 border-t border-line pt-6 text-[12px] text-muted">
           <p>
             Precisa de ajuda?{' '}
-            <Link href="/contato" className="text-forest underline underline-offset-4">
+            <Link href="/contato" className="text-wine underline underline-offset-4">
               Fale com o ateliê
             </Link>
             .

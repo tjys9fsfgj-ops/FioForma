@@ -17,7 +17,7 @@ export function AdminHeader({
     <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
         {eyebrow ? <p className="eyebrow text-[10px]">{eyebrow}</p> : null}
-        <h1 className="mt-1 font-serif text-[clamp(1.6rem,2.6vw,2.1rem)] leading-tight text-forest">{title}</h1>
+        <h1 className="mt-1 font-serif text-[clamp(1.6rem,2.6vw,2.1rem)] leading-tight text-wine">{title}</h1>
         {description ? <div className="mt-2 max-w-2xl text-[12.5px] leading-relaxed text-muted">{description}</div> : null}
       </div>
       {action ? <div className="flex shrink-0 flex-wrap gap-2">{action}</div> : null}
@@ -26,7 +26,7 @@ export function AdminHeader({
 }
 
 export function AdminCard({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn('rounded-2xl border border-line bg-white', className)}>{children}</div>;
+  return <div className={cn('rounded-2xl border border-line bg-paper', className)}>{children}</div>;
 }
 
 export function StatCard({
@@ -43,25 +43,25 @@ export function StatCard({
   const content = (
     <>
       <p className="text-[10px] uppercase tracking-[0.14em] text-muted">{label}</p>
-      <p className="mt-2 font-serif text-[27px] leading-none text-forest">{value}</p>
+      <p className="mt-2 font-serif text-[27px] leading-none text-wine">{value}</p>
       {hint ? <p className="mt-2 text-[11px] text-muted">{hint}</p> : null}
     </>
   );
 
   if (href) {
     return (
-      <Link href={href} className="rounded-2xl block border border-line bg-white p-5 transition-colors hover:border-forest/40">
+      <Link href={href} className="rounded-2xl block border border-line bg-paper p-5 transition-colors hover:border-wine/40">
         {content}
       </Link>
     );
   }
 
-  return <div className="rounded-2xl border border-line bg-white p-5">{content}</div>;
+  return <div className="rounded-2xl border border-line bg-paper p-5">{content}</div>;
 }
 
 export function AdminTable({ head, children }: { head: string[]; children: ReactNode }) {
   return (
-    <div className="rounded-2xl overflow-x-auto border border-line bg-white">
+    <div className="rounded-2xl overflow-x-auto border border-line bg-paper">
       <table className="w-full min-w-[640px] border-collapse text-left text-[12.5px]">
         <thead>
           <tr className="border-b border-line bg-[#FAF9F6]">
@@ -80,7 +80,7 @@ export function AdminTable({ head, children }: { head: string[]; children: React
 
 export function StatusPill({ tone, children }: { tone: 'green' | 'amber' | 'gray' | 'red'; children: ReactNode }) {
   const tones = {
-    green: 'border-forest-200 bg-forest-50 text-forest-800',
+    green: 'border-wine-200 bg-wine-50 text-wine-800',
     amber: 'border-[#E3D3AE] bg-[#FBF6E8] text-[#6B5320]',
     gray: 'border-line bg-[#F7F6F2] text-muted',
     red: 'border-[#E4C4BE] bg-[#FBF1EF] text-[#8A342A]',
@@ -92,8 +92,8 @@ export function StatusPill({ tone, children }: { tone: 'green' | 'amber' | 'gray
 
 export function AdminEmpty({ title, description, action }: { title: string; description?: string; action?: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-line bg-white px-6 py-12 text-center">
-      <p className="font-serif text-[19px] text-forest">{title}</p>
+    <div className="rounded-2xl border border-line bg-paper px-6 py-12 text-center">
+      <p className="font-serif text-[19px] text-wine">{title}</p>
       {description ? <p className="mx-auto mt-2 max-w-md text-[12.5px] leading-relaxed text-muted">{description}</p> : null}
       {action ? <div className="mt-4 flex justify-center gap-2">{action}</div> : null}
     </div>

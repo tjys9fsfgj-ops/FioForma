@@ -21,23 +21,23 @@ export default async function AccountOverviewPage() {
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-line bg-white p-5">
+        <div className="rounded-2xl border border-line bg-paper p-5">
           <p className="eyebrow text-[10px]">Moldes na biblioteca</p>
-          <p className="mt-2 font-serif text-[34px] text-forest">{library.length}</p>
-          <Link href="/minha-conta/biblioteca" className="mt-2 inline-block text-[12px] text-forest underline underline-offset-4">
+          <p className="mt-2 font-serif text-[34px] text-wine">{library.length}</p>
+          <Link href="/minha-conta/biblioteca" className="mt-2 inline-block text-[12px] text-wine underline underline-offset-4">
             Ver biblioteca
           </Link>
         </div>
-        <div className="rounded-2xl border border-line bg-white p-5">
+        <div className="rounded-2xl border border-line bg-paper p-5">
           <p className="eyebrow text-[10px]">Pedidos pagos</p>
-          <p className="mt-2 font-serif text-[34px] text-forest">{paidOrders.length}</p>
-          <Link href="/minha-conta/pedidos" className="mt-2 inline-block text-[12px] text-forest underline underline-offset-4">
+          <p className="mt-2 font-serif text-[34px] text-wine">{paidOrders.length}</p>
+          <Link href="/minha-conta/pedidos" className="mt-2 inline-block text-[12px] text-wine underline underline-offset-4">
             Ver pedidos
           </Link>
         </div>
-        <div className="rounded-2xl border border-line bg-white p-5">
+        <div className="rounded-2xl border border-line bg-paper p-5">
           <p className="eyebrow text-[10px]">Última compra</p>
-          <p className="mt-2 font-serif text-[18px] text-forest">
+          <p className="mt-2 font-serif text-[18px] text-wine">
             {lastOrder ? formatDate(lastOrder.createdAt) : '—'}
           </p>
           {lastOrder ? (
@@ -49,8 +49,8 @@ export default async function AccountOverviewPage() {
       </div>
 
       {library.length === 0 ? (
-        <div className="rounded-2xl mt-8 border border-line bg-white px-6 py-10 text-center">
-          <p className="font-serif text-[22px] text-forest">Sua biblioteca está vazia.</p>
+        <div className="rounded-2xl mt-8 border border-line bg-paper px-6 py-10 text-center">
+          <p className="font-serif text-[22px] text-wine">Sua biblioteca está vazia.</p>
           <p className="mx-auto mt-2 max-w-md text-[13.5px] leading-relaxed text-muted">
             Escolha um molde no catálogo. Assim que o pagamento for confirmado, ele aparece aqui.
           </p>
@@ -60,12 +60,12 @@ export default async function AccountOverviewPage() {
         </div>
       ) : (
         <section className="mt-8">
-          <h2 className="font-serif text-[21px] text-forest">Continuar de onde parou</h2>
+          <h2 className="font-serif text-[21px] text-wine">Continuar de onde parou</h2>
           <ul className="mt-3 divide-y divide-line border-y border-line">
             {library.slice(0, 3).map((item) => (
               <li key={item.id} className="flex items-center justify-between gap-4 py-4">
                 <div>
-                  <Link href={`/produto/${item.product.slug}`} className="text-[14px] font-medium hover:text-forest">
+                  <Link href={`/produto/${item.product.slug}`} className="text-[14px] font-medium hover:text-wine">
                     {item.product.name}
                   </Link>
                   <p className="mt-0.5 text-[11.5px] text-muted">
@@ -75,7 +75,7 @@ export default async function AccountOverviewPage() {
                 </div>
                 <Link
                   href="/minha-conta/biblioteca"
-                  className="rounded-full shrink-0 border border-line px-3 py-1.5 text-[11.5px] hover:border-forest hover:text-forest"
+                  className="rounded-full shrink-0 border border-line px-3 py-1.5 text-[11.5px] hover:border-wine hover:text-wine"
                 >
                   Baixar
                 </Link>

@@ -37,7 +37,7 @@ export default async function ResetPasswordPage({ params }: { params: Promise<{ 
           </p>
           <Link
             href="/recuperar-senha"
-            className="rounded-full inline-block border border-forest bg-forest px-5 py-3 text-[13px] text-paper"
+            className="rounded-full inline-block border border-wine bg-wine px-5 py-3 text-[13px] text-paper"
           >
             Solicitar novo link
           </Link>

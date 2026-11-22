@@ -81,7 +81,7 @@ const marquee = [
   'Licença para vender as peças',
 ];
 
-const collectionTints = ['bg-sage-200', 'bg-blush-200', 'bg-cream'];
+const collectionTints = ['bg-sand', 'bg-rosewood', 'bg-sand'];
 
 export default async function HomePage() {
   const [collections, latest, settings] = await Promise.all([listCollections(), getLatestProducts(4), getSettings()]);
@@ -90,9 +90,9 @@ export default async function HomePage() {
   return (
     <>
       <section className="container-page pt-4 sm:pt-6">
-        <div className="relative overflow-hidden rounded-[2rem] bg-forest text-paper sm:rounded-[2.75rem]">
+        <div className="relative overflow-hidden rounded-[2rem] bg-wine text-paper sm:rounded-[2.75rem]">
           <svg
-            className="pointer-events-none absolute -left-24 bottom-[-60px] h-[420px] w-[420px] text-sage/25"
+            className="pointer-events-none absolute -left-24 bottom-[-60px] h-[420px] w-[420px] text-sand/25"
             viewBox="0 0 200 200"
             fill="none"
             aria-hidden="true"
@@ -104,13 +104,13 @@ export default async function HomePage() {
           <div className="relative grid items-center gap-10 px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6 lg:px-16 lg:py-20">
             <div className="animate-rise">
               <p className="inline-flex items-center gap-2 rounded-full border border-paper/20 bg-paper/10 px-4 py-1.5 text-[12px] font-medium text-paper">
-                <span className="h-1.5 w-1.5 rounded-full bg-blush" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-rosewood" aria-hidden="true" />
                 Moldes digitais · PP ao G
               </p>
               <h1 className="mt-6 text-[clamp(2.5rem,6.2vw,4.6rem)] leading-[0.98] tracking-[-0.035em] text-paper">
                 O molde certo,
                 <br />
-                na <span className="italic text-blush">escala certa.</span>
+                na <span className="italic text-rosewood">escala certa.</span>
               </h1>
               <p className="mt-6 max-w-md text-[16px] leading-relaxed text-paper/80">
                 {settings.tagline}. Ficha técnica completa, tabela de medidas em centímetros e arquivos
@@ -129,14 +129,14 @@ export default async function HomePage() {
             </div>
 
             <div className="relative mx-auto h-[400px] w-full max-w-[460px] animate-rise animate-delay-2 sm:h-[500px] lg:mx-0 lg:ml-auto">
-              <div className="absolute right-0 top-0 h-[86%] w-[62%] overflow-hidden rounded-arch">
+              <div className="absolute right-0 top-0 h-[86%] w-[62%] overflow-hidden rounded-none">
                 <PatternPlaceholder label="Peça pronta" seed={0} />
               </div>
-              <div className="absolute bottom-0 left-0 h-[60%] w-[46%] overflow-hidden rounded-arch ring-4 ring-forest">
+              <div className="absolute bottom-0 left-0 h-[60%] w-[46%] overflow-hidden rounded-none ring-4 ring-wine">
                 <PatternPlaceholder label="Detalhe" seed={1} />
               </div>
-              <div className="absolute -right-1 bottom-10 w-[188px] rounded-3xl bg-paper p-4 text-ink shadow-float sm:-right-4">
-                <p className="text-[11px] font-semibold text-clay">Na ficha técnica</p>
+              <div className="absolute -right-1 bottom-10 w-[188px] rounded-3xl bg-paper p-4 text-ink shadow-paper sm:-right-4">
+                <p className="text-[11px] font-semibold text-wine">Na ficha técnica</p>
                 <ul className="mt-2.5 space-y-2 text-[12px]">
                   <li className="flex justify-between gap-2 border-b border-line pb-2">
                     <span className="text-muted">Tamanhos</span>
@@ -157,12 +157,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <div className="mt-8 overflow-hidden border-y border-line bg-blush-100 py-4" aria-label="Diferenciais da loja">
-        <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap pr-10 text-[14px] font-medium text-forest">
+      <div className="mt-8 overflow-hidden border-y border-line bg-rosewood py-4" aria-label="Diferenciais da loja">
+        <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap pr-10 text-[14px] font-medium text-wine">
           {[...marquee, ...marquee].map((item, index) => (
             <span key={`${item}-${index}`} className="flex items-center gap-10" aria-hidden={index >= marquee.length}>
               {item}
-              <span className="text-clay" aria-hidden="true">
+              <span className="text-wine" aria-hidden="true">
                 ✦
               </span>
             </span>
@@ -191,14 +191,14 @@ export default async function HomePage() {
                 </div>
                 <div className="flex items-end justify-between gap-4 px-3 pb-3 pt-5">
                   <div>
-                    <h3 className="font-serif text-[24px] leading-tight text-forest">{collection.name}</h3>
-                    <p className="mt-1 text-[13px] text-forest/70">
+                    <h3 className="font-serif text-[24px] leading-tight text-wine">{collection.name}</h3>
+                    <p className="mt-1 text-[13px] text-wine/70">
                       {collection._count.products} {collection._count.products === 1 ? 'molde' : 'moldes'}
                     </p>
                   </div>
                   <span
                     aria-hidden="true"
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest text-paper transition-transform group-hover:translate-x-1"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-wine text-paper transition-transform group-hover:translate-x-1"
                   >
                     →
                   </span>
@@ -226,7 +226,7 @@ export default async function HomePage() {
       ) : null}
 
       <section id="como-funciona" className="container-page scroll-mt-28 pb-20">
-        <div className="rounded-[2rem] bg-blush-100 px-6 py-14 sm:rounded-[2.75rem] sm:px-12 lg:px-16">
+        <div className="rounded-[2rem] bg-rosewood px-6 py-14 sm:rounded-[2.75rem] sm:px-12 lg:px-16">
           <SectionHeading
             index={visibleCollections.length && latest.length ? '03' : '02'}
             eyebrow="Como funciona"
@@ -234,18 +234,18 @@ export default async function HomePage() {
           />
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, index) => (
-              <li key={step.title} className="flex flex-col rounded-3xl bg-white p-6 shadow-soft">
-                <span className="font-serif text-[44px] leading-none text-clay">0{index + 1}</span>
-                <h3 className="mt-5 font-serif text-[21px] leading-snug text-forest">{step.title}</h3>
+              <li key={step.title} className="flex flex-col rounded-3xl bg-paper p-6 shadow-paper">
+                <span className="font-serif text-[44px] leading-none text-wine">0{index + 1}</span>
+                <h3 className="mt-5 font-serif text-[21px] leading-snug text-wine">{step.title}</h3>
                 <p className="mt-2 text-[14px] leading-relaxed text-muted">{step.text}</p>
               </li>
             ))}
           </ol>
           <div className="mt-8 flex flex-wrap gap-3 text-[13px] font-semibold">
-            <Link href="/guias" className="rounded-full border border-forest/25 px-5 py-2.5 text-forest hover:border-forest hover:bg-white">
+            <Link href="/guias" className="rounded-full border border-wine/25 px-5 py-2.5 text-wine hover:border-wine hover:bg-paper">
               Guia de impressão e montagem
             </Link>
-            <Link href="/faq" className="rounded-full border border-forest/25 px-5 py-2.5 text-forest hover:border-forest hover:bg-white">
+            <Link href="/faq" className="rounded-full border border-wine/25 px-5 py-2.5 text-wine hover:border-wine hover:bg-paper">
               Perguntas frequentes
             </Link>
           </div>
@@ -262,24 +262,24 @@ export default async function HomePage() {
           {benefits.map((benefit, index) => (
             <div
               key={benefit.title}
-              className={`rounded-3xl p-6 ${index % 2 === 0 ? 'bg-sage-100' : 'bg-cream'}`}
+              className={`rounded-3xl p-6 ${index % 2 === 0 ? 'bg-sand' : 'bg-sand'}`}
             >
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-forest text-paper">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-wine text-paper">
                 <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                   {benefit.icon}
                 </svg>
               </span>
-              <h3 className="mt-5 font-serif text-[21px] leading-snug text-forest">{benefit.title}</h3>
-              <p className="mt-2 text-[14px] leading-relaxed text-forest/75">{benefit.text}</p>
+              <h3 className="mt-5 font-serif text-[21px] leading-snug text-wine">{benefit.title}</h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-wine/75">{benefit.text}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="container-page pb-4">
-        <div className="relative overflow-hidden rounded-[2rem] bg-sage-200 px-6 py-14 sm:rounded-[2.75rem] sm:px-12 lg:px-16">
+        <div className="relative overflow-hidden rounded-[2rem] bg-sand px-6 py-14 sm:rounded-[2.75rem] sm:px-12 lg:px-16">
           <svg
-            className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 text-forest/15"
+            className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 text-wine/15"
             viewBox="0 0 200 200"
             fill="none"
             aria-hidden="true"
@@ -290,7 +290,7 @@ export default async function HomePage() {
           <div className="relative max-w-2xl">
             <p className="pill">Ateliê</p>
             <h2 className="mt-5 text-[clamp(2rem,4vw,3rem)] leading-[1.06]">Cada molde é um documento de trabalho.</h2>
-            <p className="mt-4 text-[16px] leading-relaxed text-forest/80">
+            <p className="mt-4 text-[16px] leading-relaxed text-wine/80">
               Margem de costura marcada, tabela de medidas do corpo, metragem por tamanho e instruções de
               impressão. O que você precisa saber antes de cortar está escrito — não fica na dúvida.
             </p>

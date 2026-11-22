@@ -40,7 +40,7 @@ export function CatalogFiltersBar({
           </svg>
           Filtros
         </summary>
-        <div className="absolute left-0 top-12 z-40 max-h-[70vh] w-[min(86vw,340px)] overflow-y-auto rounded-3xl border border-line bg-paper p-5 shadow-float">
+        <div className="absolute left-0 top-12 z-40 max-h-[70vh] w-[min(86vw,340px)] overflow-y-auto rounded-3xl border border-line bg-paper p-5 shadow-paper">
           {mobileFilters}
           <p className="mt-4 border-t border-line pt-3 text-[11.5px] text-muted">{total} moldes encontrados</p>
         </div>
@@ -53,7 +53,7 @@ export function CatalogFiltersBar({
         id="sort"
         value={currentSort}
         onChange={(event) => changeSort(event.target.value)}
-        className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium text-ink focus:border-forest focus:outline-none"
+        className="rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium text-ink focus:border-wine focus:outline-none"
       >
         {sortOptions.map((option) => (
           <option key={option.value} value={option.value}>

@@ -28,9 +28,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-[#F3F1EC]">
       <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row">
-        <aside className="bg-forest text-paper lg:min-h-screen lg:w-[256px] lg:shrink-0 lg:rounded-r-[2rem]">
+        <aside className="bg-wine text-paper lg:min-h-screen lg:w-[256px] lg:shrink-0 lg:rounded-r-[2rem]">
           <div className="px-5 py-5 lg:py-7">
-            <div className="[&_span]:text-paper [&_svg_path:first-of-type]:stroke-sage/70 [&_svg_path:last-of-type]:fill-paper">
+            <div className="[&_span]:text-paper [&_svg_path:first-of-type]:stroke-sand/70 [&_svg_path:last-of-type]:fill-paper">
               <Logo />
             </div>
             <p className="mt-3 text-[10px] uppercase tracking-[0.16em] text-paper/60">Painel da loja</p>

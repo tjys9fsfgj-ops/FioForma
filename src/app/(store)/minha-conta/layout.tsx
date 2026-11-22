@@ -21,9 +21,9 @@ export default async function AccountLayout({ children }: { children: React.Reac
   return (
     <div className="container-page py-10 sm:py-14">
       <div className="grid gap-8 lg:grid-cols-[250px_1fr] lg:gap-12">
-        <aside className="rounded-[2rem] border border-line bg-white p-6 shadow-soft lg:self-start">
+        <aside className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper lg:self-start">
           <p className="pill">Minha conta</p>
-          <p className="mt-2 font-serif text-[20px] leading-snug text-forest">
+          <p className="mt-2 font-serif text-[20px] leading-snug text-wine">
             {user.name ?? user.email.split('@')[0]}
           </p>
           <p className="mt-1 break-all text-[11.5px] text-muted">{user.email}</p>
@@ -34,7 +34,7 @@ export default async function AccountLayout({ children }: { children: React.Reac
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block rounded-xl px-3 py-2.5 text-[14px] font-medium text-ink/80 transition-colors hover:bg-sage-100 hover:text-forest"
+                    className="block rounded-xl px-3 py-2.5 text-[14px] font-medium text-ink/80 transition-colors hover:bg-sand hover:text-wine"
                   >
                     {link.label}
                   </Link>
@@ -44,7 +44,7 @@ export default async function AccountLayout({ children }: { children: React.Reac
           </nav>
 
           <form action={logoutAction} className="mt-5">
-            <button type="submit" className="text-[11.5px] text-muted underline decoration-line underline-offset-4 hover:text-forest">
+            <button type="submit" className="text-[11.5px] text-muted underline decoration-line underline-offset-4 hover:text-wine">
               Sair da conta
             </button>
           </form>
