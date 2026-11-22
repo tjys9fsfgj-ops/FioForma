@@ -268,6 +268,85 @@ export function yardageMm(
   return Math.ceil(height / 50) * 50;
 }
 
+/** Gira 90° no sentido horário (no papel): (x, y) → (−y, x). */
+export function rotateCW(cmds: Cmd[]): Cmd[] {
+  return cmds.map((c) => {
+    if (c.op === 'Z') return c;
+    if (c.op === 'A') return { ...c, cx: -c.cy, cy: c.cx, a0: c.a0 + 90, a1: c.a1 + 90 };
+    return { ...c, x: -c.y, y: c.x };
+  });
+}
+
+/** Gira 90° no sentido anti-horário (no papel): (x, y) → (y, −x). */
+export function rotateCCW(cmds: Cmd[]): Cmd[] {
+  return cmds.map((c) => {
+    if (c.op === 'Z') return c;
+    if (c.op === 'A') return { ...c, cx: c.cy, cy: -c.cx, a0: c.a0 - 90, a1: c.a1 - 90 };
+    return { ...c, x: c.y, y: -c.x };
+  });
+}
+
+export function shift(cmds: Cmd[], dx: number, dy: number): Cmd[] {
+  return cmds.map((c) => {
+    if (c.op === 'Z') return c;
+    if (c.op === 'A') return { ...c, cx: c.cx + dx, cy: c.cy + dy };
+    return { ...c, x: c.x + dx, y: c.y + dy };
+  });
+}
+
+export type CutItem = { name: string; w: number; h: number; cmds?: Cmd[] };
+export type CutLane = { lane: number; folded: boolean; label: string; placed: PlacedBox<CutItem>[]; height: number };
+
+/**
+ * Plano de corte de um tamanho: peças na dobra empilhadas encostadas na dobra
+ * (tecido dobrado ao meio) e o resto empacotado no tecido aberto.
+ */
+export function cuttingLayout(variant: Variant, size: string, fabricWidthMm = 1500): CutLane[] {
+  const open: { item: CutItem; box: Box }[] = [];
+  const folded: PlacedBox<CutItem>[] = [];
+  let foldedH = 0;
+  for (const piece of variant.pieces) {
+    const outlines = piece.outlines.filter((o) => o.size === size);
+    const src = (outlines.length ? outlines : piece.outlines).slice(-1)[0];
+    if (piece.onFold) {
+      const turned = rotateCCW(src.cut);
+      const b = bbox(turned);
+      const cmds = shift(turned, -b.minX, -b.minY);
+      const box = foldBox(src.cut);
+      for (let i = 0; i < piece.count; i += 1) {
+        folded.push({ item: { name: piece.name, w: box.w, h: box.h, cmds }, x: 0, y: foldedH, w: box.w, h: box.h, rotated: false });
+        foldedH += box.h;
+      }
+      continue;
+    }
+    const b = bbox(src.cut);
+    const cmds = shift(src.cut, -b.minX, -b.minY);
+    for (let i = 0; i < piece.count; i += 1) {
+      open.push({ item: { name: piece.name, w: b.maxX - b.minX, h: b.maxY - b.minY, cmds }, box: { w: b.maxX - b.minX, h: b.maxY - b.minY } });
+    }
+  }
+  for (const d of variant.directCuts) {
+    const dims = d.bySize?.[size] ?? d;
+    for (let i = 0; i < d.count; i += 1) {
+      open.push({ item: { name: d.name, w: dims.widthMm, h: dims.heightMm }, box: { w: dims.widthMm, h: dims.heightMm } });
+    }
+  }
+  const lanes: CutLane[] = [];
+  if (folded.length) {
+    lanes.push({ lane: fabricWidthMm / 2, folded: true, label: 'Tecido dobrado ao meio no comprimento (dobra à esquerda)', placed: folded, height: foldedH });
+  }
+  if (open.length) {
+    lanes.push({ lane: fabricWidthMm, folded: false, label: 'Tecido aberto, 1,50 m de largura', ...shelfPlace(open, fabricWidthMm) });
+  }
+  return lanes;
+}
+
+/** Peça (ou retângulo) do plano de corte já posicionado, com o desenho girado quando preciso. */
+export function placedCmds(pl: PlacedBox<CutItem>): Cmd[] | null {
+  if (!pl.item.cmds) return null;
+  return pl.rotated ? shift(rotateCW(pl.item.cmds), pl.item.h, 0) : pl.item.cmds;
+}
+
 /** "1,35 m" a partir de milímetros. */
 export function metros(mm: number): string {
   return `${(mm / 1000).toFixed(2).replace('.', ',')} m`;

@@ -1,0 +1,140 @@
+{
+  "number": "001",
+  "slug": "saia-gode",
+  "name": "Saia Godê",
+  "tagline": "Godê inteiro ou meio-godê, três comprimentos, cós com botão. O clássico que roda.",
+  "description": "Uma saia de cintura marcada e barra que gira, desenhada só com círculos — por isso o molde fecha certinho na cintura, sem prova.\n\n**O que você recebe**\n- Duas versões no mesmo download: **godê inteiro** (muito volume) e **meio-godê** (volume moderado)\n- Três comprimentos marcados na mesma peça: 50, 60 e 70 cm\n- PDF A4 para imprimir em casa, com teste de escala e mapa de montagem das folhas\n- PDF A0 para imprimir em gráfica numa folha só\n- Ficha com metragem por tamanho, plano de corte e passo a passo\n\n**Indicado para** primeira saia: são poucas peças, só costuras retas e um cós.",
+  "priceCents": 0,
+  "category": "saia",
+  "sizes": [
+    "PP",
+    "P",
+    "M",
+    "G",
+    "GG"
+  ],
+  "fabric": "Tecidos com caimento: viscose, crepe, tricoline, linho leve ou cetim. Evite tecidos muito encorpados no godê inteiro.",
+  "notions": "Zíper invisível de 20 cm, 1 botão de 15 mm, 0,10 m de entretela para o cós, linha.",
+  "yardage": "godê inteiro: PP 3,10 m · P 3,15 m · M 3,15 m · G 3,15 m · GG 3,15 m\nmeio-godê: PP 1,65 m · P 1,70 m · M 1,70 m · G 1,70 m · GG 1,70 m\n(tecido de 1,50 m de largura, para o comprimento de 70 cm; comprimentos menores gastam menos)",
+  "chart": {
+    "title": "Medidas do corpo",
+    "notes": "Escolha o tamanho pela cintura. Os três comprimentos são medidos da cintura até a barra, sem o cós.",
+    "rows": [
+      {
+        "size": "PP",
+        "waistCm": 62,
+        "hipCm": 88,
+        "extra": [
+          {
+            "label": "Comprimentos",
+            "value": "50 · 60 · 70 cm"
+          }
+        ]
+      },
+      {
+        "size": "P",
+        "waistCm": 66,
+        "hipCm": 92,
+        "extra": [
+          {
+            "label": "Comprimentos",
+            "value": "50 · 60 · 70 cm"
+          }
+        ]
+      },
+      {
+        "size": "M",
+        "waistCm": 70,
+        "hipCm": 96,
+        "extra": [
+          {
+            "label": "Comprimentos",
+            "value": "50 · 60 · 70 cm"
+          }
+        ]
+      },
+      {
+        "size": "G",
+        "waistCm": 76,
+        "hipCm": 102,
+        "extra": [
+          {
+            "label": "Comprimentos",
+            "value": "50 · 60 · 70 cm"
+          }
+        ]
+      },
+      {
+        "size": "GG",
+        "waistCm": 82,
+        "hipCm": 108,
+        "extra": [
+          {
+            "label": "Comprimentos",
+            "value": "50 · 60 · 70 cm"
+          }
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Qual a diferença entre godê inteiro e meio-godê?",
+      "answer": "O godê inteiro é um círculo completo: gira muito e gasta mais tecido. O meio-godê é meio círculo: menos volume, caimento mais discreto."
+    },
+    {
+      "question": "Por que é grátis?",
+      "answer": "É o nosso molde de boas-vindas, para você conhecer como são os arquivos da FioForma antes de comprar."
+    }
+  ],
+  "files": [
+    {
+      "fileName": "saia-gode-inteira-a4.pdf",
+      "format": "A4",
+      "pages": 17,
+      "sizeBytes": 133889,
+      "sha256": "5bc5be7d5bf3f4345793186ee4cdd598f8f9c5dfa43f1986dab30a4e0be8a576"
+    },
+    {
+      "fileName": "saia-gode-inteira-a0.pdf",
+      "format": "A0",
+      "pages": 1,
+      "sizeBytes": 95408,
+      "sha256": "5813740e811950647a420cefcf34ab0bdd0849b9c77911f328ef94aec7ebb831"
+    },
+    {
+      "fileName": "saia-gode-meia-a4.pdf",
+      "format": "A4",
+      "pages": 19,
+      "sizeBytes": 139301,
+      "sha256": "48b323515187831ae06c0c71d51205e5149df75ec5e7b850d67d48f39b94da6a"
+    },
+    {
+      "fileName": "saia-gode-meia-a0.pdf",
+      "format": "A0",
+      "pages": 1,
+      "sizeBytes": 95439,
+      "sha256": "66a6debdff5727c1e57efe7a900e6585cc1259b8fa60c3c9a84fb562d952863e"
+    }
+  ],
+  "images": [
+    {
+      "fileName": "saia-gode-envelope.png",
+      "alt": "Envelope do molde Saia Godê, modelo nº 001",
+      "kind": "PECA",
+      "sha256": "aa1a61d8ad370f379afe9240c146c7fcaf658eb5f7335fc2d50b50c30b040bba"
+    },
+    {
+      "fileName": "saia-gode-tecnico.png",
+      "alt": "Desenho técnico da Saia Godê",
+      "kind": "DETALHE",
+      "sha256": "bbc7785967658e028281b8100203e22a630d52c8781ef1e43f0934012025c5dd"
+    },
+    {
+      "fileName": "saia-gode-corte.png",
+      "alt": "Plano de corte do molde Saia Godê",
+      "kind": "MOLDE",
+      "sha256": "d5169b00da77484b4b2eca55b8793e28468879b21afebd89a18a0e6ae238e4b7"
+    }
+  ]
+}

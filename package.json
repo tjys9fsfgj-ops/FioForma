@@ -13,7 +13,8 @@
     "db:push": "node scripts/prisma.mjs db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "node scripts/prisma.mjs studio",
-    "test": "node --import tsx --test \"src/**/__tests__/*.test.ts\" \"scripts/**/__tests__/*.test.ts\""
+    "test": "node --import tsx --test \"src/**/__tests__/*.test.ts\" \"scripts/**/__tests__/*.test.ts\"",
+    "moldes:build": "tsx scripts/moldes/build.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

@@ -22,9 +22,11 @@ import {
 import {
   arcPoint,
   bbox,
-  foldBox,
+  cuttingLayout,
   metros,
-  type PlacedBox,
+  placedCmds,
+  rotateCW,
+  shift,
   shelfPlace,
   yardageMm,
   type Cmd,
@@ -183,31 +185,8 @@ type Placed = {
   grainAngle: number;
 };
 
-function rotateCmds(cmds: Cmd[]): Cmd[] {
-  // gira 90° no sentido horário (no papel): (x, y) → (−y, x)
-  return cmds.map((c) => {
-    if (c.op === 'Z') return c;
-    if (c.op === 'A') return { ...c, cx: -c.cy, cy: c.cx, a0: c.a0 + 90, a1: c.a1 + 90 };
-    return { ...c, x: -c.y, y: c.x };
-  });
-}
 
-function rotateCCW(cmds: Cmd[]): Cmd[] {
-  // gira 90° no sentido anti-horário (no papel): (x, y) → (y, −x)
-  return cmds.map((c) => {
-    if (c.op === 'Z') return c;
-    if (c.op === 'A') return { ...c, cx: c.cy, cy: -c.cx, a0: c.a0 - 90, a1: c.a1 - 90 };
-    return { ...c, x: c.y, y: -c.x };
-  });
-}
 
-function shift(cmds: Cmd[], dx: number, dy: number): Cmd[] {
-  return cmds.map((c) => {
-    if (c.op === 'Z') return c;
-    if (c.op === 'A') return { ...c, cx: c.cx + dx, cy: c.cy + dy };
-    return { ...c, x: c.x + dx, y: c.y + dy };
-  });
-}
 
 const SMALL_LABEL_MM = 26;
 
@@ -237,7 +216,7 @@ function layoutPieces(variant: Variant, maxW: number): { placed: Placed[]; width
     const transform = (cmds: Cmd[]) => {
       let out = shift(cmds, -b.minX, -b.minY);
       if (rotated) {
-        out = rotateCmds(out);
+        out = rotateCW(out);
         out = shift(out, item.h, 0);
       }
       return shift(out, x, y);
@@ -489,43 +468,7 @@ function cuttingPage(p: Page, m: Molde, variant: Variant, f: Fonts) {
   let y = pageHeader(p, m, variant, 'Plano de corte', f);
   const size = m.sizes[m.sizes.length - 1];
 
-  type Item = { name: string; w: number; h: number; cmds?: Cmd[] };
-  const open: { item: Item; box: { w: number; h: number } }[] = [];
-  // peças na dobra: giradas com a borda reta na vertical, uma embaixo da outra
-  const foldedPlaced: PlacedBox<Item>[] = [];
-  let foldedH = 0;
-  for (const piece of variant.pieces) {
-    const outlines = piece.outlines.filter((o) => o.size === size);
-    const src = (outlines.length ? outlines : piece.outlines).slice(-1);
-    if (piece.onFold) {
-      const turned = rotateCCW(src[0].cut);
-      const b = bbox(turned);
-      const cmds = shift(turned, -b.minX, -b.minY);
-      const box = foldBox(src[0].cut);
-      for (let i = 0; i < piece.count; i += 1) {
-        foldedPlaced.push({ item: { name: piece.name, w: box.w, h: box.h, cmds }, x: 0, y: foldedH, w: box.w, h: box.h, rotated: false });
-        foldedH += box.h;
-      }
-      continue;
-    }
-    const b = bbox(src.flatMap((o) => o.cut));
-    const cmds = shift(src[0].cut, -b.minX, -b.minY);
-    for (let i = 0; i < piece.count; i += 1) {
-      open.push({ item: { name: piece.name, w: b.maxX - b.minX, h: b.maxY - b.minY, cmds }, box: { w: b.maxX - b.minX, h: b.maxY - b.minY } });
-    }
-  }
-  for (const d of variant.directCuts) {
-    const dims = d.bySize?.[size] ?? d;
-    for (let i = 0; i < d.count; i += 1) open.push({ item: { name: d.name, w: dims.widthMm, h: dims.heightMm }, box: { w: dims.widthMm, h: dims.heightMm } });
-  }
-
-  const openResult = open.length ? shelfPlace(open, FABRIC_WIDTH_MM) : null;
-  const results = [
-    ...(foldedPlaced.length
-      ? [{ lane: FABRIC_WIDTH_MM / 2, label: 'Tecido dobrado ao meio no comprimento (dobra à esquerda)', placed: foldedPlaced, height: foldedH }]
-      : []),
-    ...(openResult ? [{ lane: FABRIC_WIDTH_MM, label: 'Tecido aberto, 1,50 m de largura', ...openResult }] : []),
-  ];
+  const results = cuttingLayout(variant, size, FABRIC_WIDTH_MM);
   const totalH = results.reduce((s, r) => s + r.height, 0);
   // escala para caber em 170 × 150 mm
   const k = Math.min(170 / FABRIC_WIDTH_MM, 150 / Math.max(totalH, 1), 0.12);
@@ -536,15 +479,13 @@ function cuttingPage(p: Page, m: Molde, variant: Variant, f: Fonts) {
     const w = r.lane * k;
     const h = r.height * k;
     rect(p, 20, y, w, h, 0.3, C.ink);
-    if (r.lane === FABRIC_WIDTH_MM / 2) line(p, 20, y, 20, y + h, 1, C.wine);
+    if (r.folded) line(p, 20, y, 20, y + h, 1, C.wine);
     for (const pl of r.placed) {
       const x0 = 20 + pl.x * k;
       const y0 = y + pl.y * k;
-      if (pl.item.cmds && !pl.rotated) {
-        drawPath(p, pl.item.cmds, { x: x0, y: y0 }, { width: 0.3, scale: k });
-      } else if (pl.item.cmds && pl.rotated) {
-        const rot = shift(rotateCmds(pl.item.cmds), pl.item.h, 0);
-        drawPath(p, rot, { x: x0, y: y0 }, { width: 0.3, scale: k });
+      const cmds = placedCmds(pl);
+      if (cmds) {
+        drawPath(p, cmds, { x: x0, y: y0 }, { width: 0.3, scale: k });
       } else {
         rect(p, x0, y0, pl.w * k, pl.h * k, 0.3, C.ink);
       }

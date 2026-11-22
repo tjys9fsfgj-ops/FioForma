@@ -1,0 +1,119 @@
+{
+  "number": "002",
+  "slug": "saia-franzida",
+  "name": "Saia Franzida com Elástico",
+  "tagline": "Dois retângulos, um elástico e uma tarde. A saia midi que vai com tudo.",
+  "description": "Saia de cintura elástica e franzido leve, sem zíper e sem botão. O molde vem com as medidas exatas de corte por tamanho — você corta direto no tecido, sem imprimir folhas.\n\n**O que você recebe**\n- Medidas de corte de cada retângulo, do PP ao GG\n- Comprimento do elástico por tamanho\n- Plano de corte e passo a passo ilustrado\n- PDF A4 e A0\n\n**Indicado para** quem está começando: são só costuras retas.",
+  "priceCents": 900,
+  "category": "saia",
+  "sizes": [
+    "PP",
+    "P",
+    "M",
+    "G",
+    "GG"
+  ],
+  "fabric": "Tecidos leves e médios: viscose, tricoline, linho, cambraia, crepe.",
+  "notions": "Elástico de 3 cm de largura (comprimento na tabela), alfinete de segurança, linha.",
+  "yardage": "PP 0,65 m · P 0,65 m · M 0,65 m · G 1,30 m · GG 1,30 m\n(tecido de 1,50 m de largura, comprimento final de 60 cm)",
+  "chart": {
+    "title": "Medidas do corpo",
+    "notes": "Escolha pelo quadril: a saia precisa passar por ele. A cintura indica o elástico.",
+    "rows": [
+      {
+        "size": "PP",
+        "waistCm": 62,
+        "hipCm": 88,
+        "extra": [
+          {
+            "label": "Elástico",
+            "value": "57 cm"
+          }
+        ]
+      },
+      {
+        "size": "P",
+        "waistCm": 66,
+        "hipCm": 92,
+        "extra": [
+          {
+            "label": "Elástico",
+            "value": "61 cm"
+          }
+        ]
+      },
+      {
+        "size": "M",
+        "waistCm": 70,
+        "hipCm": 96,
+        "extra": [
+          {
+            "label": "Elástico",
+            "value": "65 cm"
+          }
+        ]
+      },
+      {
+        "size": "G",
+        "waistCm": 76,
+        "hipCm": 102,
+        "extra": [
+          {
+            "label": "Elástico",
+            "value": "71 cm"
+          }
+        ]
+      },
+      {
+        "size": "GG",
+        "waistCm": 82,
+        "hipCm": 108,
+        "extra": [
+          {
+            "label": "Elástico",
+            "value": "77 cm"
+          }
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Preciso imprimir?",
+      "answer": "Não. As medidas de corte estão na ficha; o PDF traz o plano de corte e o passo a passo."
+    },
+    {
+      "question": "Dá para fazer mais longa?",
+      "answer": "Sim. Some na altura do retângulo o quanto quiser a mais de comprimento."
+    }
+  ],
+  "files": [
+    {
+      "fileName": "saia-franzida-a4.pdf",
+      "format": "A4",
+      "pages": 6,
+      "sizeBytes": 102218,
+      "sha256": "230b8426ef9bb5f3523712effde60dd44bc88ec365d71eacb67828d5c03bf8f1"
+    }
+  ],
+  "images": [
+    {
+      "fileName": "saia-franzida-envelope.png",
+      "alt": "Envelope do molde Saia Franzida com Elástico, modelo nº 002",
+      "kind": "PECA",
+      "sha256": "b754bd8733fc27e331d9bd155be458101723b3f9f1e0f1cc2dfb0db5002d5843"
+    },
+    {
+      "fileName": "saia-franzida-tecnico.png",
+      "alt": "Desenho técnico da Saia Franzida",
+      "kind": "DETALHE",
+      "sha256": "bc6fe6aeb4f59e1176a2560679fe35e83896f51c1b151eba5791a4de73532401"
+    },
+    {
+      "fileName": "saia-franzida-corte.png",
+      "alt": "Plano de corte do molde Saia Franzida com Elástico",
+      "kind": "MOLDE",
+      "sha256": "3291781dd49e7bd726cb77f71d73746c99530fb1344330dd5cffb2e06f26dbd6"
+    }
+  ]
+}

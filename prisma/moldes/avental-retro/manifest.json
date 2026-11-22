@@ -1,0 +1,84 @@
+{
+  "number": "003",
+  "slug": "avental-retro",
+  "name": "Avental Retrô",
+  "tagline": "Peitilho de cantos redondos, bolso grande e laço nas costas. Cozinha de vó, acabamento de ateliê.",
+  "description": "Avental inteiro, com peitilho, alça de pescoço e tiras longas para amarrar. Os cantos arredondados dão o ar dos aventais dos anos 50.\n\n**O que você recebe**\n- Moldes do peitilho, da saia e do bolso em tamanho real\n- Medidas de corte das alças e tiras\n- PDF A4 e A0, plano de corte e passo a passo\n\n**Tamanho único**, ajustável pela alça e pelo laço.",
+  "priceCents": 900,
+  "category": "acessorios",
+  "sizes": [
+    "Único"
+  ],
+  "fabric": "Tricoline, sarja leve, linho ou algodão cru. Para o forro, tricoline.",
+  "notions": "0,20 m de forro para peitilho e bolso, linha. Opcional: viés pronto para enfeitar o bolso.",
+  "yardage": "Único 1,05 m\n(tecido de 1,50 m de largura, tamanho único)",
+  "chart": {
+    "title": "Medidas da peça pronta",
+    "notes": "Tamanho único. A altura no corpo se ajusta pela alça do pescoço.",
+    "rows": [
+      {
+        "size": "Único",
+        "extra": [
+          {
+            "label": "Peitilho",
+            "value": "26 × 28 cm"
+          },
+          {
+            "label": "Saia",
+            "value": "70 × 55 cm"
+          },
+          {
+            "label": "Comprimento total",
+            "value": "87 cm"
+          }
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Serve em qualquer corpo?",
+      "answer": "Sim: o avental é ajustado pela alça do pescoço e pelo laço nas costas."
+    },
+    {
+      "question": "Posso fazer sem forro?",
+      "answer": "Pode. Nesse caso, faça bainha de 1 cm em volta do peitilho e do bolso."
+    }
+  ],
+  "files": [
+    {
+      "fileName": "avental-retro-a4.pdf",
+      "format": "A4",
+      "pages": 20,
+      "sizeBytes": 129273,
+      "sha256": "950e67f27aac9d21bde4663f2573b17dd573f5141042450ed4c47f0b452e3ffa"
+    },
+    {
+      "fileName": "avental-retro-a0.pdf",
+      "format": "A0",
+      "pages": 1,
+      "sizeBytes": 94392,
+      "sha256": "5a446e47aa91e8f9d8c598566a5f29fb974c650267bcc33f601333f437bfba83"
+    }
+  ],
+  "images": [
+    {
+      "fileName": "avental-retro-envelope.png",
+      "alt": "Envelope do molde Avental Retrô, modelo nº 003",
+      "kind": "PECA",
+      "sha256": "ac34acf9c18487771fda99e0e8661a8dce052f1117ec2e315056130cd10b418d"
+    },
+    {
+      "fileName": "avental-retro-tecnico.png",
+      "alt": "Desenho técnico da Avental Retrô",
+      "kind": "DETALHE",
+      "sha256": "fe46df68836bcdc8b3a0414118fb17e4649469fe63111a2385786192823c25b5"
+    },
+    {
+      "fileName": "avental-retro-corte.png",
+      "alt": "Plano de corte do molde Avental Retrô",
+      "kind": "MOLDE",
+      "sha256": "ce686af38fceda85e5b8cbdfd608950e9017133f855d589fcb0dfadf714cc06d"
+    }
+  ]
+}

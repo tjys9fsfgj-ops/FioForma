@@ -1,0 +1,81 @@
+{
+  "number": "004",
+  "slug": "bolsa-tote",
+  "name": "Bolsa Tote",
+  "tagline": "Forrada, com fundo de 10 cm, bolso interno e alça de ombro. A bolsa de todo dia.",
+  "description": "Bolsa tote grande, forrada, com fundo boxe que deixa a bolsa em pé. Cabe notebook de 13\", caderno e a marmita.\n\n**O que você recebe**\n- Medidas de corte de todas as partes\n- Gabarito do canto boxe em tamanho real\n- PDF A4 e A0, plano de corte e passo a passo\n\n**Medidas prontas:** 40 cm de largura, 38 cm de altura, 10 cm de fundo, alças de 65 cm.",
+  "priceCents": 700,
+  "category": "acessorios",
+  "sizes": [
+    "Único"
+  ],
+  "fabric": "Externo: lona, sarja, brim ou linho encorpado. Forro: tricoline.",
+  "notions": "Entretela média (opcional, para o corpo), linha resistente.",
+  "yardage": "Único 0,95 m\n(tecido de 1,50 m de largura, tamanho único)",
+  "chart": {
+    "title": "Medidas da peça pronta",
+    "notes": "Tamanho único.",
+    "rows": [
+      {
+        "size": "Único",
+        "extra": [
+          {
+            "label": "Largura",
+            "value": "40 cm"
+          },
+          {
+            "label": "Altura",
+            "value": "38 cm"
+          },
+          {
+            "label": "Fundo",
+            "value": "10 cm"
+          },
+          {
+            "label": "Alça",
+            "value": "65 cm"
+          }
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Precisa de entretela?",
+      "answer": "Com lona, não. Com tecidos mais finos, a entretela deixa a bolsa em pé."
+    },
+    {
+      "question": "Dá para fazer sem forro?",
+      "answer": "Dá, com acabamento de viés nas costuras internas. O passo a passo considera a versão forrada."
+    }
+  ],
+  "files": [
+    {
+      "fileName": "bolsa-tote-a4.pdf",
+      "format": "A4",
+      "pages": 7,
+      "sizeBytes": 103407,
+      "sha256": "d3ee04767af1259a8bba7fcebb9b7760444ad7ceba2da59b5d43c787fa39a90f"
+    }
+  ],
+  "images": [
+    {
+      "fileName": "bolsa-tote-envelope.png",
+      "alt": "Envelope do molde Bolsa Tote, modelo nº 004",
+      "kind": "PECA",
+      "sha256": "8bb90a067c92d1ddee9ad2441bad0141c90436bfc2c4350e559d24b54ee0db90"
+    },
+    {
+      "fileName": "bolsa-tote-tecnico.png",
+      "alt": "Desenho técnico da Bolsa Tote",
+      "kind": "DETALHE",
+      "sha256": "66486dab57fbe56cc7bb6110accf60f1a40188bded710bc54aa9515373cfb5c4"
+    },
+    {
+      "fileName": "bolsa-tote-corte.png",
+      "alt": "Plano de corte do molde Bolsa Tote",
+      "kind": "MOLDE",
+      "sha256": "792ae7d0207224978190bb5a90d0c958516afe60d2dec1b066330ea5bd04fcf1"
+    }
+  ]
+}
