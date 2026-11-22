@@ -119,3 +119,8 @@ export function formatModelNumber(value: string | null | undefined): string | nu
   if (!trimmed) return null;
   return `Modelo nº ${trimmed.padStart(3, '0')}`;
 }
+
+/** Preço para exibir ao cliente: zero vira "Grátis". */
+export function priceLabel(cents: number): string {
+  return cents === 0 ? 'Grátis' : brl(cents);
+}

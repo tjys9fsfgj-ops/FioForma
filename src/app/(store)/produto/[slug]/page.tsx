@@ -13,6 +13,7 @@ import {
   difficultyLabels,
   formatLabels,
   formatBytes,
+  formatModelNumber,
   pluralize,
 } from '@/lib/format';
 import { renderMarkdown } from '@/lib/markdown';
@@ -65,6 +66,8 @@ export default async function ProductPage({ params }: Props) {
   const sizes = parseJson<string[]>(product.sizesIncluded, []);
   const faq = parseJson<FaqItem[]>(product.spec?.faq, []);
   const spec = product.spec;
+  const isFree = product.priceCents === 0;
+  const modelLabel = formatModelNumber(product.modelNumber);
 
   const extraLabels = Array.from(
     new Set(
@@ -76,6 +79,7 @@ export default async function ProductPage({ params }: Props) {
   const hasBust = product.sizeCharts.some((chart) => chart.rows.some((row) => row.bustCm !== null));
   const hasWaist = product.sizeCharts.some((chart) => chart.rows.some((row) => row.waistCm !== null));
   const hasHip = product.sizeCharts.some((chart) => chart.rows.some((row) => row.hipCm !== null));
+  const bodyChart = hasBust || hasWaist || hasHip;
 
   const printInstructions =
     spec?.printInstructions ||
@@ -170,8 +174,10 @@ export default async function ProductPage({ params }: Props) {
           />
         </div>
 
-        <div className="border border-line bg-paper p-6 shadow-paper sm:p-8 lg:sticky lg:top-28 lg:self-start">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="border border-wine bg-paper p-1.5 shadow-paper lg:sticky lg:top-40 lg:self-start">
+        <div className="border border-wine/40 p-6 sm:p-8">
+          {modelLabel ? <p className="eyebrow mb-4 text-center">{modelLabel}</p> : null}
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {product.collection ? (
               <Link href={`/colecoes/${product.collection.slug}`}>
                 <Badge tone="sand">{product.collection.name}</Badge>
@@ -181,41 +187,42 @@ export default async function ProductPage({ params }: Props) {
             {sizes.length ? <Badge>Tam. {sizes.join(' · ')}</Badge> : null}
           </div>
 
-          <h1 className="mt-5 text-[clamp(2rem,4vw,3rem)] leading-[1.04]">{product.name}</h1>
-          {product.tagline ? <p className="mt-3 text-[15.5px] leading-relaxed text-muted">{product.tagline}</p> : null}
+          <h1 className="mt-5 text-center text-[clamp(2.2rem,4vw,3rem)] leading-[1.04]">{product.name}</h1>
+          {product.tagline ? <p className="mt-3 text-center text-[15px] leading-relaxed text-muted">{product.tagline}</p> : null}
 
-          <div className="mt-6 flex items-baseline gap-3">
-            <p className="font-serif text-[34px] leading-none text-wine">{brl(product.priceCents)}</p>
+          <div className="mt-6 flex items-baseline justify-center gap-3 border-t border-rule pt-6">
+            <p className="font-serif text-[34px] leading-none text-wine">{isFree ? 'Grátis' : brl(product.priceCents)}</p>
             {product.compareAtCents && product.compareAtCents > product.priceCents ? (
               <p className="text-[14px] text-muted line-through">{brl(product.compareAtCents)}</p>
             ) : null}
           </div>
-          <p className="mt-1 text-[12px] text-muted">Pagamento único. Sem assinatura.</p>
+          <p className="mt-1 text-center text-[12px] text-muted">
+            {isFree ? 'Baixe sem pagar nada: só informe seu e-mail no checkout.' : 'Pagamento único. Sem assinatura.'}
+          </p>
 
           <form action={addToCartAction} className="mt-6">
             <input type="hidden" name="productId" value={product.id} />
             <Button type="submit" size="lg" className="w-full">
-              Comprar molde
-              <span aria-hidden="true">→</span>
+              {isFree ? 'Baixar grátis' : 'Comprar molde'}
             </Button>
           </form>
 
           <ul className="mt-6 space-y-2.5 text-[13px] text-muted">
             <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sand text-[9px] font-bold text-wine">✓</span>
-              Download imediato depois da confirmação do pagamento.
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center border border-wine text-[9px] font-bold text-wine">✓</span>
+              {isFree ? 'Download imediato, sem pagamento.' : 'Download imediato depois da confirmação do pagamento.'}
             </li>
             <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sand text-[9px] font-bold text-wine">✓</span>
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center border border-wine text-[9px] font-bold text-wine">✓</span>
               Re-download ilimitado na sua biblioteca.
             </li>
             <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sand text-[9px] font-bold text-wine">✓</span>
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center border border-wine text-[9px] font-bold text-wine">✓</span>
               Pix ou cartão de crédito. Sem boleto.
             </li>
           </ul>
 
-          <div className="mt-6 rounded-2xl bg-sand p-4 text-[12.5px] leading-relaxed text-wine/80">
+          <div className="mt-6 border-l-2 border-wine bg-linen p-4 text-[12.5px] leading-relaxed text-muted">
             <p>
               <strong className="font-medium text-ink">Licença:</strong> {brand.licenseSummary}{' '}
               <Link href="/licenca" className="underline decoration-line underline-offset-4 hover:text-wine">
@@ -225,7 +232,7 @@ export default async function ProductPage({ params }: Props) {
             </p>
           </div>
 
-          <details className="mt-4 rounded-2xl border border-line px-4 py-3.5">
+          <details className="mt-4 border-y border-rule py-3.5">
             <summary className="flex cursor-pointer list-none items-center justify-between text-[13px] font-medium text-ink marker:content-none [&::-webkit-details-marker]:hidden">
               Descrição do molde
               <span aria-hidden="true" className="text-muted">+</span>
@@ -235,6 +242,7 @@ export default async function ProductPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: renderMarkdown(product.description) }}
             />
           </details>
+        </div>
         </div>
       </div>
 
@@ -277,9 +285,6 @@ export default async function ProductPage({ params }: Props) {
           ) : null}
           {spec?.layersAvailable ? <SpecRow label="Camadas">PDF com camadas por tamanho.</SpecRow> : null}
           {spec?.projectorAvailable ? <SpecRow label="Projetor">Arquivo próprio para projeção.</SpecRow> : null}
-          {spec?.pageCount ? (
-            <SpecRow label="Número de folhas">{spec.pageCount} folhas no total</SpecRow>
-          ) : null}
           <SpecRow label="Instruções de impressão">{printInstructions}</SpecRow>
         </dl>
       </section>
@@ -288,9 +293,13 @@ export default async function ProductPage({ params }: Props) {
         <section className="container-page py-10">
           <SectionHeading
            
-            eyebrow="Medidas do corpo"
-            title="Tabela de medidas em centímetros."
-            description="Meça o corpo, sem roupa por cima, e compare com a tabela. Em caso de dúvida entre dois tamanhos, escolha o maior e ajuste na prova."
+            eyebrow={bodyChart ? 'Medidas do corpo' : 'Medidas da peça pronta'}
+            title="Tabela de medidas em centímetros"
+            description={
+              bodyChart
+                ? 'Meça o corpo, sem roupa por cima, e compare com a tabela. Em caso de dúvida entre dois tamanhos, escolha o maior e ajuste na prova.'
+                : undefined
+            }
           />
           <div className="mt-8 space-y-10">
             {product.sizeCharts.map((chart) => (
@@ -339,9 +348,11 @@ export default async function ProductPage({ params }: Props) {
               </div>
             ))}
           </div>
-          <p className="mt-4 text-[11.5px] text-muted">
-            Margem de costura não incluída na tabela. Na dúvida entre dois tamanhos, escolha o maior.
-          </p>
+          {bodyChart ? (
+            <p className="mt-4 text-[11.5px] text-muted">
+              Medidas do corpo, sem margem de costura. Na dúvida entre dois tamanhos, escolha o maior.
+            </p>
+          ) : null}
         </section>
       ) : null}
 
@@ -359,7 +370,7 @@ export default async function ProductPage({ params }: Props) {
             },
             {
               title: 'Monte as folhas',
-              text: 'Cada página tem marcações de canto e numeração. Una pelas setas antes de cortar o papel.',
+              text: 'Cada folha tem um nome (A1, A2, B1…) e uma linha tracejada de sobreposição. Monte pelo mapa da página de teste.',
             },
           ].map((item) => (
             <div key={item.title} className="rounded-2xl border border-line bg-paper p-5">
@@ -403,17 +414,20 @@ export default async function ProductPage({ params }: Props) {
         </section>
       ) : null}
 
-      <div className="h-24 lg:hidden" aria-hidden="true" />
-
-      <div className="fixed inset-x-3 bottom-3 z-40 rounded-full border border-line bg-paper/95 py-2 pl-6 pr-2 shadow-paper backdrop-blur lg:hidden">
-        <div className="flex items-center justify-between gap-4">
+      <div className="h-16 lg:hidden" aria-hidden="true" />
+      {/* a barra de compra ocupa 64 px no celular; o aviso de cookies fica logo acima dela */}
+      <style>{':root{--buybar-h:64px}@media (min-width:1024px){:root{--buybar-h:0px}}'}</style>
+      <div className="fixed inset-x-0 bottom-0 z-40 h-16 border-t border-rule bg-paper px-4 pb-[env(safe-area-inset-bottom)] lg:hidden">
+        <div className="flex h-16 items-center justify-between gap-4">
           <div>
-            <p className="font-serif text-[19px] leading-tight text-wine">{brl(product.priceCents)}</p>
-            <p className="text-[11px] text-muted">Download imediato</p>
+            <p className="font-serif text-[20px] leading-tight text-wine">{isFree ? 'Grátis' : brl(product.priceCents)}</p>
+            <p className="text-[10.5px] uppercase tracking-[0.12em] text-muted-2">{modelLabel ?? 'Download imediato'}</p>
           </div>
           <form action={addToCartAction}>
             <input type="hidden" name="productId" value={product.id} />
-            <Button type="submit">Comprar molde</Button>
+            <Button type="submit" size="sm">
+              {isFree ? 'Baixar grátis' : 'Comprar molde'}
+            </Button>
           </form>
         </div>
       </div>

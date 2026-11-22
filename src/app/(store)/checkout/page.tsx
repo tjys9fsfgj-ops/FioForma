@@ -7,8 +7,8 @@ import { CheckoutForm } from '@/components/checkout/checkout-form';
 import { CouponForm } from '@/components/checkout/coupon-form';
 import { getCart } from '@/lib/cart';
 import { validateCoupon } from '@/lib/coupons';
-import { brl } from '@/lib/format';
-import { isDemoPaymentMode } from '@/lib/payments';
+import { brl, priceLabel } from '@/lib/format';
+import { isDemoPaymentMode, isPaymentReady, PAYMENT_NOT_READY_MESSAGE } from '@/lib/payments';
 import { getCurrentUser } from '@/lib/session';
 
 export const metadata: Metadata = {
@@ -29,11 +29,13 @@ export default async function CheckoutPage() {
 
   return (
     <div className="container-page py-10 sm:py-14">
-      <header>
-        <p className="pill">Checkout</p>
-        <h1 className="mt-4 text-[clamp(1.9rem,3.8vw,2.8rem)] leading-tight">Finalizar compra</h1>
+      <header className="border-b border-rule pb-8 text-center">
+        <p className="eyebrow">Checkout</p>
+        <h1 className="mt-3 text-[clamp(2rem,3.8vw,2.8rem)] leading-tight">{totalCents === 0 ? 'Receber os moldes' : 'Finalizar compra'}</h1>
         <p className="mt-2 text-[13px] text-muted">
-          Compra segura. Você recebe os arquivos por download assim que o pagamento for confirmado.
+          {totalCents === 0
+            ? 'Molde gratuito: informe seu nome e e-mail para liberar o download.'
+            : 'Compra segura. Você recebe os arquivos por download assim que o pagamento for confirmado.'}
         </p>
       </header>
 
@@ -44,13 +46,15 @@ export default async function CheckoutPage() {
             defaultEmail={user?.email}
             defaultPhone={user?.phone ?? undefined}
             isLoggedIn={Boolean(user)}
-            demo={isDemoPaymentMode()}
+            demo={isDemoPaymentMode() && totalCents > 0}
+            free={totalCents === 0}
+            blockedMessage={totalCents > 0 && !isPaymentReady() ? PAYMENT_NOT_READY_MESSAGE : undefined}
           />
         </div>
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
           <div className="border border-line bg-paper p-6 shadow-paper sm:p-7">
-            <h2 className="font-serif text-[22px] text-wine">Seu pedido</h2>
+            <h2 className="font-serif text-[22px] text-ink">Seu pedido</h2>
             <ul className="mt-4 divide-y divide-line/70">
               {cart.lines.map((line) => (
                 <li key={line.itemId} className="flex items-start justify-between gap-4 py-3">
@@ -58,7 +62,7 @@ export default async function CheckoutPage() {
                     <p className="text-[13.5px] font-medium leading-snug text-ink">{line.name}</p>
                     <p className="mt-0.5 text-[11.5px] text-muted">PDF · download imediato</p>
                   </div>
-                  <p className="shrink-0 text-[13px]">{brl(line.priceCents)}</p>
+                  <p className="shrink-0 text-[13px]">{priceLabel(line.priceCents)}</p>
                 </li>
               ))}
             </ul>
@@ -80,7 +84,7 @@ export default async function CheckoutPage() {
               ) : null}
               <div className="flex justify-between border-t border-line pt-2 text-[15px]">
                 <dt className="font-medium">Total</dt>
-                <dd className="font-serif text-[20px] text-wine">{brl(totalCents)}</dd>
+                <dd className="font-serif text-[20px] text-wine">{priceLabel(totalCents)}</dd>
               </div>
             </dl>
 

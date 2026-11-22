@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { brl, formatDate, orderStatusLabels } from '@/lib/format';
+import { brl, formatDate, orderStatusLabels, priceLabel } from '@/lib/format';
 import { listOrdersForUser } from '@/lib/orders';
 import { requireUser } from '@/lib/session';
 
@@ -40,7 +40,7 @@ export default async function OrdersPage() {
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3">
                 <p className="text-[13.5px]">
-                  Total <span className="font-serif text-[16px] text-wine">{brl(order.totalCents)}</span>
+                  Total <span className="font-serif text-[16px] text-wine">{priceLabel(order.totalCents)}</span>
                 </p>
                 <div className="flex gap-3">
                   {order.status === 'PAID' ? (

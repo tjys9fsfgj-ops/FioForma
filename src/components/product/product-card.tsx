@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import type { ProductCardData } from '@/lib/products';
-import { brl, difficultyLabels, formatModelNumber } from '@/lib/format';
+import { brl, difficultyLabels, formatModelNumber, priceLabel } from '@/lib/format';
 import { Mat } from '@/components/ui/mat';
-
-export function priceLabel(cents: number) {
-  return cents === 0 ? 'Grátis' : brl(cents);
-}
 
 export function ProductCard({ product, index = 0 }: { product: ProductCardData; index?: number }) {
   const sizes =

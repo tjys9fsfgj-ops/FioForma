@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { ButtonLink } from '@/components/ui/button';
 import { createDownloadToken } from '@/lib/downloads';
-import { brl, formatDateTime, formatLabels, orderStatusLabels } from '@/lib/format';
+import { brl, formatDateTime, formatLabels, orderStatusLabels, priceLabel } from '@/lib/format';
 import { isDemoPaymentMode } from '@/lib/payments';
 import { canViewOrder, getOrderByNumber } from '@/lib/orders';
 import { prisma } from '@/lib/prisma';
@@ -66,7 +66,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
       <div className="mx-auto max-w-3xl">
         <p className="eyebrow">Pedido {order.number}</p>
         <h1 className="mt-2 text-[clamp(1.9rem,4vw,2.9rem)] leading-tight">
-          {paid ? 'Pagamento confirmado. Seus moldes estão liberados.' : pending ? 'Estamos aguardando o pagamento.' : 'Este pedido não foi concluído.'}
+          {paid ? (order.totalCents === 0 ? 'Pedido confirmado. Seus moldes estão liberados.' : 'Pagamento confirmado. Seus moldes estão liberados.') : pending ? 'Estamos aguardando o pagamento.' : 'Este pedido não foi concluído.'}
         </h1>
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -149,7 +149,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
             ) : null}
             <div className="flex justify-between border-t border-line pt-2 text-[15px]">
               <dt className="font-medium">Total</dt>
-              <dd className="font-serif text-[19px] text-wine">{brl(order.totalCents)}</dd>
+              <dd className="font-serif text-[19px] text-wine">{priceLabel(order.totalCents)}</dd>
             </div>
           </dl>
         </section>

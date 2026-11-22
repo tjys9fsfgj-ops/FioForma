@@ -4,7 +4,7 @@ import { removeCartItemAction } from '@/app/actions/cart';
 import { ButtonLink } from '@/components/ui/button';
 import { PatternPlaceholder } from '@/components/product/pattern-placeholder';
 import { getCart } from '@/lib/cart';
-import { brl } from '@/lib/format';
+import { brl, priceLabel } from '@/lib/format';
 
 export const metadata: Metadata = {
   title: 'Carrinho',
@@ -78,7 +78,7 @@ export default async function CartPage() {
                   ) : null}
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <p className="font-serif text-[17px] text-wine">{brl(line.priceCents)}</p>
+                  <p className="font-serif text-[17px] text-wine">{priceLabel(line.priceCents)}</p>
                   <form action={removeCartItemAction}>
                     <input type="hidden" name="itemId" value={line.itemId} />
                     <button
@@ -108,7 +108,7 @@ export default async function CartPage() {
               </div>
               <div className="flex items-center justify-between border-t border-line pt-4 text-[15px]">
                 <dt className="font-medium">Total</dt>
-                <dd className="font-serif text-[19px] text-wine">{brl(cart.subtotalCents)}</dd>
+                <dd className="font-serif text-[19px] text-wine">{priceLabel(cart.subtotalCents)}</dd>
               </div>
             </dl>
             <ButtonLink href="/checkout" size="lg" className="mt-6 w-full">

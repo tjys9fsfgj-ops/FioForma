@@ -14,17 +14,24 @@ export function CheckoutForm({
   defaultPhone,
   isLoggedIn,
   demo,
+  free = false,
+  blockedMessage,
 }: {
   defaultName?: string;
   defaultEmail?: string;
   defaultPhone?: string;
   isLoggedIn: boolean;
   demo: boolean;
+  /** Pedido de valor zero: não mostra forma de pagamento. */
+  free?: boolean;
+  /** Pagamento indisponível: mostra o aviso e desabilita o envio. */
+  blockedMessage?: string;
 }) {
   const [state, formAction, pending] = useActionState(startCheckoutAction, initialState);
 
   return (
     <form action={formAction} className="space-y-8">
+      {blockedMessage ? <FormMessage>{blockedMessage}</FormMessage> : null}
       {state.status === 'error' && state.message ? <FormMessage>{state.message}</FormMessage> : null}
 
       <section>
@@ -78,6 +85,9 @@ export function CheckoutForm({
         </div>
       </section>
 
+      {free ? (
+        <input type="hidden" name="method" value="PIX" />
+      ) : (
       <section className="border-t border-line pt-8">
         <h2 className="font-serif text-[22px] text-wine">Pagamento</h2>
         <p className="mt-1 text-[12.5px] text-muted">
@@ -85,7 +95,7 @@ export function CheckoutForm({
         </p>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-paper p-4 transition-colors has-[:checked]:border-wine has-[:checked]:bg-sand">
+          <label className="flex cursor-pointer items-start gap-3 border border-rule bg-paper p-4 transition-colors has-[:checked]:border-wine has-[:checked]:bg-sand">
             <input type="radio" name="method" value="PIX" defaultChecked className="mt-1 accent-[#7A3B3B]" />
             <span>
               <span className="block text-[14px] font-medium text-ink">Pix</span>
@@ -94,7 +104,7 @@ export function CheckoutForm({
               </span>
             </span>
           </label>
-          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-paper p-4 transition-colors has-[:checked]:border-wine has-[:checked]:bg-sand">
+          <label className="flex cursor-pointer items-start gap-3 border border-rule bg-paper p-4 transition-colors has-[:checked]:border-wine has-[:checked]:bg-sand">
             <input type="radio" name="method" value="CARD" className="mt-1 accent-[#7A3B3B]" />
             <span>
               <span className="block text-[14px] font-medium text-ink">Cartão de crédito</span>
@@ -106,13 +116,14 @@ export function CheckoutForm({
         </div>
 
         {demo ? (
-          <div className="mt-4 rounded-2xl border border-[#D9C9A3] bg-[#FBF6E8] px-4 py-3 text-[12px] leading-relaxed text-[#6B5320]">
+          <div className="mt-4 border-l-2 border-wine bg-linen px-4 py-3 text-[12px] leading-relaxed text-muted">
             <strong className="font-medium">Modo demonstração ativo.</strong> Nenhum valor será cobrado. Ao
             continuar, você verá uma tela para simular a aprovação do pagamento e testar a entrega dos
             arquivos.
           </div>
         ) : null}
       </section>
+      )}
 
       <section className="border-t border-line pt-6">
         <label className="flex items-start gap-3 text-[12.5px] leading-relaxed text-muted">
@@ -143,12 +154,19 @@ export function CheckoutForm({
         ) : null}
       </section>
 
-      <Button type="submit" size="lg" className="w-full" disabled={pending}>
-        {pending ? 'Preparando pagamento…' : 'Continuar para o pagamento'}
-        <span aria-hidden="true">→</span>
+      <Button type="submit" size="lg" className="w-full" disabled={pending || Boolean(blockedMessage)}>
+        {free
+          ? pending
+            ? 'Liberando seus moldes…'
+            : 'Receber meus moldes'
+          : pending
+            ? 'Preparando pagamento…'
+            : 'Continuar para o pagamento'}
       </Button>
       <p className="text-center text-[11px] text-muted">
-        Você será levado ao ambiente seguro do Mercado Pago para concluir.
+        {free
+          ? 'Os arquivos ficam disponíveis na hora, na página do pedido e na sua biblioteca.'
+          : 'Você será levado ao ambiente seguro do Mercado Pago para concluir.'}
       </p>
     </form>
   );
