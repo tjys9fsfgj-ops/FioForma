@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { getCart } from '@/lib/cart';
 import { validateCoupon } from '@/lib/coupons';
 import { createPendingOrder, markOrderPaid } from '@/lib/orders';
-import { getGateway } from '@/lib/payments';
+import { getGateway, isPaymentReady, PAYMENT_NOT_READY_MESSAGE } from '@/lib/payments';
 import { rateLimit } from '@/lib/rate-limit';
 import { getClientIp, getCurrentUser } from '@/lib/session';
 import { COUPON_COOKIE } from '@/lib/checkout-cookies';
@@ -109,6 +109,10 @@ export async function startCheckoutAction(
   if (couponCode) {
     const coupon = await validateCoupon(couponCode, cart.subtotalCents);
     if (coupon.ok) discountCents = coupon.discountCents;
+  }
+
+  if (cart.subtotalCents - discountCents > 0 && !isPaymentReady()) {
+    return { status: 'error', message: PAYMENT_NOT_READY_MESSAGE };
   }
 
   const user = await getCurrentUser();

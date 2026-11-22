@@ -8,6 +8,7 @@
  * Nada aqui é conteúdo real da loja: os moldes marcados como demo devem ser
  * substituídos pelos arquivos verdadeiros no painel.
  */
+import { seedMoldes } from './seed-moldes';
 import { PrismaClient, type FileFormat, type Difficulty } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { createHash } from 'node:crypto';
@@ -103,6 +104,7 @@ const categories = [
   { slug: 'calca', name: 'Calça', sortOrder: 4 },
   { slug: 'blusa', name: 'Blusa', sortOrder: 5 },
   { slug: 'shorts', name: 'Shorts', sortOrder: 6 },
+  { slug: 'acessorios', name: 'Acessórios', sortOrder: 7 },
 ];
 
 type DemoProduct = {
@@ -766,7 +768,18 @@ async function main() {
   }
   console.log(`produtos demo: ${products.length}`);
 
+  // Os demonstrativos saem da loja (ficam como rascunho) e entram os moldes reais.
+  const hidden = await prisma.product.updateMany({ where: { isDemo: true }, data: { status: 'DRAFT' } });
+  console.log(`demos ocultos: ${hidden.count}`);
+  const moldes = await seedMoldes(prisma);
+  console.log(`moldes reais: ${moldes.created} criados, ${moldes.updated} atualizados`);
+
+  const postSlugs = pages.filter((page) => page.kind === 'POST').map((page) => page.slug);
   for (const page of pages) {
+    // posts do blog com datas espaçadas (7, 14, 21 dias atrás) na primeira criação
+    const postIndex = postSlugs.indexOf(page.slug);
+    const publishedAt =
+      postIndex >= 0 ? new Date(Date.now() - (postSlugs.length - postIndex) * 7 * 24 * 60 * 60 * 1000) : new Date();
     await prisma.page.upsert({
       where: { slug: page.slug },
       create: {
@@ -778,7 +791,7 @@ async function main() {
         status: page.status,
         seoTitle: page.title,
         seoDescription: page.excerpt,
-        publishedAt: new Date(),
+        publishedAt,
       },
       update: {
         title: page.title,

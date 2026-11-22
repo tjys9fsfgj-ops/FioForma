@@ -23,6 +23,19 @@ export function getGateway(): PaymentGateway {
   return simulatorGateway;
 }
 
+/**
+ * Dá para cobrar agora? Em produção só com Mercado Pago e token; fora de
+ * produção (ou com ALLOW_DEMO_GATEWAY=true) o simulador atende.
+ */
+export function isPaymentReady(env: NodeJS.ProcessEnv = process.env): boolean {
+  if (env.PAYMENT_GATEWAY === 'mercadopago' && env.MERCADOPAGO_ACCESS_TOKEN) return true;
+  if (env.NODE_ENV !== 'production') return true;
+  return env.ALLOW_DEMO_GATEWAY === 'true';
+}
+
+export const PAYMENT_NOT_READY_MESSAGE =
+  'O pagamento online está sendo configurado. Os moldes gratuitos já podem ser baixados; os pagos voltam em breve.';
+
 export function isDemoPaymentMode(): boolean {
   return process.env.PAYMENT_GATEWAY !== 'mercadopago' || !process.env.MERCADOPAGO_ACCESS_TOKEN;
 }
