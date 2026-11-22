@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { brand, mailtoLink, whatsappLink } from '@/config/brand';
+import { brand } from '@/config/brand';
+import { contactChannels } from '@/lib/contact';
 import { getSettings } from '@/lib/settings';
 import { NewsletterForm } from './newsletter-form';
-import { Logo } from './logo';
 
 const columns = [
   {
@@ -36,79 +36,76 @@ const columns = [
 
 export async function Footer() {
   const settings = await getSettings();
-  const whatsapp = whatsappLink('Olá! Preciso de ajuda com um molde.');
-  const email = mailtoLink('Ajuda com molde — FioForma');
+  const contact = contactChannels(settings);
 
   return (
-    <footer className="mt-24 bg-wine text-paper">
+    <footer className="mt-24 bg-ink text-linen">
       <div className="container-page py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr_1.2fr]">
-          <div>
-            <div className="[&_span]:text-paper [&_svg_path:first-of-type]:stroke-sand [&_svg_path:last-of-type]:fill-paper [&_svg_circle]:stroke-paper">
-              <Logo />
+        <div className="border-b border-linen/15 pb-10 text-center">
+          <p className="font-serif text-[30px] font-semibold uppercase tracking-[0.14em] text-linen">{brand.name}</p>
+          <p className="mx-auto mt-3 max-w-md font-serif text-[18px] italic text-linen/75">{settings.tagline}</p>
+        </div>
+
+        <div className="grid gap-10 border-b border-linen/15 py-10 sm:grid-cols-2 lg:grid-cols-4">
+          {columns.map((column) => (
+            <div key={column.title}>
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-eyebrow text-linen/55">{column.title}</p>
+              <ul className="space-y-2.5">
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-[14px] text-linen/85 transition-colors hover:text-paper">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-paper/75">{settings.tagline}</p>
-            <div className="mt-6 space-y-2 text-[13.5px] text-paper/85">
-              {email ? (
-                <p>
-                  <a href={email} className="underline decoration-paper/30 underline-offset-4 hover:decoration-paper">
-                    {settings.email}
+          ))}
+
+          <div>
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-eyebrow text-linen/55">Atendimento</p>
+            <ul className="space-y-2.5 text-[14px] text-linen/85">
+              {contact.email ? (
+                <li>
+                  <a href={contact.email.href} className="underline decoration-linen/30 underline-offset-4 hover:decoration-linen">
+                    {contact.email.label}
                   </a>
-                </p>
-              ) : (
-                <p className="text-paper/60">E-mail: {settings.email}</p>
-              )}
-              {whatsapp ? (
-                <p>
-                  <a
-                    href={whatsapp}
-                    className="underline decoration-paper/30 underline-offset-4 hover:decoration-paper"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                </li>
+              ) : null}
+              {contact.whatsapp ? (
+                <li>
+                  <a href={contact.whatsapp.href} target="_blank" rel="noreferrer" className="underline decoration-linen/30 underline-offset-4 hover:decoration-linen">
                     WhatsApp
                   </a>
-                </p>
+                </li>
+              ) : null}
+              {!contact.email && !contact.whatsapp ? (
+                <li>
+                  <Link href="/contato" className="hover:text-paper">
+                    Fale com a gente pelo formulário de contato
+                  </Link>
+                </li>
               ) : (
-                <p className="text-paper/60">WhatsApp: {settings.whatsapp}</p>
+                <li className="text-linen/60">{settings.supportHours}</li>
               )}
-              <p className="text-paper/60">{settings.supportHours}</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {columns.map((column) => (
-              <div key={column.title}>
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-eyebrow text-sand">{column.title}</p>
-                <ul className="space-y-2.5">
-                  {column.links.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="text-[14px] text-paper/80 transition-colors hover:text-white">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-3xl bg-paper/[0.07] p-6">
-            <p className="font-serif text-[22px] leading-snug text-paper">Cartas do ateliê</p>
-            <p className="mt-2 text-[13.5px] leading-relaxed text-paper/75">
-              Lançamentos, notas de modelagem e um aviso quando entra molde novo.
-            </p>
-            <NewsletterForm />
+            </ul>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-paper/15 pt-6 text-[12px] text-paper/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto max-w-xl py-10 text-center">
+          <p className="font-serif text-[24px] text-linen">Cartas do ateliê</p>
+          <p className="mt-2 text-[13.5px] leading-relaxed text-linen/70">
+            Lançamentos, notas de modelagem e um aviso quando entra molde novo.
+          </p>
+          <NewsletterForm />
+        </div>
+
+        <div className="flex flex-col gap-3 border-t border-linen/15 pt-6 text-[12px] text-linen/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {brand.name}. Todos os direitos reservados.
           </p>
           <p className="max-w-xl sm:text-right">
-            Moldes digitais para uso pessoal e venda das peças costuradas. Proibida a redistribuição dos
-            arquivos.
+            Moldes digitais para uso pessoal e venda das peças costuradas. Proibida a redistribuição dos arquivos.
           </p>
         </div>
       </div>

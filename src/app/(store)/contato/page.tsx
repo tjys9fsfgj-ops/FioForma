@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ContactForm } from '@/components/site/contact-form';
-import { brand, mailtoLink, whatsappLink } from '@/config/brand';
+import { brand, isPlaceholder } from '@/config/brand';
+import { contactChannels } from '@/lib/contact';
 import { getSettings } from '@/lib/settings';
 
 export const metadata: Metadata = {
@@ -12,8 +13,8 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const settings = await getSettings();
-  const whatsapp = whatsappLink('Olá! Preciso de ajuda com um molde.');
-  const email = mailtoLink('Contato pelo site — FioForma');
+  const contact = contactChannels(settings);
+  const legal = [brand.legal.owner, brand.legal.cnpj].filter((value) => !isPlaceholder(value));
 
   return (
     <div className="container-page py-12 sm:py-16">
@@ -26,38 +27,34 @@ export default async function ContactPage() {
             dias úteis.
           </p>
 
-          <dl className="mt-8 space-y-4 border-t border-line pt-6 text-[13.5px]">
-            <div>
-              <dt className="eyebrow text-[10px]">E-mail</dt>
-              <dd className="mt-1">
-                {email ? (
-                  <a href={email} className="link-underline text-wine">
-                    {settings.email}
+          <dl className="mt-8 space-y-4 border-t border-rule pt-6 text-[13.5px]">
+            {contact.email ? (
+              <div>
+                <dt className="eyebrow text-[10px]">E-mail</dt>
+                <dd className="mt-1">
+                  <a href={contact.email.href} className="link-underline text-wine">
+                    {contact.email.label}
                   </a>
-                ) : (
-                  <span className="text-muted">{settings.email} (canal em criação)</span>
-                )}
-              </dd>
-            </div>
-            <div>
-              <dt className="eyebrow text-[10px]">WhatsApp</dt>
-              <dd className="mt-1">
-                {whatsapp ? (
-                  <a href={whatsapp} target="_blank" rel="noreferrer" className="link-underline text-wine">
+                </dd>
+              </div>
+            ) : null}
+            {contact.whatsapp ? (
+              <div>
+                <dt className="eyebrow text-[10px]">WhatsApp</dt>
+                <dd className="mt-1">
+                  <a href={contact.whatsapp.href} target="_blank" rel="noreferrer" className="link-underline text-wine">
                     Abrir conversa
                   </a>
-                ) : (
-                  <span className="text-muted">{settings.whatsapp} (canal em criação)</span>
-                )}
-              </dd>
-            </div>
+                </dd>
+              </div>
+            ) : null}
             <div>
               <dt className="eyebrow text-[10px]">Horário</dt>
               <dd className="mt-1 text-muted">{settings.supportHours}</dd>
             </div>
           </dl>
 
-          <div className="rounded-2xl mt-8 border border-line bg-[#F2F0EA] p-4 text-[12px] leading-relaxed text-muted">
+          <div className="mt-8 border border-rule bg-paper p-4 text-[12px] leading-relaxed text-muted">
             <p className="font-medium text-ink">Antes de escrever</p>
             <p className="mt-1">
               Boa parte das dúvidas de impressão e acesso está no{' '}
@@ -72,9 +69,7 @@ export default async function ContactPage() {
             </p>
           </div>
 
-          <p className="mt-6 text-[11px] leading-relaxed text-muted">
-            {brand.legal.owner} · {brand.legal.cnpj}
-          </p>
+          {legal.length ? <p className="mt-6 text-[11px] leading-relaxed text-muted">{legal.join(' · ')}</p> : null}
         </div>
 
         <div className="rounded-2xl border border-line bg-paper p-6 sm:p-8">

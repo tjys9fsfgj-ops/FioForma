@@ -174,7 +174,7 @@ export default async function ProductPage({ params }: Props) {
           <div className="flex flex-wrap items-center gap-2">
             {product.collection ? (
               <Link href={`/colecoes/${product.collection.slug}`}>
-                <Badge tone="sage">{product.collection.name}</Badge>
+                <Badge tone="sand">{product.collection.name}</Badge>
               </Link>
             ) : null}
             <Badge>{difficultyLabels[product.difficulty]}</Badge>
@@ -239,7 +239,7 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       <section className="container-page py-10">
-        <SectionHeading index="01" eyebrow="Ficha técnica" title="Tudo o que vem com este molde." />
+        <SectionHeading eyebrow="Ficha técnica" title="Tudo o que vem com este molde." />
         <dl className="mt-8 rounded-[2rem] border border-line bg-paper px-6 shadow-paper sm:px-10">
           {sizes.length ? <SpecRow label="Tamanhos incluídos">{sizes.join(' · ')}</SpecRow> : null}
           {spec?.fabricRecommendation ? (
@@ -287,7 +287,7 @@ export default async function ProductPage({ params }: Props) {
       {product.sizeCharts.some((chart) => chart.rows.length > 0) ? (
         <section className="container-page py-10">
           <SectionHeading
-            index="02"
+           
             eyebrow="Medidas do corpo"
             title="Tabela de medidas em centímetros."
             description="Meça o corpo, sem roupa por cima, e compare com a tabela. Em caso de dúvida entre dois tamanhos, escolha o maior e ajuste na prova."
@@ -346,7 +346,7 @@ export default async function ProductPage({ params }: Props) {
       ) : null}
 
       <section className="container-page py-10">
-        <SectionHeading index="03" eyebrow="Impressão e montagem" title="Como imprimir sem perder a escala." />
+        <SectionHeading eyebrow="Impressão e montagem" title="Como imprimir sem perder a escala." />
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {[
             {
@@ -375,7 +375,7 @@ export default async function ProductPage({ params }: Props) {
 
       {faq.length > 0 ? (
         <section className="container-page py-10">
-          <SectionHeading index="04" eyebrow="Dúvidas" title="Perguntas sobre este molde." />
+          <SectionHeading eyebrow="Dúvidas" title="Perguntas sobre este molde." />
           <div className="mt-8 space-y-3">
             {faq.map((item, index) => (
               <details key={`${item.question}-${index}`} className="rounded-2xl border border-line bg-paper px-5 py-4">
@@ -394,7 +394,7 @@ export default async function ProductPage({ params }: Props) {
 
       {related.length > 0 ? (
         <section className="container-page py-12">
-          <SectionHeading index="05" eyebrow="Combina com" title="Outros moldes para a mesma mesa." action={{ href: '/catalogo', label: 'Ver catálogo' }} />
+          <SectionHeading eyebrow="Combina com" title="Outros moldes para a mesma mesa." action={{ href: '/catalogo', label: 'Ver catálogo' }} />
           <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
             {related.map((item, index) => (
               <ProductCard key={item.id} product={item} index={index} />

@@ -6,22 +6,21 @@ type Variant = 'primary' | 'outline' | 'ghost' | 'quiet' | 'paper' | 'outline-li
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full border font-semibold transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 border font-medium uppercase tracking-[0.18em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50';
 
 const variants: Record<Variant, string> = {
-  primary:
-    'border-wine bg-wine text-paper shadow-[0_8px_20px_-12px_rgba(36,72,61,0.9)] hover:-translate-y-px hover:bg-wine-800 hover:border-wine-800',
-  outline: 'border-wine/30 bg-paper/60 text-wine hover:border-wine hover:bg-paper',
+  primary: 'border-wine bg-wine text-paper hover:border-wine-800 hover:bg-wine-800',
+  outline: 'border-ink bg-transparent text-ink hover:bg-ink hover:text-paper',
   ghost: 'border-transparent bg-transparent text-wine hover:bg-wine/5',
-  quiet: 'border-line bg-paper text-ink hover:border-wine/40',
-  paper: 'border-paper bg-paper text-wine hover:border-white hover:bg-paper',
-  'outline-light': 'border-paper/40 bg-transparent text-paper hover:border-paper hover:bg-paper/10',
+  quiet: 'border-rule bg-paper text-ink hover:border-ink',
+  paper: 'border-paper bg-paper text-ink hover:bg-linen',
+  'outline-light': 'border-paper/50 bg-transparent text-paper hover:border-paper hover:bg-paper/10',
 };
 
 const sizes: Record<Size, string> = {
-  sm: 'px-4 py-2 text-[13px]',
-  md: 'px-6 py-3 text-[14px]',
-  lg: 'px-8 py-4 text-[15px]',
+  sm: 'px-4 py-2 text-[11px]',
+  md: 'px-6 py-3 text-[12px]',
+  lg: 'px-8 py-4 text-[12px]',
 };
 
 export function buttonClass(variant: Variant = 'primary', size: Size = 'md', className?: string) {

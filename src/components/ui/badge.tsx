@@ -7,20 +7,20 @@ export function Badge({
   className,
 }: {
   children: ReactNode;
-  tone?: 'neutral' | 'forest' | 'sage' | 'rose';
+  tone?: 'neutral' | 'wine' | 'sand' | 'rosewood';
   className?: string;
 }) {
   const tones = {
-    neutral: 'border-line bg-paper text-ink/70',
-    forest: 'border-wine bg-wine text-paper',
-    sage: 'border-sand bg-sand text-wine',
-    rose: 'border-rosewood bg-rosewood text-[#7A3F2E]',
+    neutral: 'border-rule bg-transparent text-ink/80',
+    wine: 'border-wine bg-wine text-paper',
+    sand: 'border-sand bg-sand text-ink',
+    rosewood: 'border-rosewood bg-rosewood text-wine-800',
   } as const;
 
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-semibold tracking-[0.04em]',
+        'inline-flex items-center border px-2.5 py-1 text-[10.5px] font-medium uppercase tracking-[0.14em]',
         tones[tone],
         className,
       )}

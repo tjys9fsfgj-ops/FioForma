@@ -32,10 +32,11 @@ export function CookieBanner() {
     <div
       role="dialog"
       aria-label="Preferências de cookies"
-      className="fixed inset-x-3 bottom-24 z-50 mx-auto max-w-3xl rounded-3xl border border-line bg-paper/95 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-paper backdrop-blur sm:bottom-5"
+      style={{ bottom: 'var(--buybar-h, 0px)' }}
+      className="fixed inset-x-0 z-50 border-t border-rule bg-paper px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
     >
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
-        <p className="max-w-2xl text-[11.5px] leading-snug text-ink/80 sm:text-[12.5px] sm:leading-relaxed">
+      <div className="mx-auto flex max-w-page flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-4 lg:px-8">
+        <p className="text-[12px] leading-snug text-ink/80 sm:text-[13px]">
           Usamos apenas cookies essenciais para carrinho, sessão e segurança. Métricas anônimas só entram
           com o seu consentimento.{' '}
           <Link href="/privacidade" className="underline decoration-line underline-offset-4 hover:text-wine">
@@ -47,14 +48,14 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => decide('essential')}
-            className="rounded-full border border-ink/20 px-4 py-2.5 text-[12px] font-semibold text-ink transition-colors hover:border-wine hover:text-wine"
+            className="border border-ink px-4 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             Só essenciais
           </button>
           <button
             type="button"
             onClick={() => decide('all')}
-            className="rounded-full border border-wine bg-wine px-5 py-2.5 text-[12px] font-semibold text-paper transition-colors hover:bg-wine-800"
+            className="border border-wine bg-wine px-4 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-wine-800"
           >
             Aceitar
           </button>

@@ -30,7 +30,7 @@ export default async function DemoPaymentPage({ params, searchParams }: Props) {
       <div className="rounded-2xl mx-auto max-w-lg border border-line bg-paper p-6 sm:p-8">
         <div className="flex items-center justify-between gap-4">
           <p className="eyebrow">Ambiente de demonstração</p>
-          <Badge tone="sage">Sem cobrança</Badge>
+          <Badge tone="sand">Sem cobrança</Badge>
         </div>
 
         <h1 className="mt-4 font-serif text-[28px] leading-tight text-wine">Simular pagamento</h1>

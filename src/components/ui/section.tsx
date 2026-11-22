@@ -3,15 +3,13 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 export function SectionHeading({
-  index,
   eyebrow,
   title,
   description,
   action,
-  align = 'left',
+  align = 'center',
   className,
 }: {
-  index?: string;
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
@@ -19,35 +17,28 @@ export function SectionHeading({
   align?: 'left' | 'center';
   className?: string;
 }) {
+  const centered = align === 'center';
   return (
     <div
       className={cn(
-        'flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between',
-        align === 'center' && 'sm:flex-col sm:items-center sm:text-center',
+        'flex flex-col gap-4',
+        centered ? 'items-center text-center' : 'sm:flex-row sm:items-end sm:justify-between',
         className,
       )}
     >
-      <div className={cn('max-w-2xl', align === 'center' && 'mx-auto')}>
-        {index || eyebrow ? (
-          <p className="pill mb-4">
-            {index ? <span className="font-serif text-[12px] text-wine">{index}</span> : null}
-            {eyebrow}
-          </p>
-        ) : null}
-        <h2 className="text-[clamp(1.9rem,3.8vw,2.9rem)] leading-[1.05]">{title}</h2>
+      <div className={cn('max-w-2xl', centered && 'mx-auto')}>
+        {eyebrow ? <p className="eyebrow mb-3">{eyebrow}</p> : null}
+        <h2 className="text-[clamp(1.9rem,3.6vw,2.6rem)] leading-[1.1]">{title}</h2>
         {description ? (
-          <p className="mt-4 max-w-xl text-[15.5px] leading-relaxed text-muted">{description}</p>
+          <p className={cn('mt-3 max-w-xl text-[15px] leading-relaxed text-muted', centered && 'mx-auto')}>{description}</p>
         ) : null}
       </div>
       {action ? (
         <Link
           href={action.href}
-          className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-wine/25 px-5 py-2.5 text-[13px] font-semibold text-wine transition-colors hover:border-wine hover:bg-wine hover:text-paper"
+          className="shrink-0 border-b border-ink pb-0.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink transition-colors hover:border-wine hover:text-wine"
         >
           {action.label}
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-            →
-          </span>
         </Link>
       ) : null}
     </div>

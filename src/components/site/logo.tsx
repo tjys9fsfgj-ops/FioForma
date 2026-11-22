@@ -8,30 +8,12 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
       href="/"
       onClick={onClick}
       aria-label={`${brand.name} — página inicial`}
-      className={cn('group inline-flex flex-col items-start leading-none', className)}
+      className={cn(
+        'inline-block font-serif text-[26px] font-semibold uppercase leading-none tracking-[0.14em] text-ink transition-colors hover:text-wine sm:text-[32px]',
+        className,
+      )}
     >
-      <span className="font-serif text-[27px] font-normal leading-none tracking-[-0.035em] text-wine transition-colors group-hover:text-wine-700">
-        {brand.wordmark}
-      </span>
-      <svg
-        width="118"
-        height="7"
-        viewBox="0 0 118 7"
-        fill="none"
-        aria-hidden="true"
-        className="mt-1 overflow-visible"
-      >
-        <path
-          d="M0 3.5H96"
-          stroke="#ABB8A8"
-          strokeWidth="1"
-          strokeDasharray="3.2 3.2"
-          strokeLinecap="round"
-          className="transition-[stroke] group-hover:stroke-wine-400"
-        />
-        <circle cx="101" cy="3.5" r="2.1" stroke="#7A3B3B" strokeWidth="0.9" fill="none" />
-        <path d="M105 3.5L117 2.2V4.8L105 3.5Z" fill="#7A3B3B" />
-      </svg>
+      {brand.name}
     </Link>
   );
 }

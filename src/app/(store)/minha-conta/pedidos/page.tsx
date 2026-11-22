@@ -29,7 +29,7 @@ export default async function OrdersPage() {
                   <p className="font-serif text-[18px] text-ink">{order.number}</p>
                   <p className="mt-0.5 text-[11.5px] text-muted">{formatDate(order.createdAt)}</p>
                 </div>
-                <Badge tone={order.status === 'PAID' ? 'forest' : 'neutral'}>{orderStatusLabels[order.status]}</Badge>
+                <Badge tone={order.status === 'PAID' ? 'wine' : 'neutral'}>{orderStatusLabels[order.status]}</Badge>
               </div>
 
               <ul className="mt-3 space-y-1 text-[13px] text-ink/80">

@@ -70,7 +70,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
         </h1>
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Badge tone={paid ? 'forest' : 'neutral'}>{orderStatusLabels[order.status]}</Badge>
+          <Badge tone={paid ? 'wine' : 'neutral'}>{orderStatusLabels[order.status]}</Badge>
           <span className="text-[12px] text-muted">Criado em {formatDateTime(order.createdAt)}</span>
           {order.paidAt ? <span className="text-[12px] text-muted">Pago em {formatDateTime(order.paidAt)}</span> : null}
         </div>

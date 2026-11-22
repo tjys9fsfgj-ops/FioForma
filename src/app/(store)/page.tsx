@@ -173,7 +173,7 @@ export default async function HomePage() {
       {visibleCollections.length > 0 ? (
         <section className="container-page py-20">
           <SectionHeading
-            index="01"
+           
             eyebrow="Coleções"
             title="Moldes organizados por ideia, não por sorte."
             description="Cada coleção reúne peças que conversam entre si — mesmo tecido, mesma época, mesmo gesto."
@@ -212,7 +212,6 @@ export default async function HomePage() {
       {latest.length > 0 ? (
         <section className="container-page pb-20 pt-4">
           <SectionHeading
-            index={visibleCollections.length ? '02' : '01'}
             eyebrow="Lançamentos"
             title="O que acabou de sair da mesa de corte."
             action={{ href: '/catalogo?ordem=novidades', label: 'Ver todos os moldes' }}
@@ -228,7 +227,6 @@ export default async function HomePage() {
       <section id="como-funciona" className="container-page scroll-mt-28 pb-20">
         <div className="rounded-[2rem] bg-rosewood px-6 py-14 sm:rounded-[2.75rem] sm:px-12 lg:px-16">
           <SectionHeading
-            index={visibleCollections.length && latest.length ? '03' : '02'}
             eyebrow="Como funciona"
             title="Quatro passos entre o molde e a peça pronta."
           />
@@ -254,7 +252,6 @@ export default async function HomePage() {
 
       <section className="container-page pb-20">
         <SectionHeading
-          index={visibleCollections.length && latest.length ? '04' : '03'}
           eyebrow="Por que comprar aqui"
           title="Feito para quem costura de verdade."
         />
