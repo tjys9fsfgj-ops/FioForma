@@ -9,7 +9,7 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
       onClick={onClick}
       aria-label={`${brand.name} — página inicial`}
       className={cn(
-        'inline-block font-serif text-[26px] font-semibold uppercase leading-none tracking-[0.14em] text-ink transition-colors hover:text-wine sm:text-[32px]',
+        'inline-block font-serif text-[24px] font-semibold uppercase leading-none tracking-[0.12em] text-ink transition-colors hover:text-wine sm:text-[32px] sm:tracking-[0.14em]',
         className,
       )}
     >

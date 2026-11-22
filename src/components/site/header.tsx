@@ -97,8 +97,12 @@ export async function Header() {
           <Link href={accountHref} className={`hidden sm:inline ${textLink}`}>
             {accountLabel}
           </Link>
-          <Link href="/carrinho" aria-label={`Carrinho com ${cart.count} itens`} className={textLink}>
-            Carrinho <span className="tabular-nums">({cart.count})</span>
+          <Link href="/carrinho" aria-label={`Carrinho com ${cart.count} itens`} className={`flex items-center gap-1.5 whitespace-nowrap ${textLink}`}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="sm:hidden">
+              <path d="M5.5 8.5h13l-1.1 11a1.5 1.5 0 0 1-1.5 1.35H8.1a1.5 1.5 0 0 1-1.5-1.35l-1.1-11Z" stroke="currentColor" strokeWidth="1.3" />
+              <path d="M9 8.5V6.6a3 3 0 0 1 6 0v1.9" stroke="currentColor" strokeWidth="1.3" />
+            </svg>
+            <span className="hidden sm:inline">Carrinho</span> <span className="tabular-nums">({cart.count})</span>
           </Link>
         </div>
       </div>

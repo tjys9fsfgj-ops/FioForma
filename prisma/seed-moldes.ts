@@ -71,7 +71,10 @@ export async function seedMoldes(
     };
     const product = existing
       ? await prisma.product.update({ where: { id: existing.id }, data })
-      : await prisma.product.create({ data: { ...data, slug: m.slug, publishedAt: new Date() } });
+      : await prisma.product.create({
+          // o modelo nº 001 aparece primeiro nas novidades (data mais recente)
+          data: { ...data, slug: m.slug, publishedAt: new Date(Date.now() - Number(m.number) * 60_000) },
+        });
     if (existing) updated += 1;
     else created += 1;
 
