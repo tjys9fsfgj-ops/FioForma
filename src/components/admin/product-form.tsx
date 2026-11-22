@@ -75,6 +75,10 @@ export function ProductForm({
               <option value="AVANCADO">Avançado</option>
             </select>
           </div>
+          <div>
+            <label htmlFor="modelNumber" className="field-label">Número do modelo</label>
+            <input id="modelNumber" name="modelNumber" maxLength={8} placeholder="006" defaultValue={product?.modelNumber ?? ''} className="field-input" />
+          </div>
           <div className="sm:col-span-2">
             <label htmlFor="tagline" className="field-label">Frase curta (aparece no cartão e no topo)</label>
             <input id="tagline" name="tagline" defaultValue={product?.tagline ?? ''} className="field-input" />

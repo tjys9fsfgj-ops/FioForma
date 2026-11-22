@@ -28,6 +28,7 @@ export type ProductCardData = {
   collectionName: string | null;
   categoryName: string | null;
   formats: string[];
+  modelNumber: string | null;
   createdAt: Date;
 };
 
@@ -67,6 +68,7 @@ export function toCard(product: ProductWithCardRelations): ProductCardData {
     collectionName: product.collection?.name ?? null,
     categoryName: product.category?.name ?? null,
     formats,
+    modelNumber: product.modelNumber,
     createdAt: product.createdAt,
   };
 }

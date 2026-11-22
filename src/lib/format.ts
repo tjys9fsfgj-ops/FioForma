@@ -112,3 +112,10 @@ export const productStatusLabels: Record<ProductStatus, string> = {
 export function pluralize(count: number, singular: string, plural: string): string {
   return count === 1 ? singular : plural;
 }
+
+/** "1" → "Modelo nº 001"; vazio → null. */
+export function formatModelNumber(value: string | null | undefined): string | null {
+  const trimmed = value?.trim();
+  if (!trimmed) return null;
+  return `Modelo nº ${trimmed.padStart(3, '0')}`;
+}
