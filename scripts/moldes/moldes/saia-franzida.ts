@@ -22,7 +22,7 @@ export const saiaFranzida: Molde = {
 - Medidas de corte de cada retângulo, do PP ao GG
 - Comprimento do elástico por tamanho
 - Plano de corte e passo a passo ilustrado
-- PDF A4 e A0
+- PDF A4
 
 **Indicado para** quem está começando: são só costuras retas.`,
   priceCents: 900,
@@ -57,7 +57,7 @@ export const saiaFranzida: Molde = {
     })),
   },
   fabric: 'Tecidos leves e médios: viscose, tricoline, linho, cambraia, crepe.',
-  notions: 'Elástico de 3 cm de largura (comprimento na tabela), alfinete de segurança, linha.',
+  notions: 'Elástico de 2,5 cm de largura (comprimento na tabela), alfinete de segurança, linha.',
   steps: [
     { title: 'Corte', text: 'Corte dois retângulos com as medidas do seu tamanho. Não precisa imprimir folhas para esta saia.' },
     { title: 'Laterais', text: 'Una os dois retângulos pelas laterais, direito com direito, a 1 cm. Chuleie ou faça costura francesa.' },

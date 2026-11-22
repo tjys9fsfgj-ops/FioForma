@@ -3,7 +3,7 @@
   "slug": "bolsa-tote",
   "name": "Bolsa Tote",
   "tagline": "Forrada, com fundo de 10 cm, bolso interno e alça de ombro. A bolsa de todo dia.",
-  "description": "Bolsa tote grande, forrada, com fundo boxe que deixa a bolsa em pé. Cabe notebook de 13\", caderno e a marmita.\n\n**O que você recebe**\n- Medidas de corte de todas as partes\n- Gabarito do canto boxe em tamanho real\n- PDF A4 e A0, plano de corte e passo a passo\n\n**Medidas prontas:** 40 cm de largura, 38 cm de altura, 10 cm de fundo, alças de 65 cm.",
+  "description": "Bolsa tote grande, forrada, com fundo boxe que deixa a bolsa em pé. Cabe notebook de 13\", caderno e a marmita.\n\n**O que você recebe**\n- Medidas de corte de todas as partes\n- Gabarito do canto boxe em tamanho real\n- PDF A4 com plano de corte, gabarito e passo a passo\n\n**Medidas prontas:** 40 cm de largura na boca, base de 30 × 10 cm, 38 cm de altura e alças de 65 cm.",
   "priceCents": 700,
   "category": "acessorios",
   "sizes": [
@@ -20,16 +20,16 @@
         "size": "Único",
         "extra": [
           {
-            "label": "Largura",
+            "label": "Largura na boca",
             "value": "40 cm"
+          },
+          {
+            "label": "Base",
+            "value": "30 × 10 cm"
           },
           {
             "label": "Altura",
             "value": "38 cm"
-          },
-          {
-            "label": "Fundo",
-            "value": "10 cm"
           },
           {
             "label": "Alça",
@@ -54,8 +54,8 @@
       "fileName": "bolsa-tote-a4.pdf",
       "format": "A4",
       "pages": 7,
-      "sizeBytes": 103407,
-      "sha256": "d3ee04767af1259a8bba7fcebb9b7760444ad7ceba2da59b5d43c787fa39a90f"
+      "sizeBytes": 103453,
+      "sha256": "079f3fba25f9db1967d165973f4779655185df75795c9747f9f0658961389a11"
     }
   ],
   "images": [
@@ -75,7 +75,7 @@
       "fileName": "bolsa-tote-corte.png",
       "alt": "Plano de corte do molde Bolsa Tote",
       "kind": "MOLDE",
-      "sha256": "792ae7d0207224978190bb5a90d0c958516afe60d2dec1b066330ea5bd04fcf1"
+      "sha256": "80c49b9da098db77b7339e6e0de003a704e90d4399eac9debd12ee97b6279913"
     }
   ]
 }

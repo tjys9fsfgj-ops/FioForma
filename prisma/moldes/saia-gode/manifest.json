@@ -92,8 +92,8 @@
       "fileName": "saia-gode-inteira-a4.pdf",
       "format": "A4",
       "pages": 17,
-      "sizeBytes": 133889,
-      "sha256": "5bc5be7d5bf3f4345793186ee4cdd598f8f9c5dfa43f1986dab30a4e0be8a576"
+      "sizeBytes": 133916,
+      "sha256": "80e215058825f73d7fd294715b4c9621aa8fdc0de19127c054da05491f0f75d3"
     },
     {
       "fileName": "saia-gode-inteira-a0.pdf",
@@ -106,8 +106,8 @@
       "fileName": "saia-gode-meia-a4.pdf",
       "format": "A4",
       "pages": 19,
-      "sizeBytes": 139301,
-      "sha256": "48b323515187831ae06c0c71d51205e5149df75ec5e7b850d67d48f39b94da6a"
+      "sizeBytes": 139322,
+      "sha256": "3247d78edc215f76de9de107d8ef2e44bc4e6e59c402cf4bcb526a1914216a99"
     },
     {
       "fileName": "saia-gode-meia-a0.pdf",
@@ -134,7 +134,7 @@
       "fileName": "saia-gode-corte.png",
       "alt": "Plano de corte do molde Saia Godê",
       "kind": "MOLDE",
-      "sha256": "d5169b00da77484b4b2eca55b8793e28468879b21afebd89a18a0e6ae238e4b7"
+      "sha256": "d1711fba1b11a8b3ab7ea22ee0842a77ded51ea5ccf31f8e33b514e31ea2c3cf"
     }
   ]
 }

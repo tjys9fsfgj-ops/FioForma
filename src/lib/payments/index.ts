@@ -36,8 +36,14 @@ export function isPaymentReady(env: NodeJS.ProcessEnv = process.env): boolean {
 export const PAYMENT_NOT_READY_MESSAGE =
   'O pagamento online está sendo configurado. Os moldes gratuitos já podem ser baixados; os pagos voltam em breve.';
 
-export function isDemoPaymentMode(): boolean {
-  return process.env.PAYMENT_GATEWAY !== 'mercadopago' || !process.env.MERCADOPAGO_ACCESS_TOKEN;
+/**
+ * Simulador de pagamento ativo? Só sem Mercado Pago configurado E fora de
+ * produção (ou com ALLOW_DEMO_GATEWAY=true). Em produção sem chave, pedidos
+ * pagos não podem ser "aprovados" pela tela de demonstração.
+ */
+export function isDemoPaymentMode(env: NodeJS.ProcessEnv = process.env): boolean {
+  if (env.PAYMENT_GATEWAY === 'mercadopago' && env.MERCADOPAGO_ACCESS_TOKEN) return false;
+  return env.NODE_ENV !== 'production' || env.ALLOW_DEMO_GATEWAY === 'true';
 }
 
 export type { PaymentGateway, CheckoutMethod, CreatePaymentResult } from './types';

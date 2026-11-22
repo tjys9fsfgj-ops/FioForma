@@ -347,6 +347,19 @@ export function placedCmds(pl: PlacedBox<CutItem>): Cmd[] | null {
   return pl.rotated ? shift(rotateCW(pl.item.cmds), pl.item.h, 0) : pl.item.cmds;
 }
 
+/**
+ * Fundo boxe: recortando um quadrado de lado c nos cantos (com margem `seam`
+ * nas costuras lateral e do fundo), o fundo pronto mede 2·(c − seam).
+ */
+export function boxedDepthMm(cornerMm: number, seam: number): number {
+  return 2 * (cornerMm - seam);
+}
+
+/** Lado do quadrado a recortar para um fundo pronto de `depthMm`. */
+export function boxedCornerMm(depthMm: number, seam: number): number {
+  return depthMm / 2 + seam;
+}
+
 /** "1,35 m" a partir de milímetros. */
 export function metros(mm: number): string {
   return `${(mm / 1000).toFixed(2).replace('.', ',')} m`;

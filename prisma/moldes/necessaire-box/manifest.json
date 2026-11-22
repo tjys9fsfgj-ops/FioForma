@@ -3,7 +3,7 @@
   "slug": "necessaire-box",
   "name": "Nécessaire Box",
   "tagline": "Forrada, com zíper e fundo quadrado que fica em pé. Em dois tamanhos.",
-  "description": "Nécessaire de fundo boxe, forrada, com abas no zíper para um acabamento limpo nas pontas. Boa para treinar zíper.\n\n**O que você recebe**\n- Dois tamanhos: P (22 × 14 × 8 cm) e M (26 × 16 × 10 cm)\n- Medidas de corte e gabarito do canto boxe\n- PDF A4 e A0, plano de corte e passo a passo",
+  "description": "Nécessaire de fundo boxe, forrada, com abas no zíper para um acabamento limpo nas pontas. Boa para treinar zíper.\n\n**O que você recebe**\n- Dois tamanhos: P (zíper de 22 cm, 14 cm de altura, base 14 × 8 cm) e M (zíper de 26 cm, 16 cm de altura, base 16 × 10 cm)\n- Medidas de corte e gabarito do canto boxe\n- PDF A4 com plano de corte, gabarito e passo a passo",
   "priceCents": 700,
   "category": "acessorios",
   "sizes": [
@@ -15,13 +15,13 @@
   "yardage": "P 0,20 m · M 0,25 m\n(tecido de 1,50 m de largura, por tamanho)",
   "chart": {
     "title": "Medidas da peça pronta",
-    "notes": "Comprimento × altura × fundo.",
+    "notes": "O comprimento é medido na linha do zíper; a base fica menor por causa do fundo boxe.",
     "rows": [
       {
         "size": "P",
         "extra": [
           {
-            "label": "Comprimento",
+            "label": "Comprimento (zíper)",
             "value": "22 cm"
           },
           {
@@ -29,8 +29,8 @@
             "value": "14 cm"
           },
           {
-            "label": "Fundo",
-            "value": "8 cm"
+            "label": "Base",
+            "value": "14 × 8 cm"
           },
           {
             "label": "Zíper",
@@ -42,7 +42,7 @@
         "size": "M",
         "extra": [
           {
-            "label": "Comprimento",
+            "label": "Comprimento (zíper)",
             "value": "26 cm"
           },
           {
@@ -50,8 +50,8 @@
             "value": "16 cm"
           },
           {
-            "label": "Fundo",
-            "value": "10 cm"
+            "label": "Base",
+            "value": "16 × 10 cm"
           },
           {
             "label": "Zíper",
@@ -76,8 +76,8 @@
       "fileName": "necessaire-box-a4.pdf",
       "format": "A4",
       "pages": 7,
-      "sizeBytes": 103354,
-      "sha256": "084e458dbb94246cbbd2942cfced3cc6b9363d9f9bbf5181543e6c32841729bf"
+      "sizeBytes": 103426,
+      "sha256": "4cc074d1d4ac4a0d3158b6af92d953bd3de973ee23cb91ba17b64d12d16256be"
     }
   ],
   "images": [
@@ -97,7 +97,7 @@
       "fileName": "necessaire-box-corte.png",
       "alt": "Plano de corte do molde Nécessaire Box",
       "kind": "MOLDE",
-      "sha256": "96a66b48f70a3a89d9709efd2cf34accdd9918cd824f0d637c1b282e9fa87b87"
+      "sha256": "9e4103d6087401e384f7ceb3b41f06be004e63a27b135240548cc2e7e339a7d1"
     }
   ]
 }

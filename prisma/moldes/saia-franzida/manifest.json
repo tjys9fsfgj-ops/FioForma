@@ -3,7 +3,7 @@
   "slug": "saia-franzida",
   "name": "Saia Franzida com Elástico",
   "tagline": "Dois retângulos, um elástico e uma tarde. A saia midi que vai com tudo.",
-  "description": "Saia de cintura elástica e franzido leve, sem zíper e sem botão. O molde vem com as medidas exatas de corte por tamanho — você corta direto no tecido, sem imprimir folhas.\n\n**O que você recebe**\n- Medidas de corte de cada retângulo, do PP ao GG\n- Comprimento do elástico por tamanho\n- Plano de corte e passo a passo ilustrado\n- PDF A4 e A0\n\n**Indicado para** quem está começando: são só costuras retas.",
+  "description": "Saia de cintura elástica e franzido leve, sem zíper e sem botão. O molde vem com as medidas exatas de corte por tamanho — você corta direto no tecido, sem imprimir folhas.\n\n**O que você recebe**\n- Medidas de corte de cada retângulo, do PP ao GG\n- Comprimento do elástico por tamanho\n- Plano de corte e passo a passo ilustrado\n- PDF A4\n\n**Indicado para** quem está começando: são só costuras retas.",
   "priceCents": 900,
   "category": "saia",
   "sizes": [
@@ -14,7 +14,7 @@
     "GG"
   ],
   "fabric": "Tecidos leves e médios: viscose, tricoline, linho, cambraia, crepe.",
-  "notions": "Elástico de 3 cm de largura (comprimento na tabela), alfinete de segurança, linha.",
+  "notions": "Elástico de 2,5 cm de largura (comprimento na tabela), alfinete de segurança, linha.",
   "yardage": "PP 0,65 m · P 0,65 m · M 0,65 m · G 1,30 m · GG 1,30 m\n(tecido de 1,50 m de largura, comprimento final de 60 cm)",
   "chart": {
     "title": "Medidas do corpo",
@@ -92,8 +92,8 @@
       "fileName": "saia-franzida-a4.pdf",
       "format": "A4",
       "pages": 6,
-      "sizeBytes": 102218,
-      "sha256": "230b8426ef9bb5f3523712effde60dd44bc88ec365d71eacb67828d5c03bf8f1"
+      "sizeBytes": 102227,
+      "sha256": "a3d5e3b69f50ab3c740296f697552a7aa7be4cc54b7bbbf85eda2e543a497b85"
     }
   ],
   "images": [

@@ -1,5 +1,7 @@
+import { emailFooterContact } from './email-footer';
+import { getSettings } from './settings';
 import { brand } from '@/config/brand';
-import { brl, formatDate } from './format';
+import { formatDate, priceLabel } from './format';
 
 type EmailMessage = {
   to: string;
@@ -48,7 +50,7 @@ export async function sendEmail(message: EmailMessage): Promise<{ delivered: boo
   return { delivered: true, provider: 'resend' };
 }
 
-function layout(title: string, body: string): string {
+function layout(title: string, body: string, contactLine = ''): string {
   return `<!doctype html>
 <html lang="pt-BR">
   <body style="margin:0;background:#F7F6F2;color:#222725;font-family:Inter,Helvetica,Arial,sans-serif;">
@@ -59,14 +61,22 @@ function layout(title: string, body: string): string {
           <tr><td style="padding:8px 32px 0;font-family:Georgia,serif;font-size:24px;line-height:1.25;">${title}</td></tr>
           <tr><td style="padding:16px 32px 32px;font-size:15px;line-height:1.65;color:#222725;">${body}</td></tr>
           <tr><td style="padding:16px 32px;border-top:1px solid #DEDAD1;font-size:12px;color:#6B716D;line-height:1.6;">
-            ${brand.name} — ${brand.tagline}<br />
-            Dúvidas: ${brand.support.email} · ${brand.support.whatsapp}
+            ${brand.name} — ${brand.tagline}${contactLine ? `<br />
+            ${contactLine}` : ''}
           </td></tr>
         </table>
       </td></tr>
     </table>
   </body>
 </html>`;
+}
+
+async function footerContact(): Promise<string> {
+  try {
+    return emailFooterContact(await getSettings());
+  } catch {
+    return emailFooterContact(brand.support);
+  }
 }
 
 function button(href: string, label: string): string {
@@ -86,7 +96,7 @@ export async function sendOrderPaidEmail(input: {
   isGuest: boolean;
 }) {
   const itemsHtml = input.items
-    .map((item) => `<li style="margin-bottom:6px;">${item.name} — ${brl(item.priceCents)}</li>`)
+    .map((item) => `<li style="margin-bottom:6px;">${item.name} — ${priceLabel(item.priceCents)}</li>`)
     .join('');
 
   const accessBlock =
@@ -98,21 +108,22 @@ export async function sendOrderPaidEmail(input: {
       : button(input.libraryUrl, 'Baixar meus moldes');
 
   const html = layout(
-    'Pagamento confirmado. Seus moldes estão liberados.',
+    input.totalCents === 0 ? 'Pedido confirmado. Seus moldes estão liberados.' : 'Pagamento confirmado. Seus moldes estão liberados.',
     `<p>Oi, ${input.customerName.split(' ')[0] || 'tudo bem'}!</p>
-     <p>Recebemos o pagamento do pedido <strong>${input.orderNumber}</strong> em ${formatDate(new Date())}.</p>
+     <p>${input.totalCents === 0 ? 'Confirmamos o pedido' : 'Recebemos o pagamento do pedido'} <strong>${input.orderNumber}</strong> em ${formatDate(new Date())}.</p>
      <ul style="padding-left:18px;margin:16px 0;">${itemsHtml}</ul>
-     <p style="font-size:15px;"><strong>Total:</strong> ${brl(input.totalCents)}</p>
+     <p style="font-size:15px;"><strong>Total:</strong> ${priceLabel(input.totalCents)}</p>
      ${accessBlock}
      <p>Os arquivos ficam disponíveis para download ilimitado na sua biblioteca. Imprima em escala 100% e confira o gabarito de teste antes de cortar o tecido.</p>
      <p>Licença: você pode vender as peças que costurar, sem limite. Não compartilhe nem revenda os PDFs.</p>`,
+    await footerContact(),
   );
 
   return sendEmail({
     to: input.to,
     subject: `Pedido ${input.orderNumber} confirmado — seus moldes estão liberados`,
     html,
-    text: `Pedido ${input.orderNumber} confirmado. Total ${brl(input.totalCents)}. Biblioteca: ${input.libraryUrl}${
+    text: `Pedido ${input.orderNumber} confirmado. Total ${priceLabel(input.totalCents)}. Biblioteca: ${input.libraryUrl}${
       input.accessUrl ? ` | Acesso: ${input.accessUrl}` : ''
     }`,
   });
@@ -125,6 +136,7 @@ export async function sendPasswordResetEmail(input: { to: string; name?: string 
      <p>Recebemos um pedido para redefinir a senha da sua conta. O link vale por 1 hora e só pode ser usado uma vez.</p>
      ${button(input.resetUrl, 'Criar nova senha')}
      <p style="font-size:13px;color:#6B716D;">Se não foi você, ignore este e-mail: sua senha continua a mesma.</p>`,
+    await footerContact(),
   );
 
   return sendEmail({
@@ -141,6 +153,7 @@ export async function sendAccessLinkEmail(input: { to: string; name?: string | n
     `<p>Oi${input.name ? `, ${input.name.split(' ')[0]}` : ''}.</p>
      <p>Use o link abaixo para entrar na sua conta e acessar seus moldes. Ele é de uso único e expira em 7 dias.</p>
      ${button(input.accessUrl, 'Entrar na minha conta')}`,
+    await footerContact(),
   );
 
   return sendEmail({

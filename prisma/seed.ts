@@ -8,6 +8,8 @@
  * Nada aqui é conteúdo real da loja: os moldes marcados como demo devem ser
  * substituídos pelos arquivos verdadeiros no painel.
  */
+import { adminSeedPlan, shouldApplySeed } from '../src/lib/seed-guards';
+import { contentHash, readStamp, writeStamp } from './seed-stamps';
 import { seedMoldes } from './seed-moldes';
 import { PrismaClient, type FileFormat, type Difficulty } from '@prisma/client';
 import bcrypt from 'bcryptjs';
@@ -623,21 +625,26 @@ Dobre o tecido e veja se ele cai com o corpo que você quer. Se estiver muito mo
 /* ------------------------------------------------------------------ */
 
 async function main() {
-  const adminEmail = (process.env.SEED_ADMIN_EMAIL ?? 'admin@fioforma.com.br').toLowerCase();
-  const adminPassword = process.env.SEED_ADMIN_PASSWORD ?? 'FioForma@2026';
-
-  const admin = await prisma.user.upsert({
-    where: { email: adminEmail },
-    create: {
-      email: adminEmail,
-      name: 'Equipe FioForma',
-      role: 'ADMIN',
-      passwordHash: await bcrypt.hash(adminPassword, 12),
-      emailVerifiedAt: new Date(),
-    },
-    update: { role: 'ADMIN' },
-  });
-  console.log(`admin: ${admin.email}`);
+  // Admin inicial: só quando a loja ainda não tem nenhum (nunca mexe em senha existente).
+  const adminCount = await prisma.user.count({ where: { role: 'ADMIN' } });
+  if (adminSeedPlan({ adminCount, env: process.env }) === 'create') {
+    const adminEmail = (process.env.SEED_ADMIN_EMAIL ?? 'admin@fioforma.com.br').toLowerCase();
+    const adminPassword = process.env.SEED_ADMIN_PASSWORD ?? 'FioForma@2026';
+    const admin = await prisma.user.upsert({
+      where: { email: adminEmail },
+      create: {
+        email: adminEmail,
+        name: 'Equipe FioForma',
+        role: 'ADMIN',
+        passwordHash: await bcrypt.hash(adminPassword, 12),
+        emailVerifiedAt: new Date(),
+      },
+      update: { role: 'ADMIN' },
+    });
+    console.log(`admin criado: ${admin.email}`);
+  } else {
+    console.log(`admin: ${adminCount} existente(s), nada alterado`);
+  }
 
   const collectionIds = new Map<string, string>();
   for (const collection of collections) {
@@ -679,15 +686,8 @@ async function main() {
         seoDescription: item.tagline,
         publishedAt: new Date(),
       },
-      update: {
-        name: item.name,
-        tagline: item.tagline,
-        description: item.description,
-        priceCents: item.priceCents,
-        difficulty: item.difficulty,
-        categoryId: categoryIds.get(item.category) ?? null,
-        collectionId: collectionIds.get(item.collection) ?? null,
-      },
+      // demonstrativos: só criados; nunca sobrescreve edições feitas no painel
+      update: {},
     });
 
     await prisma.productSpec.upsert({
@@ -706,13 +706,7 @@ async function main() {
           'Imprima em escala 100% (tamanho real). Confira o quadrado de 5 cm na primeira página antes de cortar. Una as folhas pelas letras de referência.',
         faq: JSON.stringify(item.faq),
       },
-      update: {
-        fabricRecommendation: item.fabric,
-        yardage: item.yardage,
-        notions: item.notions,
-        pageCount: item.pages,
-        faq: JSON.stringify(item.faq),
-      },
+      update: {},
     });
 
     const existingChart = await prisma.sizeChart.findFirst({ where: { productId: product.id } });
@@ -767,8 +761,12 @@ async function main() {
   console.log(`produtos demo: ${products.length}`);
 
   // Os demonstrativos saem da loja (ficam como rascunho) e entram os moldes reais.
-  const hidden = await prisma.product.updateMany({ where: { isDemo: true }, data: { status: 'DRAFT' } });
-  console.log(`demos ocultos: ${hidden.count}`);
+  // (uma vez só: se o dono republicar um demonstrativo depois, o seed não esconde de novo)
+  if (!(await readStamp(prisma, 'demos-hidden'))) {
+    const hidden = await prisma.product.updateMany({ where: { isDemo: true }, data: { status: 'DRAFT' } });
+    await writeStamp(prisma, 'demos-hidden', 'v1');
+    console.log(`demos ocultos: ${hidden.count}`);
+  }
   const moldes = await seedMoldes(prisma);
   console.log(`moldes reais: ${moldes.created} criados, ${moldes.updated} atualizados`);
 
@@ -778,6 +776,11 @@ async function main() {
     const postIndex = postSlugs.indexOf(page.slug);
     const publishedAt =
       postIndex >= 0 ? new Date(Date.now() - (postSlugs.length - postIndex) * 7 * 24 * 60 * 60 * 1000) : new Date();
+    const hash = contentHash({ title: page.title, excerpt: page.excerpt, contentMd: page.contentMd, status: page.status });
+    const stampKey = `page.${page.slug}`;
+    const existingPage = await prisma.page.findUnique({ where: { slug: page.slug }, select: { updatedAt: true } });
+    const stamp = await readStamp(prisma, stampKey);
+    if (existingPage && !shouldApplySeed({ stored: stamp, hash, recordUpdatedAt: existingPage.updatedAt })) continue;
     await prisma.page.upsert({
       where: { slug: page.slug },
       create: {
@@ -799,6 +802,7 @@ async function main() {
         status: page.status,
       },
     });
+    await writeStamp(prisma, stampKey, hash);
   }
   console.log(`páginas e posts: ${pages.length}`);
 

@@ -1,14 +1,16 @@
-import { roundedPiece, type Molde } from '../geometria';
+import { boxedCornerMm, roundedPiece, type Molde } from '../geometria';
 import { SEAM_MM } from '../medidas';
 
 const WIDTH = 400;
 const HEIGHT = 380;
 const DEPTH = 100;
 
-/** Gabarito do recorte do canto boxe: quadrado de metade do fundo, sem margem. */
-const corner = roundedPiece(DEPTH / 2, DEPTH / 2, {}, 0);
+/** Gabarito do recorte do canto boxe: metade do fundo + 1 margem (6 cm para 10 cm de fundo). */
+const CORNER = boxedCornerMm(DEPTH, SEAM_MM);
+const corner = roundedPiece(CORNER, CORNER, {}, 0);
 
-const body = { widthMm: WIDTH + 2 * SEAM_MM, heightMm: HEIGHT + DEPTH / 2 + SEAM_MM + 30 };
+/** Altura do painel = altura pronta + recorte do canto + 3 cm de bainha na boca. */
+const body = { widthMm: WIDTH + 2 * SEAM_MM, heightMm: HEIGHT + CORNER + 30 };
 
 export const bolsaTote: Molde = {
   number: '004',
@@ -21,9 +23,9 @@ export const bolsaTote: Molde = {
 **O que você recebe**
 - Medidas de corte de todas as partes
 - Gabarito do canto boxe em tamanho real
-- PDF A4 e A0, plano de corte e passo a passo
+- PDF A4 com plano de corte, gabarito e passo a passo
 
-**Medidas prontas:** 40 cm de largura, 38 cm de altura, 10 cm de fundo, alças de 65 cm.`,
+**Medidas prontas:** 40 cm de largura na boca, base de 30 × 10 cm, 38 cm de altura e alças de 65 cm.`,
   priceCents: 700,
   category: 'acessorios',
   sizes: ['Único'],
@@ -44,7 +46,7 @@ export const bolsaTote: Molde = {
         },
       ],
       directCuts: [
-        { name: 'Corpo', cut: 'Corte 2× no tecido externo', count: 2, ...body, note: 'Recorte um quadrado de 5 × 5 cm nos dois cantos de baixo.' },
+        { name: 'Corpo', cut: 'Corte 2× no tecido externo', count: 2, ...body, note: 'Recorte um quadrado de 6 × 6 cm nos dois cantos de baixo (use o gabarito).' },
         { name: 'Forro', cut: 'Corte 2× no forro', count: 2, ...body, note: 'Mesmo recorte de canto do corpo.' },
         { name: 'Alça', cut: 'Corte 2×', count: 2, widthMm: 670, heightMm: 100, note: 'Dobrada em quatro no comprimento: fica com 2,5 cm.' },
         { name: 'Bolso interno', cut: 'Corte 1× no forro', count: 1, widthMm: 220, heightMm: 380, note: 'Dobrado ao meio: fica com 20 × 18 cm.' },
@@ -58,9 +60,9 @@ export const bolsaTote: Molde = {
       {
         size: 'Único',
         extra: [
-          { label: 'Largura', value: '40 cm' },
+          { label: 'Largura na boca', value: '40 cm' },
+          { label: 'Base', value: '30 × 10 cm' },
           { label: 'Altura', value: '38 cm' },
-          { label: 'Fundo', value: '10 cm' },
           { label: 'Alça', value: '65 cm' },
         ],
       },

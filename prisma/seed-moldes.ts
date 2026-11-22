@@ -6,6 +6,8 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { FileFormat, ImageKind, PrismaClient } from '@prisma/client';
 import type { Manifest } from '../scripts/moldes/build';
+import { shouldApplySeed } from '../src/lib/seed-guards';
+import { contentHash, readStamp, writeStamp } from './seed-stamps';
 
 const CATEGORY_BY_MOLDE: Record<string, string> = { saia: 'saia', acessorios: 'acessorios' };
 const COLLECTION = 'basicos';
@@ -60,7 +62,6 @@ export async function seedMoldes(
       description: m.description,
       priceCents: m.priceCents,
       difficulty: 'INICIANTE' as const,
-      status: 'PUBLISHED' as const,
       isDemo: false,
       modelNumber: m.number,
       sizesIncluded: JSON.stringify(m.sizes),
@@ -69,54 +70,65 @@ export async function seedMoldes(
       seoTitle: `${m.name} — molde de costura em PDF`,
       seoDescription: m.tagline,
     };
+    // conteúdo (textos, preço, ficha, tabela) só é reaplicado se mudou no código
+    // e ninguém editou o molde no painel depois do último seed
+    const { files: _files, images: _images, ...content } = m;
+    const hash = contentHash(content);
+    const stamp = await readStamp(prisma, `molde.${m.slug}`);
+    const applyContent = !existing || shouldApplySeed({ stored: stamp, hash, recordUpdatedAt: existing.updatedAt });
     const product = existing
-      ? await prisma.product.update({ where: { id: existing.id }, data })
+      ? applyContent
+        ? await prisma.product.update({ where: { id: existing.id }, data })
+        : existing
       : await prisma.product.create({
           // o modelo nº 001 aparece primeiro nas novidades (data mais recente)
-          data: { ...data, slug: m.slug, publishedAt: new Date(Date.now() - Number(m.number) * 60_000) },
+          data: { ...data, status: 'PUBLISHED', slug: m.slug, publishedAt: new Date(Date.now() - Number(m.number) * 60_000) },
         });
     if (existing) updated += 1;
     else created += 1;
 
-    const formats = Array.from(new Set(m.files.map((f) => f.format)));
-    const spec = {
-      fabricRecommendation: m.fabric,
-      yardage: m.yardage,
-      notions: m.notions,
-      seamAllowance: '1 cm incluso em todas as bordas',
-      includedFormats: JSON.stringify(formats),
-      layersAvailable: false,
-      projectorAvailable: false,
-      pageCount: null,
-      printInstructions: PRINT_INSTRUCTIONS,
-      faq: JSON.stringify(m.faq),
-    };
-    await prisma.productSpec.upsert({
-      where: { productId: product.id },
-      create: { productId: product.id, ...spec },
-      update: spec,
-    });
+    if (applyContent) {
+      const formats = Array.from(new Set(m.files.map((f) => f.format)));
+      const spec = {
+        fabricRecommendation: m.fabric,
+        yardage: m.yardage,
+        notions: m.notions,
+        seamAllowance: '1 cm incluso em todas as bordas',
+        includedFormats: JSON.stringify(formats),
+        layersAvailable: false,
+        projectorAvailable: false,
+        pageCount: null,
+        printInstructions: PRINT_INSTRUCTIONS,
+        faq: JSON.stringify(m.faq),
+      };
+      await prisma.productSpec.upsert({
+        where: { productId: product.id },
+        create: { productId: product.id, ...spec },
+        update: spec,
+      });
 
-    // tabela: recria sempre (é pequena e vem do manifest)
-    await prisma.sizeChart.deleteMany({ where: { productId: product.id } });
-    await prisma.sizeChart.create({
-      data: {
-        productId: product.id,
-        title: m.chart.title,
-        unit: 'cm',
-        notes: m.chart.notes,
-        rows: {
-          create: m.chart.rows.map((row, index) => ({
-            size: row.size,
-            bustCm: row.bustCm ?? null,
-            waistCm: row.waistCm ?? null,
-            hipCm: row.hipCm ?? null,
-            extra: row.extra?.length ? JSON.stringify(row.extra) : null,
-            sortOrder: index,
-          })),
+      // tabela: recria sempre (é pequena e vem do manifest)
+      await prisma.sizeChart.deleteMany({ where: { productId: product.id } });
+      await prisma.sizeChart.create({
+        data: {
+          productId: product.id,
+          title: m.chart.title,
+          unit: 'cm',
+          notes: m.chart.notes,
+          rows: {
+            create: m.chart.rows.map((row, index) => ({
+              size: row.size,
+              bustCm: row.bustCm ?? null,
+              waistCm: row.waistCm ?? null,
+              hipCm: row.hipCm ?? null,
+              extra: row.extra?.length ? JSON.stringify(row.extra) : null,
+              sortOrder: index,
+            })),
+          },
         },
-      },
-    });
+      });
+      await writeStamp(prisma, `molde.${m.slug}`, hash);
+    }
 
     // PDFs: mantém os iguais (mesmo nome e checksum), troca os que mudaram, remove os que saíram
     const currentFiles = await prisma.productFile.findMany({ where: { productId: product.id } });
