@@ -1,0 +1,549 @@
+// FioForma — modelo de dados da loja de moldes digitais
+// Banco: MySQL 8 / TiDB (compatível). Todos os valores monetários em centavos.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum ProductStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum Difficulty {
+  INICIANTE
+  INTERMEDIARIO
+  AVANCADO
+}
+
+enum ImageKind {
+  PECA
+  DETALHE
+  MOLDE
+}
+
+enum FileFormat {
+  A4
+  A0
+  PROJETOR
+  OUTRO
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  EXPIRED
+  CANCELED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  PIX
+  CARD
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  REFUNDED
+  EXPIRED
+}
+
+enum CouponType {
+  PERCENT
+  FIXED
+}
+
+enum PageKind {
+  PAGE
+  POST
+}
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum MediaVisibility {
+  PUBLIC
+  PRIVATE
+}
+
+enum TokenPurpose {
+  GUEST_ACCESS
+  SET_PASSWORD
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?   @db.VarChar(120)
+  email         String    @unique @db.VarChar(191)
+  passwordHash  String?   @db.VarChar(255)
+  role          Role      @default(CUSTOMER)
+  phone         String?   @db.VarChar(32)
+  emailVerifiedAt DateTime?
+  marketingOptIn Boolean  @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+
+  orders        Order[]
+  entitlements  Entitlement[]
+  resetTokens   PasswordResetToken[]
+  loginTokens   LoginToken[]
+  carts         Cart[]
+  auditLogs     AuditLog[]
+  couponRedemptions CouponRedemption[]
+
+  @@index([createdAt])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique @db.VarChar(191)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model LoginToken {
+  id        String      @id @default(cuid())
+  userId    String
+  tokenHash String      @unique @db.VarChar(191)
+  purpose   TokenPurpose @default(GUEST_ACCESS)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime    @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Collection {
+  id          String   @id @default(cuid())
+  slug        String   @unique @db.VarChar(191)
+  name        String   @db.VarChar(120)
+  description String?  @db.Text
+  coverKey    String?  @db.VarChar(255)
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@index([sortOrder])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  slug        String   @unique @db.VarChar(191)
+  name        String   @db.VarChar(120)
+  description String?  @db.Text
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@index([sortOrder])
+}
+
+model Product {
+  id             String        @id @default(cuid())
+  slug           String        @unique @db.VarChar(191)
+  name           String        @db.VarChar(160)
+  tagline        String?       @db.VarChar(220)
+  description    String        @db.LongText
+  priceCents     Int
+  compareAtCents Int?
+  difficulty     Difficulty    @default(INICIANTE)
+  status         ProductStatus @default(DRAFT)
+  sizesIncluded  String?       @db.Text // JSON: ["PP","P","M","G"]
+  categoryId     String?
+  collectionId   String?
+  seoTitle       String?       @db.VarChar(180)
+  seoDescription String?       @db.VarChar(320)
+  isDemo         Boolean       @default(false)
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  collection Collection? @relation(fields: [collectionId], references: [id], onDelete: SetNull)
+
+  images     ProductImage[]
+  spec       ProductSpec?
+  sizeCharts SizeChart[]
+  files      ProductFile[]
+  orderItems OrderItem[]
+  entitlements Entitlement[]
+  cartItems  CartItem[]
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+  @@index([collectionId])
+  @@index([priceCents])
+  @@index([difficulty])
+}
+
+model ProductImage {
+  id         String    @id @default(cuid())
+  productId  String
+  mediaId    String
+  alt        String    @db.VarChar(220)
+  kind       ImageKind @default(PECA)
+  sortOrder  Int       @default(0)
+  createdAt  DateTime  @default(now())
+
+  product Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media   MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@index([productId, sortOrder])
+}
+
+model ProductSpec {
+  id                  String   @id @default(cuid())
+  productId           String   @unique
+  fabricRecommendation String? @db.Text
+  yardage             String?  @db.Text // metragem por tamanho (texto livre estruturado)
+  notions             String?  @db.Text
+  seamAllowance       String?  @db.VarChar(120)
+  includedFormats     String?  @db.Text // JSON: ["A4","A0","PROJETOR"]
+  layersAvailable     Boolean  @default(false)
+  projectorAvailable  Boolean  @default(false)
+  pageCount           Int?
+  printInstructions   String?  @db.Text
+  faq                 String?  @db.LongText // JSON: [{question, answer}]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model SizeChart {
+  id        String   @id @default(cuid())
+  productId String
+  title     String   @db.VarChar(120) @default("Tabela de medidas")
+  unit      String   @db.VarChar(8)   @default("cm")
+  notes     String?  @db.Text
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  rows    SizeRow[]
+
+  @@index([productId])
+}
+
+model SizeRow {
+  id        String  @id @default(cuid())
+  chartId   String
+  size      String  @db.VarChar(16)
+  bustCm    Float?
+  waistCm   Float?
+  hipCm     Float?
+  extra     String? @db.Text // JSON: [{label, value}]
+  sortOrder Int     @default(0)
+
+  chart SizeChart @relation(fields: [chartId], references: [id], onDelete: Cascade)
+
+  @@index([chartId, sortOrder])
+}
+
+model ProductFile {
+  id        String     @id @default(cuid())
+  productId String
+  mediaId   String
+  fileName  String     @db.VarChar(200)
+  format    FileFormat @default(A4)
+  pages     Int?
+  sizeBytes Int
+  checksum  String     @db.VarChar(64)
+  createdAt DateTime   @default(now())
+
+  product Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media   MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@index([productId, format])
+}
+
+model MediaAsset {
+  id         String          @id @default(cuid())
+  storageKey String          @unique @db.VarChar(255)
+  fileName   String          @db.VarChar(200)
+  mimeType   String          @db.VarChar(120)
+  sizeBytes  Int
+  width      Int?
+  height     Int?
+  visibility MediaVisibility @default(PUBLIC)
+  driver     String          @db.VarChar(16) @default("db")
+  data       Bytes?          @db.LongBlob
+  createdAt  DateTime        @default(now())
+
+  productImages ProductImage[]
+  productFiles  ProductFile[]
+  pages         Page[]
+}
+
+model Cart {
+  id        String   @id @default(cuid())
+  token     String   @unique @db.VarChar(64)
+  userId    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items CartItem[]
+
+  @@index([userId])
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+
+  cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([cartId, productId])
+}
+
+model Order {
+  id             String         @id @default(cuid())
+  number         String         @unique @db.VarChar(24)
+  userId         String?
+  email          String         @db.VarChar(191)
+  customerName   String         @db.VarChar(120)
+  phone          String?        @db.VarChar(32)
+  status         OrderStatus    @default(PENDING)
+  subtotalCents  Int
+  discountCents  Int            @default(0)
+  totalCents     Int
+  couponCode     String?        @db.VarChar(40)
+  paymentMethod  PaymentMethod?
+  gateway        String?        @db.VarChar(32)
+  gatewayRef     String?        @db.VarChar(191)
+  accessToken    String         @unique @db.VarChar(64)
+  ipHash         String?        @db.VarChar(64)
+  paidAt         DateTime?
+  internalNote   String?        @db.Text
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  user      User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items     OrderItem[]
+  payments  Payment[]
+  events    PaymentEvent[]
+  entitlements Entitlement[]
+  redemptions CouponRedemption[]
+
+  @@index([email])
+  @@index([status, createdAt])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id             String  @id @default(cuid())
+  orderId        String
+  productId      String?
+  productName    String  @db.VarChar(160)
+  productSlug    String  @db.VarChar(191)
+  unitPriceCents Int
+  quantity       Int     @default(1)
+  totalCents     Int
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  orderId         String
+  gateway         String        @db.VarChar(32)
+  gatewayPaymentId String?      @db.VarChar(191)
+  method          PaymentMethod?
+  status          PaymentStatus @default(PENDING)
+  amountCents     Int
+  statusDetail    String?       @db.VarChar(191)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([gateway, gatewayPaymentId])
+}
+
+model PaymentEvent {
+  id          String    @id @default(cuid())
+  gateway     String    @db.VarChar(32)
+  externalId  String    @unique @db.VarChar(191)
+  type        String    @db.VarChar(64)
+  orderId     String?
+  payload     String    @db.LongText
+  receivedAt  DateTime  @default(now())
+  processedAt DateTime?
+
+  order Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
+
+  @@index([gateway, receivedAt])
+}
+
+model Entitlement {
+  id        String    @id @default(cuid())
+  userId    String?
+  email     String    @db.VarChar(191)
+  productId String
+  orderId   String?
+  createdAt DateTime  @default(now())
+  revokedAt DateTime?
+
+  user    User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  product Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  order   Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  downloads DownloadLog[]
+
+  @@unique([email, productId])
+  @@index([userId])
+  @@index([productId])
+}
+
+model DownloadLog {
+  id            String   @id @default(cuid())
+  entitlementId String
+  fileId        String?
+  ipHash        String?  @db.VarChar(64)
+  userAgent     String?  @db.VarChar(255)
+  createdAt     DateTime @default(now())
+
+  entitlement Entitlement @relation(fields: [entitlementId], references: [id], onDelete: Cascade)
+
+  @@index([entitlementId, createdAt])
+}
+
+model Coupon {
+  id              String     @id @default(cuid())
+  code            String     @unique @db.VarChar(40)
+  type            CouponType @default(PERCENT)
+  value           Int
+  minSubtotalCents Int?
+  maxRedemptions  Int?
+  redemptionCount Int        @default(0)
+  startsAt        DateTime?
+  endsAt          DateTime?
+  active          Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  redemptions CouponRedemption[]
+}
+
+model CouponRedemption {
+  id        String   @id @default(cuid())
+  couponId  String
+  orderId   String   @unique
+  userId    String?
+  email     String   @db.VarChar(191)
+  createdAt DateTime @default(now())
+
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user   User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([couponId])
+}
+
+model Page {
+  id             String     @id @default(cuid())
+  slug           String     @unique @db.VarChar(191)
+  kind           PageKind   @default(PAGE)
+  title          String     @db.VarChar(180)
+  excerpt        String?    @db.VarChar(320)
+  contentMd      String     @db.LongText
+  coverMediaId   String?
+  status         PageStatus @default(PUBLISHED)
+  seoTitle       String?    @db.VarChar(180)
+  seoDescription String?    @db.VarChar(320)
+  publishedAt    DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  coverMedia MediaAsset? @relation(fields: [coverMediaId], references: [id], onDelete: SetNull)
+
+  @@index([kind, status, publishedAt])
+}
+
+model Setting {
+  key       String   @id @db.VarChar(80)
+  value     String   @db.LongText
+  updatedAt DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique @db.VarChar(191)
+  source    String?  @db.VarChar(40)
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String    @id @default(cuid())
+  name      String    @db.VarChar(120)
+  email     String    @db.VarChar(191)
+  subject   String?   @db.VarChar(160)
+  message   String    @db.Text
+  createdAt DateTime  @default(now())
+  handledAt DateTime?
+
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  actorEmail String?  @db.VarChar(191)
+  action     String   @db.VarChar(80)
+  entity     String   @db.VarChar(60)
+  entityId   String?  @db.VarChar(191)
+  meta       String?  @db.Text
+  ipHash     String?  @db.VarChar(64)
+  createdAt  DateTime @default(now())
+
+  actor User? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+}
+
+model RateLimit {
+  key       String   @id @db.VarChar(191)
+  count     Int      @default(0)
+  expiresAt DateTime
+
+  @@index([expiresAt])
+}
