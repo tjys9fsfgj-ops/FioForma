@@ -11,7 +11,7 @@
     "db:generate": "node scripts/prisma.mjs generate",
     "db:migrate": "node scripts/prisma.mjs migrate deploy",
     "db:push": "node scripts/prisma.mjs db push",
-    "db:seed": "tsx prisma/seed.ts",
+    "db:seed": "node scripts/prisma.mjs generate && tsx prisma/seed.ts",
     "db:studio": "node scripts/prisma.mjs studio",
     "test": "node --import tsx --test \"src/**/__tests__/*.test.ts\" \"scripts/**/__tests__/*.test.ts\"",
     "moldes:build": "tsx scripts/moldes/build.ts"
