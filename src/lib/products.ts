@@ -210,7 +210,16 @@ export async function listCollections() {
   return prisma.collection.findMany({
     where: { published: true },
     orderBy: [{ sortOrder: 'asc' }, { name: 'asc' }],
-    include: { _count: { select: { products: { where: { status: 'PUBLISHED' } } } } },
+    include: {
+      _count: { select: { products: { where: { status: 'PUBLISHED' } } } },
+      // capa: primeira imagem do molde publicado mais recente
+      products: {
+        where: { status: 'PUBLISHED' },
+        orderBy: { publishedAt: 'desc' },
+        take: 1,
+        select: { images: { orderBy: { sortOrder: 'asc' }, take: 1, select: { mediaId: true } } },
+      },
+    },
   });
 }
 

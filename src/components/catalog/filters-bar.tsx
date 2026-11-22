@@ -33,14 +33,14 @@ export function CatalogFiltersBar({
 
   return (
     <div className="flex items-center gap-3">
-      <details className="relative lg:hidden">
-        <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-line bg-paper px-4 py-2 text-[12.5px] font-medium text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+      <details className="lg:hidden">
+        <summary className="flex cursor-pointer list-none items-center gap-2 border border-rule bg-paper px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-ink marker:content-none [&::-webkit-details-marker]:hidden">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" strokeWidth="1.4" />
           </svg>
           Filtros
         </summary>
-        <div className="absolute left-0 top-12 z-40 max-h-[70vh] w-[min(86vw,340px)] overflow-y-auto rounded-3xl border border-line bg-paper p-5 shadow-paper">
+        <div className="fixed inset-x-0 bottom-0 z-50 max-h-[75vh] overflow-y-auto border-t border-rule bg-paper p-5 pb-8 shadow-paper">
           {mobileFilters}
           <p className="mt-4 border-t border-line pt-3 text-[11.5px] text-muted">{total} moldes encontrados</p>
         </div>

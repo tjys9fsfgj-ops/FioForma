@@ -170,7 +170,7 @@ export default async function ProductPage({ params }: Props) {
           />
         </div>
 
-        <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-8 lg:sticky lg:top-28 lg:self-start">
+        <div className="border border-line bg-paper p-6 shadow-paper sm:p-8 lg:sticky lg:top-28 lg:self-start">
           <div className="flex flex-wrap items-center gap-2">
             {product.collection ? (
               <Link href={`/colecoes/${product.collection.slug}`}>
@@ -240,7 +240,7 @@ export default async function ProductPage({ params }: Props) {
 
       <section className="container-page py-10">
         <SectionHeading eyebrow="Ficha técnica" title="Tudo o que vem com este molde." />
-        <dl className="mt-8 rounded-[2rem] border border-line bg-paper px-6 shadow-paper sm:px-10">
+        <dl className="mt-8 border border-line bg-paper px-6 shadow-paper sm:px-10">
           {sizes.length ? <SpecRow label="Tamanhos incluídos">{sizes.join(' · ')}</SpecRow> : null}
           {spec?.fabricRecommendation ? (
             <SpecRow label="Tecido recomendado">

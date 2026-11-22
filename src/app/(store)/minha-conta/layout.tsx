@@ -21,7 +21,7 @@ export default async function AccountLayout({ children }: { children: React.Reac
   return (
     <div className="container-page py-10 sm:py-14">
       <div className="grid gap-8 lg:grid-cols-[250px_1fr] lg:gap-12">
-        <aside className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper lg:self-start">
+        <aside className="border border-line bg-paper p-6 shadow-paper lg:self-start">
           <p className="pill">Minha conta</p>
           <p className="mt-2 font-serif text-[20px] leading-snug text-wine">
             {user.name ?? user.email.split('@')[0]}

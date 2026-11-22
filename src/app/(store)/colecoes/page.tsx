@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { PatternPlaceholder } from '@/components/product/pattern-placeholder';
+import { Mat } from '@/components/ui/mat';
 import { listCollections } from '@/lib/products';
 
 export const metadata: Metadata = {
@@ -11,51 +11,48 @@ export const metadata: Metadata = {
 };
 
 export default async function CollectionsPage() {
-  const collections = await listCollections();
+  const collections = (await listCollections()).filter((collection) => collection._count.products > 0);
 
   return (
     <div className="container-page py-12 sm:py-16">
-      <header className="max-w-2xl">
+      <header className="border-b border-rule pb-10 text-center">
         <p className="eyebrow">Coleções</p>
-        <h1 className="mt-3 text-[clamp(2rem,4.4vw,3.2rem)] leading-[1.05]">Moldes que conversam entre si.</h1>
-        <p className="mt-4 text-[15px] leading-relaxed text-muted">
-          Cada coleção nasce de um mesmo gesto: um tecido, uma estação, uma forma de vestir. Comece por
-          aqui e monte um guarda-roupa com coerência.
+        <h1 className="mx-auto mt-4 max-w-3xl text-[clamp(2.2rem,4.6vw,3.4rem)] leading-[1.05]">Moldes que conversam entre si</h1>
+        <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
+          Cada coleção nasce de um mesmo gesto: um tecido, uma estação, uma forma de vestir.
         </p>
       </header>
 
       {collections.length === 0 ? (
-        <p className="rounded-2xl mt-12 border border-line bg-paper px-6 py-12 text-center text-[14px] text-muted">
-          As coleções estão sendo cadastradas. Enquanto isso, veja todos os{' '}
+        <p className="mt-12 text-center text-[14px] text-muted">
+          As coleções estão sendo montadas. Enquanto isso, veja todos os{' '}
           <Link href="/catalogo" className="text-wine underline underline-offset-4">
             moldes disponíveis
           </Link>
           .
         </p>
       ) : (
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {collections.map((collection, index) => (
-            <Link
-              key={collection.id}
-              href={`/colecoes/${collection.slug}`}
-              className="rounded-2xl group border border-line bg-paper transition-colors hover:border-wine/40"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden border-b border-line">
-                <PatternPlaceholder label={collection.name} seed={index + 4} />
-              </div>
-              <div className="p-6">
-                <h2 className="font-serif text-[24px] text-ink group-hover:text-wine">{collection.name}</h2>
+        <div className="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-x-6 gap-y-12">
+          {collections.map((collection, index) => {
+            const cover = collection.products[0]?.images[0]?.mediaId;
+            return (
+              <Link key={collection.id} href={`/colecoes/${collection.slug}`} className="group block w-full max-w-[320px] text-center sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+                <Mat tone={index % 2 ? 'rosewood' : 'sand'}>
+                  {cover ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={`/api/media/${cover}`} alt="" className="h-full w-full object-cover" />
+                  ) : null}
+                </Mat>
+                <h2 className="mt-4 text-[26px] group-hover:text-wine">{collection.name}</h2>
                 {collection.description ? (
-                  <p className="mt-2 line-clamp-3 text-[13.5px] leading-relaxed text-muted">
-                    {collection.description}
-                  </p>
+                  <p className="mx-auto mt-1 max-w-xs text-[14px] leading-relaxed text-muted">{collection.description}</p>
                 ) : null}
-                <p className="mt-4 text-[11.5px] uppercase tracking-[0.12em] text-muted">
+                <p className="mt-2 text-[11px] uppercase tracking-[0.16em] text-muted-2">
                   {collection._count.products} {collection._count.products === 1 ? 'molde' : 'moldes'}
                 </p>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

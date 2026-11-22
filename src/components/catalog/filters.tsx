@@ -13,7 +13,7 @@ export type CatalogParams = {
   page?: string;
 };
 
-const sizes = ['PP', 'P', 'M', 'G'];
+const sizes = ['PP', 'P', 'M', 'G', 'GG'];
 const difficulties = ['INICIANTE', 'INTERMEDIARIO', 'AVANCADO'] as const;
 const priceRanges = [
   { value: 'ate-12', label: 'Até R$ 12' },

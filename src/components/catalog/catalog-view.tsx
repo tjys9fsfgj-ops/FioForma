@@ -162,10 +162,10 @@ export async function CatalogView({
 
   return (
     <div className="container-page py-10 sm:py-14">
-      <header className="rounded-[2rem] bg-sand px-6 py-10 sm:rounded-[2.5rem] sm:px-12 sm:py-14">
-        <p className="pill">Catálogo</p>
-        <h1 className="mt-5 max-w-3xl text-[clamp(2.1rem,4.6vw,3.4rem)] leading-[1.04]">{title}</h1>
-        {description ? <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-wine/75">{description}</p> : null}
+      <header className="border-b border-rule pb-10 text-center">
+        <p className="eyebrow">Catálogo</p>
+        <h1 className="mx-auto mt-4 max-w-3xl text-[clamp(2.2rem,4.6vw,3.4rem)] leading-[1.05]">{title}</h1>
+        {description ? <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">{description}</p> : null}
       </header>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[240px_1fr]">
@@ -181,7 +181,7 @@ export async function CatalogView({
         </aside>
 
         <div>
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-full bg-paper px-5 py-2.5 ring-1 ring-line">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule pb-3">
             <p className="text-[12.5px] text-muted">
               {total} {total === 1 ? 'molde' : 'moldes'}
               {params.q ? ` para “${params.q}”` : ''}
@@ -209,7 +209,7 @@ export async function CatalogView({
                 <Link
                   key={chip.label}
                   href={chip.href}
-                  className="inline-flex items-center gap-2 rounded-full border border-wine/20 bg-sand px-3.5 py-1.5 text-[12px] font-medium text-wine hover:border-wine/50"
+                  className="inline-flex items-center gap-2 border border-rule bg-paper px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-ink hover:border-wine hover:text-wine"
                 >
                   {chip.label}
                   <span aria-hidden="true">×</span>

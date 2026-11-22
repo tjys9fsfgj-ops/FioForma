@@ -50,7 +50,7 @@ export default async function CartPage() {
       <div className="mt-8 grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
         <ul className="space-y-4">
           {cart.lines.map((line) => (
-            <li key={line.itemId} className="flex gap-4 rounded-[1.75rem] border border-line bg-paper p-4 shadow-paper sm:gap-6 sm:p-5">
+            <li key={line.itemId} className="flex gap-4 border border-line bg-paper p-4 shadow-paper sm:gap-6 sm:p-5">
               <Link
                 href={`/produto/${line.slug}`}
                 className="rounded-2xl relative aspect-[4/5] w-24 shrink-0 overflow-hidden border border-line bg-[#EFEDE6] sm:w-28"
@@ -95,7 +95,7 @@ export default async function CartPage() {
         </ul>
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
-          <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-7">
+          <div className="border border-line bg-paper p-6 shadow-paper sm:p-7">
             <h2 className="font-serif text-[22px] text-wine">Resumo</h2>
             <dl className="mt-5 space-y-3 text-[13.5px]">
               <div className="flex justify-between">

@@ -17,7 +17,7 @@ export function Gallery({ images, productName }: { images: GalleryImage[]; produ
 
   if (images.length === 0) {
     return (
-      <div className="aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-line">
+      <div className="aspect-[4/5] overflow-hidden ring-1 ring-line">
         <PatternPlaceholder label="Foto da peça" seed={0} />
       </div>
     );
@@ -27,7 +27,7 @@ export function Gallery({ images, productName }: { images: GalleryImage[]; produ
 
   return (
     <div>
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-sand ring-1 ring-line">
+      <div className="relative aspect-[4/5] overflow-hidden bg-sand ring-1 ring-line">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/api/media/${current.mediaId}`}

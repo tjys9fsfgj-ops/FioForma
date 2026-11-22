@@ -49,7 +49,7 @@ export default async function CheckoutPage() {
         </div>
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
-          <div className="rounded-[2rem] border border-line bg-paper p-6 shadow-paper sm:p-7">
+          <div className="border border-line bg-paper p-6 shadow-paper sm:p-7">
             <h2 className="font-serif text-[22px] text-wine">Seu pedido</h2>
             <ul className="mt-4 divide-y divide-line/70">
               {cart.lines.map((line) => (
